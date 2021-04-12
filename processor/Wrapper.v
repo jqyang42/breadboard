@@ -24,8 +24,12 @@
  *
  **/
 
-module Wrapper (clock, reset);
+module Wrapper (clock, reset, winner, p1_up, p1_down, p1_left, p1_right,
+	p2_up, p2_down, p2_left, p2_right);
 	input clock, reset;
+	input p1_up, p1_down, p1_left, p1_right, p2_up, p2_down, p2_left, p2_right;
+
+	output[1:0] winner;
 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -63,7 +67,8 @@ module Wrapper (clock, reset);
 		.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
-		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB));
+		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), 
+		.winner(winner));
 						
 	// Processor Memory (RAM)
 	RAM ProcMem(.clk(clock), 

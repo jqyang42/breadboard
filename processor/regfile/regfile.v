@@ -2,14 +2,17 @@ module regfile (
 	clock,
 	ctrl_writeEnable, ctrl_reset, ctrl_writeReg,
 	ctrl_readRegA, ctrl_readRegB, data_writeReg,
-	data_readRegA, data_readRegB
+	data_readRegA, data_readRegB,
+	winner
 );
 
 	input clock, ctrl_writeEnable, ctrl_reset;
+	input p1_up, p1_down, p1_left, p1_right, p2_up, p2_down, p2_left, p2_right;
 	input [4:0] ctrl_writeReg, ctrl_readRegA, ctrl_readRegB;
 	input [31:0] data_writeReg;
 
 	output [31:0] data_readRegA, data_readRegB;
+	output [1:0] winner;
 
 	wire [31:0] d_write, d_readA, d_readB;
 	// add your code here
@@ -17,10 +20,12 @@ module regfile (
 	decoder decode_readA(.onehot(d_readA), .shift(ctrl_readRegA));
 	decoder decode_readB(.onehot(d_readB), .shift(ctrl_readRegB));
 
+	/* #$r3 has winner info
+	*/
 	register_32 reg0(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b0), .write_ctrl(d_write[0]), .oeA(d_readA[0]), .oeB(d_readB[0]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg1(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[1]), .oeA(d_readA[1]), .oeB(d_readB[1]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg2(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[2]), .oeA(d_readA[2]), .oeB(d_readB[2]), .clr(ctrl_reset), .in(data_writeReg));
-	register_32 reg3(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[3]), .oeA(d_readA[3]), .oeB(d_readB[3]), .clr(ctrl_reset), .in(data_writeReg));
+	register_32 reg3(.outA(winner), .outB(winner), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[3]), .oeA(d_readA[3]), .oeB(d_readB[3]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg4(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[4]), .oeA(d_readA[4]), .oeB(d_readB[4]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg5(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[5]), .oeA(d_readA[5]), .oeB(d_readB[5]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg6(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[6]), .oeA(d_readA[6]), .oeB(d_readB[6]), .clr(ctrl_reset), .in(data_writeReg));
