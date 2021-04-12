@@ -28,43 +28,38 @@ move_player1_up:
     addi    $r12,    -5
     and     $r22,   $r0
     j		p1_down				# jump to 120
-    
-
 move_player1_down:
     addi    $r12,    5
     and     $r23,   $r0
     j		p1_up				# jump to p1_up
-
-
 move_player2_up:
     addi    $r14,    -5
     and     $r26,   $r0
     j		p2_down				# jump to p2_down
-    
-
 move_player2_down:
     addi    $r14,    5
     and     $r27,   $r0
-    j		p2_left				# jump to p2_left
-    
-
+    j		p2_left				# jump to p2_left   
 move_player1_left:
     addi    $r11,    -5
     and     $r24,   $r0
-    j		target				# jump to target
-    
-
+    j		p1_right				# jump to p1_right  
 move_player1_right:
-    bgt     $r11,   $r5,    out_of_bounds
+    bgt     $r11,   $r5,    p2_up
     addi    $r11,    5
-
+    and     $r25,   $r0
+    j		p2_up				# jump to p2_up
 move_player2_left:
-    blt     $r13,   $r6,    out_of_bounds
+    blt     $r13,   $r6,    p2_right
     addi    $r13,    -5
+    and     $r28,   $r0
+    j		p2_right				# jump to p2_right
+    
 
 move_player2_right:
     addi    $r13,    5
-
+    and     $r29,   $r0
+    j		after_paddle				# jump to after_paddle
 
 #
 # BALL BASIC MOVEMENT
@@ -159,5 +154,6 @@ nop
 game:
 j   ball_handle
 j   paddle_handle
-beq     $r3,    $r0,    game
-j   end_game
+after_paddle:
+    beq     $r3,    $r0,    game
+    j   end_game
