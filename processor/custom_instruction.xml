@@ -1,0 +1,12 @@
+<ISA>
+    <Instruction>
+        <Name>beq</Name>
+        <Type>I</Type>
+        <Code>11111</Code>
+    </Instruction>
+    <Instruction>
+        <Name>bgt</Name>
+        <Type>I</Type>
+        <Code>11110</Code>
+    </Instruction>
+</ISA>
