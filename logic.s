@@ -12,7 +12,7 @@
 # $r17, $r18 = ball direction x, y
 # $r19, $r20 = width, heaight of screen
 # $r21 = ball movement change
-# $r22 = player1 press up
+# $r22 = player1 press up - vga controller called in processor, directly connect wire to register
 # $r23 = player1 press down
 # $r24 = player1 press left
 # $r25 = plauer1 press right
@@ -26,18 +26,33 @@
 #
 move_player1_up:
     addi    $r12,    -5
+    and     $r22,   $r0
+    j		p1_down				# jump to 120
+    
 
 move_player1_down:
     addi    $r12,    5
+    and     $r23,   $r0
+    j		p1_up				# jump to p1_up
+
 
 move_player2_up:
     addi    $r14,    -5
+    and     $r26,   $r0
+    j		p2_down				# jump to p2_down
+    
 
 move_player2_down:
     addi    $r14,    5
+    and     $r27,   $r0
+    j		p2_left				# jump to p2_left
+    
 
 move_player1_left:
     addi    $r11,    -5
+    and     $r24,   $r0
+    j		target				# jump to target
+    
 
 move_player1_right:
     bgt     $r11,   $r5,    out_of_bounds
@@ -115,12 +130,19 @@ ball_handle:
 #
 paddle_handle:
     beq     $r22,   $r1,    move_player1_up
+p1_down:
     beq     $r23,   $r1,    move_player1_down
+p1_left:
     beq     $r24,   $r1,    move_player1_left
+p1_right:
     beq     $r25,   $r1,    move_player1_right
+p2_up:
     beq     $r26,   $r1,    move_player2_up
-    beq     $r27,   $r1,    move_player2_dwon
+p2_down:
+    beq     $r27,   $r1,    move_player2_down
+p2_left:
     beq     $r28,   $r1,    move_player2_left
+p2_right:
     beq     $r29,   $r1,    move_player2_right
 
 #
