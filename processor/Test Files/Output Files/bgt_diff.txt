@@ -1,1 +1,2 @@
+Reg:  3 Expected:          -5 Actual:           z
 Reg: 10 Expected:           6 Actual:           2

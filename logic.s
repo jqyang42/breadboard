@@ -3,13 +3,15 @@
 # $r3 = winner (1 player 1, 2 player 2)
 # $r4=4
 # $r5 = 1-game over, 0-game not over
+# $r6 = stall logic for game loop (need to 
 # $r7, $r8 = left edge goal top ycoord, bottom ycoord
 # $r9, $r10 = right edge goal top ycoord, bottom ycoord
+# $r13, $r14 = initial ball x, y
 # $r15, $r16 = ball x, y
 # $r17, $r18 = ball direction x, y
-# $r19, $r20 = width, heaight of screen
+# $r19, $r20 = ball x lim and y lim
 # $r21 = ball movement change
-#
+# $r22, $r23 = ball x, y that are wired directly in regfile for wrapper :)
 # ACTUAL GAME
 #
 
@@ -22,57 +24,44 @@ nop
 nop
 nop 
 game:
+add     $r15,   $r13,   $r0
+add     $r16,   $r14,   $r0     # initialize location of ball in registers  
+add     $r22,   $r13,   $r0     
+add     $r23,   $r14,   $r0     
 j   ball_handle
-beq     $r3,    $r0,    game
-j   end_game
+check_cont:
+bne     $r3,    $r0,    end_game
+stall   $r11,    $r0,    $r6    #r11 is a random reg since we can't write to r6
+j		game				# jump to game
 
-move_player1_up:
-    addi    $r12,    -5
-    and     $r22,   $r0
-    j		p1_down				# jump to 120
-move_player1_down:
-    addi    $r12,    5
-    and     $r23,   $r0
-    j		p1_up				# jump to p1_up
-move_player2_up:
-    addi    $r14,    -5
-    and     $r26,   $r0
-    j		p2_down				# jump to p2_down
-move_player2_down:
-    addi    $r14,    5
-    and     $r27,   $r0
-    j		p2_left				# jump to p2_left   
-move_player1_left:
-    addi    $r11,    -5
-    and     $r24,   $r0
-    j		p1_right				# jump to p1_right  
-move_player1_right:
-    bgt     $r11,   $r5,    p2_up
-    addi    $r11,    5
-    and     $r25,   $r0
-    j		p2_up				# jump to p2_up
-move_player2_left:
-    blt     $r13,   $r6,    p2_right
-    addi    $r13,    -5
-    and     $r28,   $r0
-    j		p2_right				# jump to p2_right
-move_player2_right:
-    addi    $r13,    5
-    and     $r29,   $r0
-    j		after_paddle				# jump to after_paddle
+
+#
+# HANDLING AUTOMATIC BALL MVMT
+#
+ball_handle:
+    # checking wall collisions for ball
+    blt     $r16,   $r0,    ball_flip_y     #check if ball hit top (make sure to not go to next line)
+    bgt     $r16,   $r20,   ball_flip_y     #check if ball hit bottom (make sure to not go to next line)
+    # ball left
+    blt     $r15,   $r0,    ball_left_edge
+    # ball right
+    bgt     $r15,   $r19,    ball_right_edge
+    j		check_cont              # jump to beq check (loop)
 
 
 #
 # BALL BASIC MOVEMENT
 #
 move_ball_x:
-    mul     $r21,   $r4,   $r17     #should we add noop LOL
-    addi    $r15,    $r21,   $r15
+    mul     $r21,   $r4,    $r17     #should we add noop LOL
+    add     $r15,   $r21,   $r15
+    add     $r22,   $r15,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r21,   $r0,    $r21    #reset the math reg
 
 move_ball_y:
     mul     $r21,   $r4,   $r18     #should we add noop LOL
-    addi    $r16,   $r21,   $r16
+    add     $r16,   $r21,   $r16
+    add     $r23,   $r16,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r21,   $r0,    $r21    #reset the math reg
 
 #
@@ -80,11 +69,11 @@ move_ball_y:
 #
 ball_flip_x:
     mul     $r17,   $r17,  $r2
-    j		paddle_handle				# jump to paddle_handle
+    j		check_cont              # jump to beq check (loop)
     
 ball_flip_y:
     mul     $r18,   $r18,   $r2
-    j		paddle_handle				# jump to paddle_handle
+    j		check_cont				# jump to paddle_handle
 
 ball_left_edge:
     bgt     $r15,   $r8,    ball_flip_x     #check if ball hit left outside segment
@@ -107,15 +96,4 @@ right_lose:
 end_game:
     add     $r5,    $r1,    $r5
 
-#
-# HANDLING AUTOMATIC BALL MVMT
-#
-ball_handle:
-    # checking wall collisions for ball
-    blt     $r16,   $r0,    ball_flip_y     #check if ball hit top (make sure to not go to next line)
-    bgt     $r16,   $r20,   ball_flip_y     #check if ball hit bottom (make sure to not go to next line)
-    # ball left
-    blt     $r15,   $r0,    ball_left_edge
-    # ball right
-    bgt     $r15,   $r19,    ball_right_edge
-    j		paddle_handle				# jump to paddle_handle
+

@@ -80,8 +80,9 @@ module processor(
                         (x_opcode == 5'b00100) ? jr_branch_pc : (   // jr: go to $rd
                         ((x_opcode == 5'b10110) && x_latched_not_equal) ? x_padded_target : (   // bex go to T
                         (((x_opcode == 5'b00010) && x_latched_not_equal) || ((x_opcode == 5'b00110) && x_latched_less_than) ? branch_pc : ( // bne and blt
-                        (((x_opcode == 5'b11111) && !x_latched_not_equal && !x_latched_less_than) || ((x_opcode == 5'b11110) && x_latched_not_equal && !x_latched_less_than)) ? branch_pc : (   // beq and bgt
-                        incremented_pc))))));    // pc++
+                        (((x_opcode == 5'b11111) && !x_latched_not_equal && !x_latched_less_than) ? branch_pc : (   // beq
+                        ((x_opcode == 5'b11110) && x_latched_not_equal && !x_latched_less_than)) ? bgt_branch_pc : (    // bgt
+                        incremented_pc)))))));    // pc++
     register_32 base_program_counter(.outA(base_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(next_pc), .write_ctrl(1'b1));
 
     // Fetch
@@ -155,6 +156,7 @@ module processor(
     wire [21:0] x_jii_zeroes = dx_ir[21:0]; // JII only
     wire [31:0] x_sx_immediate;
     wire [31:0] branch_pc;
+    wire [31:0] bgt_branch_pc;
     wire [31:0] x_padded_target;
     wire mx_jr_bypassing;
     wire [31:0] jr_branch_pc;
@@ -162,6 +164,7 @@ module processor(
     wire x_less_than;
     sign_extend_17 x_extended_immediate(.out(x_sx_immediate), .in(x_immediate));
     add_32 branch_pc_calc(.A(dx_pc), .B(x_sx_immediate), .Cin(1'b1), .Sout(branch_pc), .Cout(overflow_pc));
+    assign bgt_branch_pc = x_sx_immediate;
     assign x_padded_target[31:27] = 5'b0;
     assign x_padded_target[26:0] = x_target;
     assign mx_jr_bypassing = (m_rd == x_rd) && (x_opcode == 5'b00100);

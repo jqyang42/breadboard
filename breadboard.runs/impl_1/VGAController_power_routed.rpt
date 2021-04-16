@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Thu Apr 15 21:43:56 2021
+| Date             : Fri Apr 16 13:46:32 2021
 | Host             : DESKTOP-S43D2TC running 64-bit major release  (build 9200)
 | Command          : report_power -file VGAController_power_routed.rpt -pb VGAController_power_summary_routed.pb -rpx VGAController_power_routed.rpx
 | Design           : VGAController
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 19.764 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 22.981 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 19.117                           |
-| Device Static (W)        | 0.647                            |
+| Dynamic (W)              | 22.134                           |
+| Device Static (W)        | 0.847                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
-| Junction Temperature (C) | 115.2                            |
+| Junction Temperature (C) | 125.0                            |
 | Confidence Level         | Low                              |
 | Setting File             | ---                              |
 | Simulation Activity File | ---                              |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.771 |      391 |       --- |             --- |
-|   LUT as Logic |     1.629 |      247 |     63400 |            0.39 |
+| Slice Logic    |     1.886 |      409 |       --- |             --- |
+|   LUT as Logic |     1.746 |      260 |     63400 |            0.41 |
 |   CARRY4       |     0.092 |       30 |     15850 |            0.19 |
-|   Register     |     0.045 |       68 |    126800 |            0.05 |
+|   Register     |     0.042 |       68 |    126800 |            0.05 |
 |   BUFG         |     0.006 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |       11 |       --- |             --- |
-| Signals        |     2.460 |      372 |       --- |             --- |
+| Signals        |     3.255 |      394 |       --- |             --- |
 | Block RAM      |     1.729 |     80.5 |       135 |           59.63 |
-| DSPs           |     0.305 |        1 |       240 |            0.42 |
-| I/O            |    12.853 |       24 |       210 |           11.43 |
-| Static Power   |     0.647 |          |           |                 |
-| Total          |    19.764 |          |           |                 |
+| DSPs           |     0.409 |        1 |       240 |            0.42 |
+| I/O            |    14.856 |       24 |       210 |           11.43 |
+| Static Power   |     0.847 |          |           |                 |
+| Total          |    22.981 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,16 +73,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     6.584 |       6.148 |      0.436 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.542 |       0.470 |      0.072 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     3.632 |       3.628 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     7.749 |       7.162 |      0.587 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.636 |       0.543 |      0.093 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     4.199 |       4.195 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.184 |       0.152 |      0.032 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.195 |       0.152 |      0.043 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -140,10 +140,10 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| VGAController  |    19.117 |
-|   ColorPalette |     0.137 |
-|   Display      |     1.605 |
-|   ImageData    |     1.895 |
+| VGAController  |    22.134 |
+|   ColorPalette |     0.130 |
+|   Display      |     1.789 |
+|   ImageData    |     1.929 |
 +----------------+-----------+
 
 

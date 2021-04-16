@@ -24,12 +24,14 @@
  *
  **/
 
-module Wrapper (clock, reset, winner, p1_up, p1_down, p1_left, p1_right,
-	p2_up, p2_down, p2_left, p2_right);
+module Wrapper (clock, reset, ball_xlim, ball_ylim, winner, ball_x, ball_y);
 	input clock, reset;
-	input p1_up, p1_down, p1_left, p1_right, p2_up, p2_down, p2_left, p2_right;
+	input [9:0] ball_xlim;
+	input [8:0] ball_ylim;
 
 	output[1:0] winner;
+	output[9:0] ball_x;
+	output [8:0] ball_y;
 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -68,7 +70,8 @@ module Wrapper (clock, reset, winner, p1_up, p1_down, p1_left, p1_right,
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), 
-		.winner(winner));
+		.winner(winner), .ball_x(ball_x), .ball_y(ball_y), 
+		.ball_xlim(ball_xlim), .ball_ylim(ball_ylim));
 						
 	// Processor Memory (RAM)
 	RAM ProcMem(.clk(clock), 

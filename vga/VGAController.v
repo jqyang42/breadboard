@@ -94,11 +94,7 @@ module VGAController(
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
 		// if ((p1_xRef <= screenMiddle - 25) && (p1_xRef >= 0) && (p1_yRef >= 0) && (p1_yRef <= VIDEO_HEIGHT - 33)) begin
-		if(p1_xRef <= p1_xBound && p1_xRef > 25) begin
-			if (p1_up)
-				p1_yRef <= p1_yRef - 1;
-			if (p1_down)
-				p1_yRef <= p1_yRef + 1;
+		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
 			if (p1_left)
 				p1_xRef <= p1_xRef - 1;
 			if (p1_right)
@@ -106,7 +102,15 @@ module VGAController(
 		end
 		else begin
 			p1_xRef <= (p1_xRef > p1_xBound) ? p1_xBound : 26;
-			p1_yRef <= p1_yRef;
+		end
+		if(p1_yRef > 25) begin
+			if (p1_up)
+				p1_yRef <= p1_yRef - 1;
+			if (p1_down)
+				p1_yRef <= p1_yRef + 1;
+		end
+		else begin
+			p1_yRef <= 26;
 		end
 		// if ((p2_xRef >= screenMiddle + 25) && (p2_xRef <= VIDEO_WIDTH - 25) && (p2_yRef >= 33) && (p2_yRef <= VIDEO_HEIGHT - 33)) begin
 		if(p2_xRef >= p2_xBound && p2_xRef < VIDEO_WIDTH-25) begin
