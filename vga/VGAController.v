@@ -77,6 +77,14 @@ module VGAController(
 			p2_inSquare <= 1'b0;
 	end
 
+	// ball creation
+	// p2 paddle creation
+	reg[9:0] ball_xRef = 320;
+	reg[8:0] ball_yRef = 240;
+
+	reg ball_inSquare = 0;
+
+
 	// p1 and p2 movement logic
 	wire[9:0] screenMiddle, p1_xBound;
 	assign screenMiddle = VIDEO_WIDTH/2.0;
@@ -86,7 +94,7 @@ module VGAController(
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
 		// if ((p1_xRef <= screenMiddle - 25) && (p1_xRef >= 0) && (p1_yRef >= 0) && (p1_yRef <= VIDEO_HEIGHT - 33)) begin
-		if(p1_xRef <= p1_xBound) begin
+		if(p1_xRef <= p1_xBound && p1_xRef > 25) begin
 			if (p1_up)
 				p1_yRef <= p1_yRef - 1;
 			if (p1_down)
@@ -97,10 +105,11 @@ module VGAController(
 				p1_xRef <= p1_xRef + 1;
 		end
 		else begin
-			p1_xRef <= p1_xBound;
+			p1_xRef <= (p1_xRef > p1_xBound) ? p1_xBound : 26;
 			p1_yRef <= p1_yRef;
 		end
 		// if ((p2_xRef >= screenMiddle + 25) && (p2_xRef <= VIDEO_WIDTH - 25) && (p2_yRef >= 33) && (p2_yRef <= VIDEO_HEIGHT - 33)) begin
+		if(p2_xRef >= p2_xBound && p2_xRef < VIDEO_WIDTH-25) begin
 			if (p2_up)
 				p2_yRef <= p2_yRef - 1;
 			if (p2_down)
@@ -109,11 +118,11 @@ module VGAController(
 				p2_xRef <= p2_xRef - 1;
 			if (p2_right)
 				p2_xRef <= p2_xRef + 1;
-		// end
-		// else begin
-		// 	p2_xRef <= p2_xRef;
-		// 	p2_yRef <= p2_yRef;
-		// end
+		end
+		else begin
+			p2_xRef <= (p2_xRef < p2_xBound) ? p2_xBound : VIDEO_WIDTH-26;
+			p2_yRef <= p2_yRef;
+		end
 	end
 
 	VGATimingGenerator #(
@@ -174,8 +183,11 @@ module VGAController(
 	// Quickly assign the output colors to their channels using concatenation
 	assign {VGA_R, VGA_G, VGA_B} = colorOut;
 
-	// Processor wrapper module
-	
+	// // Processor wrapper module
+	// wire [9:0] ball_xlim;
+	// wire [8:0] ball_ylim;
+	// assign ball_xlim = 
+	// Wrapper proc(clock, reset, winner, );
 
 
 
