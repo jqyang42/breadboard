@@ -71,7 +71,7 @@ module Wrapper (clock, reset, ball_xlim, ball_ylim, winner, ball_x, ball_y);
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), 
 		.winner(winner), .ball_x(ball_x), .ball_y(ball_y), 
-		.ball_xlim(ball_xlim), .ball_ylim(ball_ylim));
+		.ball_xlim(ball_xlim), .ball_ylim(ball));
 						
 	// Processor Memory (RAM)
 	RAM ProcMem(.clk(clock), 
