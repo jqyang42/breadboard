@@ -78,12 +78,15 @@ module VGAController(
 	end
 
 	// p1 and p2 movement logic
-	wire[9:0] screenMiddle;
+	wire[9:0] screenMiddle, p1_xBound;
 	assign screenMiddle = VIDEO_WIDTH/2.0;
+	assign p1_xBound = screenMiddle - 50;
+	assign p2_xBound = screenMiddle + 50;
 
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
 		// if ((p1_xRef <= screenMiddle - 25) && (p1_xRef >= 0) && (p1_yRef >= 0) && (p1_yRef <= VIDEO_HEIGHT - 33)) begin
+		if(p1_xRef <= p1_xBound) begin
 			if (p1_up)
 				p1_yRef <= p1_yRef - 1;
 			if (p1_down)
@@ -92,11 +95,11 @@ module VGAController(
 				p1_xRef <= p1_xRef - 1;
 			if (p1_right)
 				p1_xRef <= p1_xRef + 1;
-		// end
-		// else begin
-		// 	p1_xRef <= p1_xRef;
-		// 	p1_yRef <= p1_yRef;
-		// end
+		end
+		else begin
+			p1_xRef <= p1_xBound;
+			p1_yRef <= p1_yRef;
+		end
 		// if ((p2_xRef >= screenMiddle + 25) && (p2_xRef <= VIDEO_WIDTH - 25) && (p2_yRef >= 33) && (p2_yRef <= VIDEO_HEIGHT - 33)) begin
 			if (p2_up)
 				p2_yRef <= p2_yRef - 1;
