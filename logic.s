@@ -12,7 +12,7 @@
 #
 # ACTUAL GAME
 #
-<<<<<<< Updated upstream
+
 nop
 nop
 nop
@@ -25,7 +25,7 @@ game:
 j   ball_handle
 beq     $r3,    $r0,    game
 j   end_game
-=======
+
 move_player1_up:
     addi    $r12,    -5
     and     $r22,   $r0
@@ -61,7 +61,7 @@ move_player2_right:
     and     $r29,   $r0
     j		after_paddle				# jump to after_paddle
 
->>>>>>> Stashed changes
+
 #
 # BALL BASIC MOVEMENT
 #
