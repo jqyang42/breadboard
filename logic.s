@@ -3,7 +3,7 @@
 # $r3 = winner (1 player 1, 2 player 2)
 # $r4=4
 # $r5 = 1-game over, 0-game not over
-# $r6 = stall logic for game loop (need to 
+# $r6 = stall logic for game loop (0 when game should run. 1
 # $r7, $r8 = left edge goal top ycoord, bottom ycoord
 # $r9, $r10 = right edge goal top ycoord, bottom ycoord
 # $r13, $r14 = initial ball x, y
@@ -23,11 +23,12 @@ nop
 nop
 nop
 nop 
-game:
+initial_game:
 add     $r15,   $r13,   $r0
 add     $r16,   $r14,   $r0     # initialize location of ball in registers  
 add     $r22,   $r13,   $r0     
-add     $r23,   $r14,   $r0     
+add     $r23,   $r14,   $r0    
+game: 
 j   ball_handle
 check_cont:
 bne     $r3,    $r0,    end_game
@@ -41,11 +42,23 @@ j		game				# jump to game
 ball_handle:
     # checking wall collisions for ball
     blt     $r16,   $r0,    ball_flip_y     #check if ball hit top (make sure to not go to next line)
+    nop
+    nop
+    nop
     bgt     $r16,   $r20,   ball_flip_y     #check if ball hit bottom (make sure to not go to next line)
+    nop
+    nop
+    nop
     # ball left
     blt     $r15,   $r0,    ball_left_edge
+    nop
+    nop
+    nop
     # ball right
     bgt     $r15,   $r19,    ball_right_edge
+    nop
+    nop
+    nop
     j		check_cont              # jump to beq check (loop)
 
 
@@ -76,12 +89,24 @@ ball_flip_y:
     j		check_cont				# jump to paddle_handle
 
 ball_left_edge:
+    nop
+    nop
+    nop
     bgt     $r15,   $r8,    ball_flip_x     #check if ball hit left outside segment
+    nop
+    nop
+    nop
     blt     $r15,   $r7,    ball_flip_x     #check if ball hit left outside segment
     j       left_lose
 
 ball_right_edge:
+    nop
+    nop
+    nop
     bgt     $r15,   $r10,    ball_flip_x     #check if ball hit left outside segment
+    nop
+    nop
+    nop
     blt     $r15,   $r9,    ball_flip_x     #check if ball hit left outside segment
     j       right_lose
 

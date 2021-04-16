@@ -16,7 +16,8 @@ module VGAController(
 	input p2_up,
 	input p2_down,
 	input p2_left,
-	input p2_right);
+	input p2_right,
+	output p2_cross);
 	
 	// Lab Memory Files Location
 	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
@@ -89,7 +90,9 @@ module VGAController(
 	wire[9:0] screenMiddle, p1_xBound;
 	assign screenMiddle = VIDEO_WIDTH/2.0;
 	assign p1_xBound = screenMiddle - 50;
-	assign p2_xBound = screenMiddle + 50;
+	assign p2_xBound = 370;
+
+	assign p2_cross = p2_xRef >= 370;
 
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
@@ -103,29 +106,33 @@ module VGAController(
 		else begin
 			p1_xRef <= (p1_xRef > p1_xBound) ? p1_xBound : 26;
 		end
-		if(p1_yRef > 25) begin
+		if(p1_yRef > 33 && p1_yRef < (VIDEO_HEIGHT - 33)) begin
 			if (p1_up)
 				p1_yRef <= p1_yRef - 1;
 			if (p1_down)
 				p1_yRef <= p1_yRef + 1;
 		end
 		else begin
-			p1_yRef <= 26;
+			p1_yRef <= (p1_yRef >= VIDEO_HEIGHT - 33) ? VIDEO_HEIGHT - 34 : 34;
 		end
 		// if ((p2_xRef >= screenMiddle + 25) && (p2_xRef <= VIDEO_WIDTH - 25) && (p2_yRef >= 33) && (p2_yRef <= VIDEO_HEIGHT - 33)) begin
-		if(p2_xRef >= p2_xBound && p2_xRef < VIDEO_WIDTH-25) begin
-			if (p2_up)
-				p2_yRef <= p2_yRef - 1;
-			if (p2_down)
-				p2_yRef <= p2_yRef + 1;
+		if(p2_xRef >= 370 && p2_xRef < VIDEO_WIDTH-25) begin
 			if (p2_left)
 				p2_xRef <= p2_xRef - 1;
 			if (p2_right)
 				p2_xRef <= p2_xRef + 1;
 		end
 		else begin
-			p2_xRef <= (p2_xRef < p2_xBound) ? p2_xBound : VIDEO_WIDTH-26;
-			p2_yRef <= p2_yRef;
+			p2_xRef <= (p2_xRef < 370) ? 370 : VIDEO_WIDTH-26;
+		end
+		if(p2_yRef > 33 && p2_yRef < 447) begin
+			if (p2_up)
+				p2_yRef <= p2_yRef - 1;
+			if (p2_down)
+				p2_yRef <= p2_yRef + 1;
+		end
+		else begin
+			p2_yRef <= (p2_yRef >= 447) ? 446 : 34;
 		end
 	end
 
