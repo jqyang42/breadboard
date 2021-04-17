@@ -71,9 +71,8 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 1
-set_param synth.incrementalSynthesisCache {C:/Users/Jessica Yang/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-30476-DESKTOP-S43D2TC/incrSyn}
+set_param synth.incrementalSynthesisCache {C:/Users/Jessica Yang/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-14548-DESKTOP-S43D2TC/incrSyn}
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -90,9 +89,49 @@ set_property ip_output_repo {c:/Users/Jessica Yang/Documents/ece350/breadboard/b
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+read_mem {{C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/logic.mem}}
 read_verilog -library xil_defaultlib {
   {C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/ROM.v}
   {C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGATimingGenerator.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/Wrapper.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/add/add_32.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/add/add_8.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/alu.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/and_gate.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multiplier/control.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/counter/counter_7.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/decoder.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/dffe_ref.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/divider/divider_nonres.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multiplier/mult_booth.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multdiv.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_2_32.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_4_32.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_8_32.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/not_gate.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/or_gate.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_32.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_64.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_65.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_7.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/segment_decoder.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/sign_extend_17.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_1.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_16.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_2.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_4.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_8.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_barrel.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_1.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_16.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_2.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_4.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_8.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_barrel.v}
+  {C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/tri_state.v}
   {C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v}
 }
 OPTRACE "Adding files" END { }

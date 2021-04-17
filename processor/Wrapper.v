@@ -50,7 +50,7 @@ module Wrapper (clock, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xin
 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "nop.mem";
+	localparam INSTR_FILE = "logic.mem";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
