@@ -1,7 +1,7 @@
 module divider_nonres(total_quotient, prev_total_quotient, dividend, divisor, clock);
     input [63:0] prev_total_quotient;
     input [31:0] dividend, divisor;
-    input clock, clear;
+    input clock;
 
     output [63:0] total_quotient;
 

@@ -1,7 +1,7 @@
 module mult_booth(product, prev_product, multiplicand, multiplier, clock);
     input [64:0] prev_product;
     input [31:0] multiplicand, multiplier;  //multiplier isnt used
-    input clock, clear;
+    input clock;
 
     output [64:0] product;
 

@@ -16,7 +16,14 @@ module VGAController(
 	input p2_up,
 	input p2_down,
 	input p2_left,
-	input p2_right);
+	input p2_right,
+	output ca, 
+	output cb, 
+	output cc, 
+	output cd, 
+	output ce, 
+	output cf, 
+	output cg);
 	
 	// Lab Memory Files Location
 	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
@@ -150,17 +157,18 @@ module VGAController(
 	// WINNER STATS
 	wire[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
 	
-	wire posEdgeScreenEnd;
-	assign posEdgeScreenEnd = 0;
+	reg stall;
+	reg posEdgeScreenEnd;
+	//assign posEdgeScreenEnd = 0;
 
 	always @(negedge screenEnd) begin
-		assign posEdgeScreenEnd = 0;
+		posEdgeScreenEnd <= 0;
 	end
 
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
-		assign stall = 0;
-		assign posEdgeScreenEnd = 1;
+		stall <= 0;
+		posEdgeScreenEnd <= 1;
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
 			if (p1_left)
 				p1_xRef <= p1_xRef - 1;
@@ -266,5 +274,6 @@ module VGAController(
 				p2_leftBound, p2_rightBound, p2_topBound, p2_bottomBound,
 				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
 				segRight_topBound, segRight_bottomBound);
-
+	
+    segment_decoder seg_number(.number(3'd3), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 endmodule

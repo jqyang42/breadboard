@@ -33,7 +33,7 @@
  *
  **/
 
-module Wrapper_tb #(parameter FILE = "beq");
+module Wrapper_tb #(parameter FILE = "multdiv_basic");
 
 	// FileData
 	localparam DIR = "Test Files/";
