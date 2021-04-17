@@ -1,0 +1,51 @@
+left edge: 
+if (b_right >= p1_left && b_left < p1_left) {
+    if(b_top < p1_top && p1_top < b1_bot) {
+        flip x
+    }
+    if(p1_bot < b_bot && b_top < p1_bot) {
+        flip x
+    }
+    if(b_top >= p1_top && p1_bot >= b_bot) {
+        flip x
+    }
+}
+
+right edge:
+if (p1_right >= b_left && p1_right < b_right) {
+    if(p1_top >= b_bot && p1_top < b1_bot) {
+        flip x
+    }
+    if(b_bot >= p1_bot && b_top < p1_bot) {
+        flip x
+    }
+    if(b_top >= p1_top && p1_bot >= b_bot) {
+        flip x
+    }
+}
+
+top edge:
+if (b_bot >= p1_top && btop < p1_top) {
+    if (p1_left < b_right && b_left < p1_left) {
+        flip y
+    }
+    if (b_left < p1_right && p1_right < b_right) {
+        flip y
+    }
+    if (b_left >= p1_left && p1_right >= b_right) {
+        flip y
+    }
+}
+
+bottom edge:
+if (p1_bot >= b_top && p1_bot < b_bot) {
+    if (p1_left < b_right && b_left < p1_left) {
+        flip y
+    }
+    if (b_left < p1_right && p1_right < b_right) {
+        flip y
+    }
+    if (b_left >= p1_left && p1_right >= b_right) {
+        flip y
+    }
+}
