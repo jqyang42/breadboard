@@ -80,8 +80,8 @@ module processor(
                         (x_opcode == 5'b00100) ? jr_branch_pc : (   // jr: go to $rd
                         ((x_opcode == 5'b10110) && x_latched_not_equal) ? x_padded_target : (   // bex go to T
                         (((x_opcode == 5'b00010) && x_latched_not_equal) || ((x_opcode == 5'b00110) && x_latched_less_than) ? branch_pc : ( // bne and blt
-                        (((x_opcode == 5'b11111) && !x_latched_not_equal && !x_latched_less_than) ? branch_pc : (   // beq
-                        ((x_opcode == 5'b11110) && x_latched_not_equal && !x_latched_less_than)) ? bgt_branch_pc : (    // bgt
+                        (((x_opcode == 5'b11111) && !x_latched_not_equal) ? branch_pc : (   // beq
+                        ((x_opcode == 5'b11110) && !x_latched_less_than)) ? bgt_branch_pc : (    // bgt
                         incremented_pc)))))));    // pc++
     register_32 base_program_counter(.outA(base_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(next_pc), .write_ctrl(1'b1));
 
@@ -141,7 +141,7 @@ module processor(
     assign jal_ir[31:27] = fd_ir[31:27];
     assign jal_ir[26:22] = 5'd31;
     assign jal_ir[21:0] = d_pc_plus_one;
-    assign dx_ir_actual =  stall ? dx_ir : (    // stay on current instruction if stalling
+    assign dx_ir_actual =  stall ? dx_ir : (
                             fd_ir);
     register_32 dx_program_counter(.outA(dx_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(fd_pc), .write_ctrl(1'b1));
     register_32 dx_instruction_register(.outA(dx_ir), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(dx_ir_actual), .write_ctrl(1'b1));
@@ -175,7 +175,7 @@ module processor(
     assign x_padded_target[26:0] = x_target;
     assign mx_jr_bypassing = (m_rd == x_rd) && (x_opcode == 5'b00100);
     assign jr_branch_pc = mx_jr_bypassing ? xm_o : dx_b;
-    add_32 stall_compare_calc(.A(dx_a), .B(x_sx_immediate), .Cin(1'b0), .Sout(stall_compare), .Cout(overflow_pc));  // calculates $rs + N
+    add_32 stall_compare_calc(.A(dx_a), .B(x_sx_immediate), .Cin(1'b0), .Sout(stall_compare), .Cout(overflow_pc));
 
     wire [4:0] x_alu_opcode_actual;
     wire [31:0] x_a_bypassing;
