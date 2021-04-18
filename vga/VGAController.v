@@ -92,9 +92,6 @@ module VGAController(
 	assign ball_xlim = 628;
 	assign ball_ylim = 463;
 
-	dffe_ref ballX_stall(.q(ball_xRef), .d(ball_x), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
-	dffe_ref ballY_stall(.q(ball_yRef), .d(ball_y), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
-	
 	wire[9:0] ball_leftBound, ball_rightBound;
 	wire[8:0] ball_topBound, ball_bottomBound;
 	reg ball_inSquare = 0;
@@ -169,6 +166,8 @@ module VGAController(
 	always @(posedge screenEnd) begin
 		stall <= 0;
 		posEdgeScreenEnd <= 1;
+		dffe_ref ballX_stall(.q(ball_xRef), .d(ball_x), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
+		dffe_ref ballY_stall(.q(ball_yRef), .d(ball_y), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
 			if (p1_left)
 				p1_xRef <= p1_xRef - 1;
