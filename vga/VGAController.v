@@ -259,7 +259,7 @@ module VGAController(
 
 	// Assign to output color from register if active
 	wire[BITS_PER_COLOR-1:0] colorOut; 			  // Output color 
-	assign colorOut = active ? ((p1_inSquare || p2_inSquare || ball_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
+	assign colorOut = active ? ((p1_inSquare || p2_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
 
 	// Quickly assign the output colors to their channels using concatenation
 	assign {VGA_R, VGA_G, VGA_B} = colorOut;
@@ -274,5 +274,5 @@ module VGAController(
 				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
 				segRight_topBound, segRight_bottomBound);
 	
-    segment_decoder seg_number(.number(3'd3), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
+    segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 endmodule

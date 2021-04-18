@@ -9,4 +9,9 @@
         <Type>I</Type>
         <Code>11110</Code>
     </Instruction>
+    <Instruction>
+        <Name>stall</Name>
+        <Type>I</Type>
+        <Code>11101</Code>
+    </Instruction>
 </ISA>

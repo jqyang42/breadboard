@@ -17,9 +17,76 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 31212
+INFO: [Synth 8-7075] Helper process launched with PID 33056
+WARNING: [Synth 8-6901] identifier 'div_overflow' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multdiv.v:55]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:79]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:79]
+WARNING: [Synth 8-6901] identifier 'x_padded_target' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:79]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:80]
+WARNING: [Synth 8-6901] identifier 'jr_branch_pc' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:80]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:81]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:81]
+WARNING: [Synth 8-6901] identifier 'x_padded_target' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:81]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:82]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:82]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:82]
+WARNING: [Synth 8-6901] identifier 'x_latched_less_than' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:82]
+WARNING: [Synth 8-6901] identifier 'branch_pc' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:82]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:83]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:83]
+WARNING: [Synth 8-6901] identifier 'branch_pc' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:83]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:84]
+WARNING: [Synth 8-6901] identifier 'x_latched_less_than' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:84]
+WARNING: [Synth 8-6901] identifier 'bgt_branch_pc' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:84]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:100]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:100]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:100]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:100]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:100]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:101]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:101]
+WARNING: [Synth 8-6901] identifier 'x_latched_less_than' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:101]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:101]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:102]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:102]
+WARNING: [Synth 8-6901] identifier 'x_latched_less_than' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:102]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:102]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:102]
+WARNING: [Synth 8-6901] identifier 'x_latched_less_than' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:102]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:103]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:103]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:103]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:103]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:104]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:104]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:139]
+WARNING: [Synth 8-6901] identifier 'x_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:139]
+WARNING: [Synth 8-6901] identifier 'x_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:139]
+WARNING: [Synth 8-6901] identifier 'multdiv_in_progress' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:140]
+WARNING: [Synth 8-6901] identifier 'x_latched_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:140]
+WARNING: [Synth 8-6901] identifier 'x_not_equal' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:140]
+WARNING: [Synth 8-6901] identifier 'x_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:140]
+WARNING: [Synth 8-6901] identifier 'm_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:176]
+WARNING: [Synth 8-6901] identifier 'xm_o' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:177]
+WARNING: [Synth 8-6901] identifier 'm_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:195]
+WARNING: [Synth 8-6901] identifier 'm_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:195]
+WARNING: [Synth 8-6901] identifier 'w_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:196]
+WARNING: [Synth 8-6901] identifier 'w_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:196]
+WARNING: [Synth 8-6901] identifier 'w_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:196]
+WARNING: [Synth 8-6901] identifier 'm_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:197]
+WARNING: [Synth 8-6901] identifier 'm_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:197]
+WARNING: [Synth 8-6901] identifier 'w_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:198]
+WARNING: [Synth 8-6901] identifier 'w_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:198]
+WARNING: [Synth 8-6901] identifier 'w_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:198]
+WARNING: [Synth 8-6901] identifier 'm_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:199]
+WARNING: [Synth 8-6901] identifier 'w_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:200]
+WARNING: [Synth 8-6901] identifier 'm_opcode' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:201]
+WARNING: [Synth 8-6901] identifier 'xm_o' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:202]
+WARNING: [Synth 8-6901] identifier 'xm_o' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:205]
+WARNING: [Synth 8-6901] identifier 'w_rd' is used before its declaration [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:298]
+WARNING: [Synth 8-992] posEdgeScreenEnd is already implicitly declared earlier [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:161]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1013.301 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1013.492 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'VGAController' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:2]
 	Parameter FILES_PATH bound to: C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/ - type: string 
@@ -30,14 +97,32 @@ INFO: [Synth 8-6157] synthesizing module 'VGAController' [C:/Users/Jessica Yang/
 	Parameter BITS_PER_COLOR bound to: 12 - type: integer 
 	Parameter PALETTE_COLOR_COUNT bound to: 256 - type: integer 
 	Parameter PALETTE_ADDRESS_WIDTH bound to: 9 - type: integer 
-WARNING: [Synth 8-567] referenced signal 'p1_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:55]
-WARNING: [Synth 8-567] referenced signal 'p1_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:55]
-WARNING: [Synth 8-567] referenced signal 'p1_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:55]
-WARNING: [Synth 8-567] referenced signal 'p1_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:55]
-WARNING: [Synth 8-567] referenced signal 'p2_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:74]
-WARNING: [Synth 8-567] referenced signal 'p2_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:74]
-WARNING: [Synth 8-567] referenced signal 'p2_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:74]
-WARNING: [Synth 8-567] referenced signal 'p2_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:74]
+WARNING: [Synth 8-567] referenced signal 'p1_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:61]
+WARNING: [Synth 8-567] referenced signal 'p1_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:61]
+WARNING: [Synth 8-567] referenced signal 'p1_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:61]
+WARNING: [Synth 8-567] referenced signal 'p1_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:61]
+WARNING: [Synth 8-567] referenced signal 'p2_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:80]
+WARNING: [Synth 8-567] referenced signal 'p2_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:80]
+WARNING: [Synth 8-567] referenced signal 'p2_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:80]
+WARNING: [Synth 8-567] referenced signal 'p2_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:80]
+INFO: [Synth 8-6157] synthesizing module 'dffe_ref' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/dffe_ref.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'dffe_ref' (1#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/dffe_ref.v:1]
+WARNING: [Synth 8-689] width (10) of port connection 'q' does not match port width (1) of module 'dffe_ref' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:95]
+WARNING: [Synth 8-689] width (10) of port connection 'd' does not match port width (1) of module 'dffe_ref' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:95]
+WARNING: [Synth 8-689] width (9) of port connection 'q' does not match port width (1) of module 'dffe_ref' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:96]
+WARNING: [Synth 8-689] width (9) of port connection 'd' does not match port width (1) of module 'dffe_ref' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:96]
+WARNING: [Synth 8-567] referenced signal 'ball_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:106]
+WARNING: [Synth 8-567] referenced signal 'ball_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:106]
+WARNING: [Synth 8-567] referenced signal 'ball_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:106]
+WARNING: [Synth 8-567] referenced signal 'ball_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:106]
+WARNING: [Synth 8-567] referenced signal 'segLeft_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:125]
+WARNING: [Synth 8-567] referenced signal 'segLeft_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:125]
+WARNING: [Synth 8-567] referenced signal 'segLeft_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:125]
+WARNING: [Synth 8-567] referenced signal 'segLeft_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:125]
+WARNING: [Synth 8-567] referenced signal 'segRight_leftBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:144]
+WARNING: [Synth 8-567] referenced signal 'segRight_rightBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:144]
+WARNING: [Synth 8-567] referenced signal 'segRight_topBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:144]
+WARNING: [Synth 8-567] referenced signal 'segRight_bottomBound' should be on the sensitivity list [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:144]
 INFO: [Synth 8-6157] synthesizing module 'VGATimingGenerator' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGATimingGenerator.v:2]
 	Parameter HEIGHT bound to: 480 - type: integer 
 	Parameter WIDTH bound to: 640 - type: integer 
@@ -53,99 +138,300 @@ INFO: [Synth 8-6157] synthesizing module 'VGATimingGenerator' [C:/Users/Jessica 
 	Parameter V_SYNC_START bound to: 491 - type: integer 
 	Parameter V_SYNC_END bound to: 493 - type: integer 
 	Parameter V_LINE bound to: 524 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'VGATimingGenerator' (1#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGATimingGenerator.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'VGATimingGenerator' (2#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGATimingGenerator.v:2]
 INFO: [Synth 8-6157] synthesizing module 'RAM' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
 	Parameter DATA_WIDTH bound to: 9 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 20 - type: integer 
 	Parameter DEPTH bound to: 307200 - type: integer 
 	Parameter MEMFILE bound to: 504'b010000110011101000101111010101010111001101100101011100100111001100101111010010100110010101110011011100110110100101100011011000010010000001011001011000010110111001100111001011110100010001101111011000110111010101101101011001010110111001110100011100110010111101100101011000110110010100110011001101010011000000101111011000100111001001100101011000010110010001100010011011110110000101110010011001000010111101110110011001110110000100101111011010010110110101100001011001110110010100101110011011010110010101101101 
 INFO: [Synth 8-3876] $readmem data file 'C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/image.mem' is read successfully [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'RAM' (2#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
-WARNING: [Synth 8-7071] port 'dataIn' of module 'RAM' is unconnected for instance 'ImageData' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:169]
-WARNING: [Synth 8-7023] instance 'ImageData' of module 'RAM' has 5 connections declared, but only 4 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:169]
+INFO: [Synth 8-6155] done synthesizing module 'RAM' (3#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
+WARNING: [Synth 8-7071] port 'dataIn' of module 'RAM' is unconnected for instance 'ImageData' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:240]
+WARNING: [Synth 8-7023] instance 'ImageData' of module 'RAM' has 5 connections declared, but only 4 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:240]
 INFO: [Synth 8-6157] synthesizing module 'RAM__parameterized0' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
 	Parameter DATA_WIDTH bound to: 12 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 9 - type: integer 
 	Parameter DEPTH bound to: 256 - type: integer 
 	Parameter MEMFILE bound to: 512'b01000011001110100010111101010101011100110110010101110010011100110010111101001010011001010111001101110011011010010110001101100001001000000101100101100001011011100110011100101111010001000110111101100011011101010110110101100101011011100111010001110011001011110110010101100011011001010011001100110101001100000010111101100010011100100110010101100001011001000110001001101111011000010111001001100100001011110111011001100111011000010010111101100011011011110110110001101111011100100111001100101110011011010110010101101101 
 INFO: [Synth 8-3876] $readmem data file 'C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/colors.mem' is read successfully [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'RAM__parameterized0' (2#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
-WARNING: [Synth 8-7071] port 'dataIn' of module 'RAM' is unconnected for instance 'ColorPalette' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:183]
-WARNING: [Synth 8-7023] instance 'ColorPalette' of module 'RAM' has 5 connections declared, but only 4 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:183]
-INFO: [Synth 8-6155] done synthesizing module 'VGAController' (3#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'RAM__parameterized0' (3#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
+WARNING: [Synth 8-7071] port 'dataIn' of module 'RAM' is unconnected for instance 'ColorPalette' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:254]
+WARNING: [Synth 8-7023] instance 'ColorPalette' of module 'RAM' has 5 connections declared, but only 4 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:254]
+INFO: [Synth 8-6157] synthesizing module 'Wrapper' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/Wrapper.v:31]
+	Parameter INSTR_FILE bound to: logic.mem - type: string 
+INFO: [Synth 8-6157] synthesizing module 'processor' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:20]
+INFO: [Synth 8-6157] synthesizing module 'add_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/add/add_32.v:1]
+INFO: [Synth 8-6157] synthesizing module 'add_8' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/add/add_8.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'add_8' (4#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/add/add_8.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'add_32' (5#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/add/add_32.v:1]
+INFO: [Synth 8-6157] synthesizing module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_32.v:1]
+INFO: [Synth 8-6157] synthesizing module 'tri_state' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/tri_state.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'tri_state' (6#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/tri_state.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'register_32' (7#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_32.v:1]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'base_program_counter' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:86]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'base_program_counter' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:86]
+WARNING: [Synth 8-7023] instance 'base_program_counter' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:86]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'fd_program_counter' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:98]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'fd_program_counter' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:98]
+WARNING: [Synth 8-7023] instance 'fd_program_counter' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:98]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'fd_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:99]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'fd_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:99]
+WARNING: [Synth 8-7023] instance 'fd_instruction_register' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:99]
+WARNING: [Synth 8-689] width (5) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:126]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'prevRegA' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:126]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'prevRegA' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:126]
+WARNING: [Synth 8-7023] instance 'prevRegA' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:126]
+WARNING: [Synth 8-689] width (5) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:127]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'prevRegB' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:127]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'prevRegB' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:127]
+WARNING: [Synth 8-7023] instance 'prevRegB' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:127]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'dx_program_counter' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:146]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'dx_program_counter' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:146]
+WARNING: [Synth 8-7023] instance 'dx_program_counter' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:146]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'dx_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:147]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'dx_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:147]
+WARNING: [Synth 8-7023] instance 'dx_instruction_register' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:147]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'dx_data_a' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:148]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'dx_data_a' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:148]
+WARNING: [Synth 8-7023] instance 'dx_data_a' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:148]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'dx_data_b' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:149]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'dx_data_b' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:149]
+WARNING: [Synth 8-7023] instance 'dx_data_b' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:149]
+INFO: [Synth 8-6157] synthesizing module 'sign_extend_17' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/sign_extend_17.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sign_extend_17' (8#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/sign_extend_17.v:1]
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/alu.v:1]
+INFO: [Synth 8-6157] synthesizing module 'not_gate' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/not_gate.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'not_gate' (9#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/not_gate.v:1]
+INFO: [Synth 8-6157] synthesizing module 'and_gate' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/and_gate.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'and_gate' (10#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/and_gate.v:1]
+INFO: [Synth 8-6157] synthesizing module 'or_gate' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/or_gate.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'or_gate' (11#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/or_gate.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sll_barrel' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_barrel.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sll_16' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_16.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sll_16' (12#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_16.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mux_2_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_2_32.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mux_2_32' (13#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_2_32.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sll_8' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_8.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sll_8' (14#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_8.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sll_4' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_4.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sll_4' (15#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_4.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sll_2' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_2.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sll_2' (16#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_2.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sll_1' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_1.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sll_1' (17#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_1.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sll_barrel' (18#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sll/sll_barrel.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sra_barrel' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_barrel.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sra_16' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_16.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sra_16' (19#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_16.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sra_8' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_8.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sra_8' (20#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_8.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sra_4' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_4.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sra_4' (21#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_4.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sra_2' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_2.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sra_2' (22#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_2.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sra_1' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_1.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sra_1' (23#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_1.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'sra_barrel' (24#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/sra/sra_barrel.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mux_8_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_8_32.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mux_4_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_4_32.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mux_4_32' (25#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_4_32.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mux_8_32' (26#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/mux/mux_8_32.v:1]
+WARNING: [Synth 8-689] width (1) of port connection 'out' does not match port width (32) of module 'mux_2_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/alu.v:48]
+WARNING: [Synth 8-689] width (3) of port connection 'select' does not match port width (1) of module 'mux_2_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/alu.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (27#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/alu/alu.v:1]
+WARNING: [Synth 8-689] width (1) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:220]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'less_than' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:220]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'less_than' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:220]
+WARNING: [Synth 8-7023] instance 'less_than' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:220]
+WARNING: [Synth 8-689] width (1) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:222]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'not_equal' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:222]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'not_equal' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:222]
+WARNING: [Synth 8-7023] instance 'not_equal' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:222]
+WARNING: [Synth 8-689] width (1) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:236]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'multdiv_progress' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:236]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'multdiv_progress' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:236]
+WARNING: [Synth 8-7023] instance 'multdiv_progress' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:236]
+WARNING: [Synth 8-689] width (1) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:237]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'prev_multdiv_progress' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:237]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'prev_multdiv_progress' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:237]
+WARNING: [Synth 8-7023] instance 'prev_multdiv_progress' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:237]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'multdiv_a' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:238]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'multdiv_a' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:238]
+WARNING: [Synth 8-7023] instance 'multdiv_a' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:238]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'multdiv_b' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:239]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'multdiv_b' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:239]
+WARNING: [Synth 8-7023] instance 'multdiv_b' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:239]
+INFO: [Synth 8-6157] synthesizing module 'multdiv' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multdiv.v:1]
+INFO: [Synth 8-6157] synthesizing module 'counter_7' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/counter/counter_7.v:1]
+WARNING: [Synth 8-689] width (7) of port connection 'Sout' does not match port width (32) of module 'add_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/counter/counter_7.v:9]
+INFO: [Synth 8-6157] synthesizing module 'register_7' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_7.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'register_7' (28#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_7.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'counter_7' (29#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/counter/counter_7.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mult_booth' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multiplier/mult_booth.v:1]
+INFO: [Synth 8-6157] synthesizing module 'control' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multiplier/control.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'control' (30#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multiplier/control.v:1]
+INFO: [Synth 8-6157] synthesizing module 'register_65' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_65.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'register_65' (31#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_65.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mult_booth' (32#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multiplier/mult_booth.v:1]
+INFO: [Synth 8-6157] synthesizing module 'divider_nonres' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/divider/divider_nonres.v:1]
+INFO: [Synth 8-6157] synthesizing module 'register_64' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_64.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'register_64' (33#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/register/register_64.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'divider_nonres' (34#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/divider/divider_nonres.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'multdiv' (35#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/multdiv/multdiv.v:1]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'pw_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:266]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'pw_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:266]
+WARNING: [Synth 8-7023] instance 'pw_instruction_register' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:266]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'latched_xm_o' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:279]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'latched_xm_o' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:279]
+WARNING: [Synth 8-7023] instance 'latched_xm_o' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:279]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'xm_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:280]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'xm_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:280]
+WARNING: [Synth 8-7023] instance 'xm_instruction_register' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:280]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'xm_ouput' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:281]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'xm_ouput' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:281]
+WARNING: [Synth 8-7023] instance 'xm_ouput' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:281]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'xm_written_b' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:282]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'xm_written_b' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:282]
+WARNING: [Synth 8-7023] instance 'xm_written_b' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:282]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'mw_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:305]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'mw_instruction_register' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:305]
+WARNING: [Synth 8-7023] instance 'mw_instruction_register' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:305]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'mw_ouput' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:306]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'mw_ouput' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:306]
+WARNING: [Synth 8-7023] instance 'mw_ouput' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:306]
+WARNING: [Synth 8-7071] port 'outB' of module 'register_32' is unconnected for instance 'mw_data' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:307]
+WARNING: [Synth 8-7071] port 'oeB' of module 'register_32' is unconnected for instance 'mw_data' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:307]
+WARNING: [Synth 8-7023] instance 'mw_data' of module 'register_32' has 9 connections declared, but only 7 given [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:307]
+INFO: [Synth 8-6155] done synthesizing module 'processor' (36#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/processor.v:20]
+INFO: [Synth 8-6157] synthesizing module 'ROM' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/ROM.v:2]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter ADDRESS_WIDTH bound to: 12 - type: integer 
+	Parameter DEPTH bound to: 4096 - type: integer 
+	Parameter MEMFILE bound to: 104'b01101100011011110110011101101001011000110010111001101101011001010110110100101110011011010110010101101101 
+CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'logic.mem.mem'; please make sure the file is added to project and has read permission, ignoring [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/ROM.v:11]
+
+Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons :
+	1: Unable to determine number of words or word size in RAM. 
+	2: No valid read/write found for RAM. 
+RAM dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'ROM' (37#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/ROM.v:2]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:1]
+INFO: [Synth 8-6157] synthesizing module 'decoder' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/decoder.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'decoder' (38#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/decoder.v:1]
+WARNING: [Synth 8-689] width (2) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:67]
+WARNING: [Synth 8-689] width (2) of port connection 'outB' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:67]
+WARNING: [Synth 8-689] width (10) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:68]
+WARNING: [Synth 8-689] width (10) of port connection 'outB' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:68]
+WARNING: [Synth 8-689] width (9) of port connection 'outA' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:69]
+WARNING: [Synth 8-689] width (9) of port connection 'outB' does not match port width (32) of module 'register_32' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (39#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/regfile/regfile.v:1]
+INFO: [Synth 8-6157] synthesizing module 'RAM__parameterized1' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter ADDRESS_WIDTH bound to: 8 - type: integer 
+	Parameter DEPTH bound to: 256 - type: integer 
+	Parameter MEMFILE bound to: (null) - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'RAM__parameterized1' (39#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/RAM.v:2]
+WARNING: [Synth 8-689] width (12) of port connection 'addr' does not match port width (8) of module 'RAM__parameterized1' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/Wrapper.v:92]
+WARNING: [Synth 8-689] width (32) of port connection 'dataIn' does not match port width (8) of module 'RAM__parameterized1' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/Wrapper.v:93]
+WARNING: [Synth 8-689] width (32) of port connection 'dataOut' does not match port width (8) of module 'RAM__parameterized1' [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/Wrapper.v:94]
+INFO: [Synth 8-6155] done synthesizing module 'Wrapper' (40#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/processor/Wrapper.v:31]
+WARNING: [Synth 8-689] width (3) of port connection 'winner' does not match port width (2) of module 'Wrapper' [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:272]
+INFO: [Synth 8-6157] synthesizing module 'segment_decoder' [C:/Users/Jessica Yang/Documents/ece350/breadboard/segment_decoder.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'segment_decoder' (41#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/segment_decoder.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'VGAController' (42#1) [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/VGAController.v:2]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1013.301 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1081.980 ; gain = 68.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1013.301 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1081.980 ; gain = 68.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1013.301 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1081.980 ; gain = 68.488
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1013.301 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.469 . Memory (MB): peak = 1081.980 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc]
+WARNING: [Vivado 12-584] No ports matched 'p2_cross'. [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc:74]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc:74]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'p2_cross'. [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc:75]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc:75]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/VGAController_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/VGAController_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1050.297 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1244.980 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1050.297 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 1244.980 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1050.297 ; gain = 36.996
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1244.980 ; gain = 231.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1050.297 ; gain = 36.996
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1244.980 ; gain = 231.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1050.297 ; gain = 36.996
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1244.980 ; gain = 231.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1050.297 ; gain = 36.996
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1244.980 ; gain = 231.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   3 Input   11 Bit       Adders := 2     
+	   3 Input   11 Bit       Adders := 1     
 	   2 Input   10 Bit       Adders := 8     
-	   3 Input   10 Bit       Adders := 2     
-	   2 Input    9 Bit       Adders := 6     
+	   3 Input   10 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 7     
 	   2 Input    2 Bit       Adders := 1     
++---XORs : 
+	   3 Input      1 Bit         XORs := 448   
+	   2 Input      1 Bit         XORs := 1     
 +---Registers : 
+	               32 Bit    Registers := 1     
 	               12 Bit    Registers := 1     
 	               10 Bit    Registers := 4     
 	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 1     
 	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 1899  
 +---RAMs : 
 	            2700K Bit	(307200 X 9 bit)          RAMs := 1     
 	               3K Bit	(256 X 12 bit)          RAMs := 1     
+	               2K Bit	(256 X 8 bit)          RAMs := 1     
 +---Muxes : 
+	   2 Input   65 Bit        Muxes := 1     
+	   2 Input   64 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 70    
+	   7 Input   17 Bit        Muxes := 1     
 	   2 Input   12 Bit        Muxes := 1     
 	   2 Input   10 Bit        Muxes := 2     
 	   3 Input   10 Bit        Muxes := 2     
 	   2 Input    9 Bit        Muxes := 4     
 	   3 Input    9 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 5     
+	   3 Input    5 Bit        Muxes := 1     
+	   3 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 4     
-	   2 Input    1 Bit        Muxes := 8     
+	   2 Input    1 Bit        Muxes := 13    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -165,7 +451,7 @@ DSP Report: Generating DSP imgAddress, operation Mode is: C+(A:0x280)*B.
 DSP Report: operator imgAddress is absorbed into DSP imgAddress.
 DSP Report: operator imgAddress0 is absorbed into DSP imgAddress.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1050.297 ; gain = 36.996
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:23 ; elapsed = 00:01:25 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -196,13 +482,13 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1070.234 ; gain = 56.934
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:35 ; elapsed = 00:01:38 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1070.980 ; gain = 57.680
+Finished Timing Optimization : Time (s): cpu = 00:01:35 ; elapsed = 00:01:38 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -264,7 +550,7 @@ INFO: [Synth 8-7052] The timing for the instance ImageData/MemoryArray_reg_9_6 (
 INFO: [Synth 8-7052] The timing for the instance ImageData/MemoryArray_reg_9_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance ColorPalette/MemoryArray_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1085.918 ; gain = 72.617
+Finished Technology Mapping : Time (s): cpu = 00:01:38 ; elapsed = 00:01:40 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -282,37 +568,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.762 ; gain = 78.461
+Finished IO Insertion : Time (s): cpu = 00:01:44 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.762 ; gain = 78.461
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:44 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.762 ; gain = 78.461
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.762 ; gain = 78.461
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.766 ; gain = 78.465
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.766 ; gain = 78.465
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -329,42 +615,43 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |BUFG     |     2|
-|2     |CARRY4   |    30|
+|2     |CARRY4   |    26|
 |3     |DSP48E1  |     1|
 |4     |LUT1     |     9|
-|5     |LUT2     |    61|
-|6     |LUT3     |    23|
+|5     |LUT2     |    63|
+|6     |LUT3     |    17|
 |7     |LUT4     |    39|
-|8     |LUT5     |    50|
-|9     |LUT6     |    91|
+|8     |LUT5     |    53|
+|9     |LUT6     |   102|
 |10    |RAMB18E1 |     1|
 |11    |RAMB36E1 |    80|
 |18    |FDCE     |    20|
 |19    |FDRE     |    22|
 |20    |FDSE     |    21|
 |21    |IBUF     |    10|
-|22    |OBUF     |    15|
+|22    |OBUF     |    20|
+|23    |OBUFT    |     1|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.766 ; gain = 78.465
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1091.766 ; gain = 41.469
-Synthesis Optimization Complete : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 1091.766 ; gain = 78.465
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:27 ; elapsed = 00:01:39 . Memory (MB): peak = 1255.145 ; gain = 78.652
+Synthesis Optimization Complete : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1255.145 ; gain = 241.652
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1103.965 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 112 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1255.145 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 108 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1103.965 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1255.145 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-66 Infos, 12 Warnings, 0 Critical Warnings and 0 Errors encountered.
+146 Infos, 185 Warnings, 3 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1103.965 ; gain = 90.664
+synth_design: Time (s): cpu = 00:01:51 ; elapsed = 00:01:55 . Memory (MB): peak = 1255.145 ; gain = 241.652
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Jessica Yang/Documents/ece350/breadboard/breadboard.runs/synth_1/VGAController.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file VGAController_utilization_synth.rpt -pb VGAController_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 16 16:40:23 2021...
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 18 02:09:43 2021...
