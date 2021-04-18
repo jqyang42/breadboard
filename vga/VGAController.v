@@ -85,16 +85,27 @@ module VGAController(
 	end
 
 	// ball creation
-	wire[9:0] ball_xRef, ball_x, ball_xlim, ball_xinit;
-	wire[8:0] ball_yRef, ball_y, ball_ylim, ball_yinit;
-	assign ball_xinit = 320;
-	assign ball_yinit = 240;
+	wire[9:0] ball_xlim, ball_xinit;
+	wire[8:0] ball_ylim, ball_yinit;
 	assign ball_xlim = 628;
 	assign ball_ylim = 463;
+	assign ball_xinit = 320;
+	assign ball_yinit = 240;
+
+	
 
 	wire[9:0] ball_leftBound, ball_rightBound;
 	wire[8:0] ball_topBound, ball_bottomBound;
-	reg ball_inSquare = 0;
+	reg ball_inSquare = 1'b1;
+	
+    reg[9:0] ball_xRef;
+	reg[8:0] ball_yRef;
+
+	initial begin
+		ball_xRef = ball_xinit;
+		ball_yRef = ball_yinit;
+	end
+	
 	assign ball_leftBound = ball_xRef - 10;
 	assign ball_rightBound = ball_xRef + 10;
 	assign ball_topBound = ball_yRef - 15;
@@ -161,12 +172,13 @@ module VGAController(
 //	always @(negedge screenEnd) begin
 //		posEdgeScreenEnd <= 0;
 //	end
-
-    dffe_ref ballX_stall(.q(ball_xRef), .d(ball_x), .clk(clk25), .en(screenEnd), .clr(1'b0));
-    dffe_ref ballY_stall(.q(ball_yRef), .d(ball_y), .clk(clk25), .en(screenEnd), .clr(1'b0));
-
+    
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
+		// ball_xRef <= ball_xinit;
+		// ball_yRef <= ball_yinit;
+		// ball_xRef <= ball_x;
+		// ball_yRef <= ball_y;
 		stall <= 0;
 		posEdgeScreenEnd <= 1;
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
