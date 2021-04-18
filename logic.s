@@ -21,21 +21,6 @@
 # $r22, $r23 = ball x,y
 # $r29 = temporary hold for ball x and y
 
-
-# initial pos of ball and paddles
-# current pos of the paddles
-# pos of segments for scoring
-# ball limits for bouncing off walls
-
-# winner determining as output to the wrapper
-
-# calculates ball position and direction
-
-# ball position is output to wrapper
-
-
-
-
 # ACTUAL GAME
 #
 nop
@@ -120,6 +105,7 @@ ball_handle:
     nop
     nop
     #checking paddle collisons
+# PLAYER 1 LEFT COLLISION WITH BALL
 check_p1_left:
     # if b_right >= p1_left
     and     $r28,   $r0,    $r28 
@@ -176,7 +162,7 @@ check_p1L_type3_1:
     bgt     $r14,   $r28,   ball_flip_x
     j		check_p1_right				# jump to check_p1_right
     
-# player 1 and ball right edge collision
+# PLAYER 1 RIGHT COLLISION WITH BALL
 check_p1_right:
     # if p1_right >= b_left
     and     $r28,   $r0,    $r28 
@@ -233,7 +219,7 @@ check_p1R_type3_1:
     bgt     $r14,   $r28,   ball_flip_x
     j		check_p1_top 			# jump to check_p1_top
 
-# player
+# PLAYER 1 TOP COLLISION WITH BALL
 check_p1_top:
     # if b_bot >= p1_top
     and     $r28,   $r0,    $r28
@@ -289,18 +275,19 @@ check_p1T_type3_1:
     bgt     $r16,   $r28,   ball_flip_y
     j		check_p1_bot			# jump to check_p1_type3
 
+# PLAYER 1 BOTTOM COLLISION WITH BALL
 check_p1_bot: 
     # if p1_bot >= b_top
     and     $r28,   $r0,    $r28
     addi    $r28,   $r23,   -15      #r28 = ball top
     bgt     $r14,   $r28,   check_p1B_1
-    j		check_cont 			# NO COLLISIONS
+    j		check_p2_left			# NO COLLISIONS WITH P1, CHECK P2
 check_p1B_1:
     # if p1_bot >= b_top && p1_bot < b_bot
     and     $r28,   $r0,    $r28
     addi    $r28,   $r23,   15      #r28 = ball bottom
     blt     $r14,   $r28,   check_p1B_type1
-    j		check_cont 			# NO COLLISIONS
+    j		check_p2_left 			# NO COLLISIONS WITH P1, CHECK P2
 check_p1B_type1:
     # if p1_top >= b_bot && btop < p1_top
         # if p1_left < b_right
@@ -335,16 +322,263 @@ check_p1B_type3:
     and     $r28,   $r0,   $r28
     addi    $r28,   $r22,   -10      #r28 = ball left
     bgt     $r28,   $r15,   check_p1B_type3_1
-    j		check_cont 			# NO COLLISIONS
+    j		check_p2_left 			# NO COLLISIONS WITH P1, CHECK P2
 check_p1B_type3_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left && p1_right >= b_right
     and     $r28,   $r0,   $r28
     addi    $r28,   $r22,   10      #r28 = ball right
     bgt     $r16,   $r28,   ball_flip_y
-    j		check_cont 			# NO COLLISIONS
+    j		check_p2_left 			# NO COLLISIONS WITH P1, CHECK P2
 
+#
+# PLAYER 2 PADDLE BALL COLLISIONS
+#
+# PLAYER 2 LEFT COLLISION WITH BALL
+check_p2_left:
+    # if b_right >= p2_left
+    and     $r28,   $r0,    $r28 
+    addi    $r28,   $r22,   10     # $r28 = right edge of ball
+    bgt     $r28,   $r19,   check_p2L_1
+    j		check_p2_right				# jump to check_p1_right
+check_p2L_1:
+    # if b_right >= p1_left && b_left < p1_left
+    and     $r28,   $r0,    $r28   
+    addi    $r28,   $r22,   -10      # r28 = left edge
+    blt     $r28,   $r19,   check_p2L_type1
+    j		check_p2_right				# jump to check_p1_right 
+check_p2L_type1:
+    # if b_right >= p1_left && b_left < p1_left
+        # if b_top < p1_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    blt     $r28,   $r17,   check_p2L_type1_1
+    j		check_p2L_type2				# jump to check_p1L_type2
+check_p2L_type1_1:
+     # if b_right >= p1_left && b_left < p1_left
+        # if b_top < p1_top && p1_top < b1_bot
+            # flip x dir (it is a left p1 hit)
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    blt     $r17,   $r28,   ball_flip_x
+    j		check_p2L_type2				# jump to check_p1L_type2
+check_p2L_type2:
+    # if b_right >= p1_left && b_left < p1_left
+        # if p1_bot < b_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    blt     $r18,   $r28,   check_p2L_type2_1
+    j		check_p2L_type3				# jump to check_p1L_type3
+check_p2L_type2_1:
+    # if b_right >= p1_left && b_left < p1_left
+        # if p1_bot < b_bot && b_top < p1_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    blt     $r28,   $r18,   ball_flip_x
+    j		check_p2L_type3				# jump to check_p1L_type3
+check_p2L_type3:
+    # if b_right >= p1_left && b_left < p1_left
+        # b_top >= p1_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    bgt     $r28,   $r17,   check_p2L_type3_1
+    j		check_p2_right				# jump to check_p1_right
+check_p2L_type3_1:
+    # if b_right >= p1_left && b_left < p1_left
+        # b_top >= p1_top && p1_bot >= b_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    bgt     $r18,   $r28,   ball_flip_x
+    j		check_p2_right				# jump to check_p1_right
+    
+# PLAYER 2 RIGHT COLLISION WITH BALL
+check_p2_right:
+    # if p1_right >= b_left
+    and     $r28,   $r0,    $r28 
+    addi    $r28,   $r22,   -10     # $r28 = left edge of ball
+    bgt     $r20,   $r28,   check_p2R_1
+    j		check_p2_top				# jump to check_p1_top
+check_p2R_1:
+    # if p1_right >= b_left && p1_right < b_right
+    and     $r28,   $r0,    $r28 
+    addi    $r28,   $r22,   10     # $r28 = right edge of ball
+    blt     $r20,   $r28,   check_p2R_type1
+    j		check_p2_top				# jump to check_p1_top
+check_p2R_type1:
+    # if b_right >= p1_left && b_left < p1_left
+        # if b_top < p1_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    blt     $r28,   $r17,   check_p2R_type1_1
+    j		check_p2R_type2				# jump to check_p1L_type2
+check_p2R_type1_1:
+     # if b_right >= p1_left && b_left < p1_left
+        # if b_top < p1_top && p1_top < b1_bot
+            # flip x dir (it is a left p1 hit)
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    blt     $r17,   $r28,   ball_flip_x
+    j		check_p2R_type2				# jump to check_p1L_type2
+check_p2R_type2:
+    # if b_right >= p1_left && b_left < p1_left
+        # if p1_bot < b_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    blt     $r18,   $r28,   check_p2R_type2_1
+    j		check_p2R_type3				# jump to check_p1L_type3
+check_p2R_type2_1:
+    # if b_right >= p1_left && b_left < p1_left
+        # if p1_bot < b_bot && b_top < p1_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    blt     $r28,   $r18,   ball_flip_x
+    j		check_p2R_type3				# jump to check_p1L_type3
+check_p2R_type3:
+    # if b_right >= p1_left && b_left < p1_left
+        # b_top >= p1_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    bgt     $r28,   $r17,   check_p2R_type3_1
+    j		check_p2_top				# jump to check_p1_top
+check_p2R_type3_1:
+    # if b_right >= p1_left && b_left < p1_left
+        # b_top >= p1_top && p1_bot >= b_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    bgt     $r18,   $r28,   ball_flip_x
+    j		check_p2_top 			# jump to check_p1_top
 
+# PLAYER 1 TOP COLLISION WITH BALL
+check_p2_top:
+    # if b_bot >= p1_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    bgt     $r28,   $r17,   check_p2T_1
+    j		check_p2_bot 			# jump to check_p1_bot
+check_p2T_1:
+    # if b_bot >= p1_top && btop < p1_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    blt     $r28,   $r12,   check_p2T_type1
+    j		check_p2_bot 			# jump to check_p1_bot
+check_p2T_type1:
+    # if p1_top >= b_bot && btop < p1_top
+        # if p1_left < b_right
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   10      #r28 = ball right
+    blt     $r19,   $r28,   check_p2T_type1_1
+    j		check_p2T_type2 			# jump to check_p1_bot
+check_p2T_type1_1:
+    # if p1_top >= b_bot && btop < p1_top   
+        # if p1_left < b_right && b_left < p1_left
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   -10      #r28 = ball left
+    blt     $r28,   $r19,   ball_flip_y
+    j		check_p2T_type2 			# jump to check_p1_bot
+check_p2T_type2:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left < p1_right
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   -10      #r28 = ball left
+    blt     $r28,   $r20,   check_p2T_type2_1
+    j		check_p2T_type3			# jump to check_p1_type3
+check_p2T_type2_1:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left < p1_right && p1_right < b_right
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   10      #r28 = ball right
+    blt     $r20,   $r28,   ball_flip_y
+    j		check_p2T_type3			# jump to check_p1_type3
+check_p2T_type3:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left >= p1_left
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r22,   -10      #r28 = ball left
+    bgt     $r28,   $r19,   check_p2T_type3_1
+    j		check_p1_bot			# jump to check_p1_bot
+check_p2T_type3_1:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left >= p1_left && p1_right >= b_right
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r22,   10      #r28 = ball right
+    bgt     $r20,   $r28,   ball_flip_y
+    j		check_p2_bot			# jump to check_p1_type3
+
+# PLAYER 1 BOTTOM COLLISION WITH BALL
+check_p2_bot: 
+    # if p1_bot >= b_top
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   -15      #r28 = ball top
+    bgt     $r18,   $r28,   check_p2B_1
+    j		check_cont 			# NO COLLISIONS 
+check_p2B_1:
+    # if p1_bot >= b_top && p1_bot < b_bot
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r23,   15      #r28 = ball bottom
+    blt     $r18,   $r28,   check_p2B_type1
+    j		check_cont 			# NO COLLISIONS 
+check_p2B_type1:
+    # if p1_top >= b_bot && btop < p1_top
+        # if p1_left < b_right
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   10      #r28 = ball right
+    blt     $r19,   $r28,   check_p2B_type1_1
+    j		check_p2B_type2 			# jump to check_p1_bot
+check_p2B_type1_1:
+    # if p1_top >= b_bot && btop < p1_top   
+        # if p1_left < b_right && b_left < p1_left
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   -10      #r28 = ball left
+    blt     $r28,   $r19,   ball_flip_y
+    j		check_p2B_type2 			# jump to check_p1_bot
+check_p2B_type2:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left < p1_right
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   -10      #r28 = ball left
+    blt     $r28,   $r20,   check_p2B_type2_1
+    j		check_p2B_type3			# jump to check_p1_type3
+check_p2B_type2_1:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left < p1_right && p1_right < b_right
+    and     $r28,   $r0,    $r28
+    addi    $r28,   $r22,   10      #r28 = ball right
+    blt     $r20,   $r28,   ball_flip_y
+    j		check_p2B_type3			# jump to check_p1_type3
+check_p2B_type3:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left >= p1_left
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r22,   -10      #r28 = ball left
+    bgt     $r28,   $r19,   check_p2B_type3_1
+    j		check_cont 			# NO COLLISIONS 
+check_p2B_type3_1:
+    # if p1_top >= b_bot && btop < p1_top
+        # if b_left >= p1_left && p1_right >= b_right
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r22,   10      #r28 = ball right
+    bgt     $r20,   $r28,   ball_flip_y
+    j		check_cont 			# NO COLLISIONS 
+
+#
+# HITTING LEFT OR RIGHT EDGE AND CHECKING IF WIN OR NOT
+#
+ball_left_edge:
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r23,   -15      # r28 = ball top
+    blt     $r28,   $r7,    ball_flip_x     #check if ball top < segment top then bounce
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r23,   15      # r28 = ball bott
+    blt     $r8,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
+    j       left_lose   # ball hit in segment
+ball_right_edge:
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r23,   -15      # r28 = ball top
+    blt     $r28,   $r9,    ball_flip_x     #check if ball top < segment top then bounce
+    and     $r28,   $r0,   $r28
+    addi    $r28,   $r23,   15      # r28 = ball bott
+    blt     $r10,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
+    j       right_lose   # ball hit in segment
 
 #
 # BALL DIRECTION CHANGE
@@ -357,28 +591,6 @@ ball_flip_y:
     mul     $r27,   $r27,   $r2
     j		check_cont				# jump to paddle_handle
 
-
-# $r7, $r8 = left edge goal top ycoord, bottom ycoord
-# $r9, $r10 = right edge goal top ycoord, bottom ycoord
-# $r22, $r23 = ball x,y
-ball_left_edge:
-    and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   -15      # r28 = ball top
-    blt     $r28,   $r7,    ball_flip_x     #check if ball top < segment top then bounce
-    and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   15      # r28 = ball bott
-    blt     $r8,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
-    j       left_lose   # ball hit in segment
-
-ball_right_edge:
-    and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   -15      # r28 = ball top
-    blt     $r28,   $r9,    ball_flip_x     #check if ball top < segment top then bounce
-    and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   15      # r28 = ball bott
-    blt     $r10,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
-    j       right_lose   # ball hit in segment
-
 #
 # HIT GOAL
 #
@@ -388,4 +600,3 @@ right_lose:
     addi     $r21,    $r21,    1
 end_game:
     nop
-
