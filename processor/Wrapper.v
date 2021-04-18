@@ -84,6 +84,7 @@ module Wrapper (clock, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xin
 		.p2_leftBound(p2_leftBound), .p2_rightBound(p2_rightBound), .p2_topBound(p2_topBound), .p2_bottomBound(p2_bottomBound),
 		.ball_xlim(ball_xlim), .ball_ylim(ball_ylim), .segLeft_topBound(segLeft_topBound), .segLeft_bottomBound(segLeft_bottomBound), 
 		.segRight_topBound(segRight_topBound), .segRight_bottomBound(segRight_bottomBound));
+
 						
 	// Processor Memory (RAM)
 	RAM ProcMem(.clk(clock), 
