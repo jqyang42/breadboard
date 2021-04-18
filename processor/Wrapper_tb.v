@@ -106,6 +106,63 @@ module Wrapper_tb #(parameter FILE = "logic");
 	// 	.ctrl_writeReg(rd),
 	// 	.ctrl_readRegA(rs1_in), .ctrl_readRegB(rs2), 
 	// 	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB));
+	
+	reg[9:0] p1_xRef = 32'd80;
+	reg[8:0] p1_yRef = 32'd240;
+	reg[9:0] p2_xRef = 32'd560;
+	reg[8:0] p2_yRef = 32'd240;
+	
+	wire[9:0] p1_leftBound, p1_rightBound;
+	wire[8:0] p1_topBound, p1_bottomBound;
+	reg p1_inSquare = 1'b0;
+	assign p1_leftBound = p1_xRef - 25;
+	assign p1_rightBound = p1_xRef + 25;
+	assign p1_topBound = p1_yRef - 33;
+	assign p1_bottomBound = p1_yRef + 33;
+
+	wire[9:0] p2_leftBound, p2_rightBound;
+	wire[8:0] p2_topBound, p2_bottomBound;
+	reg p2_inSquare = 0;
+	assign p2_leftBound = p2_xRef - 25;
+	assign p2_rightBound = p2_xRef + 25;
+	assign p2_topBound = p2_yRef - 33;
+	assign p2_bottomBound = p2_yRef + 33;
+
+	wire[9:0] ball_xRef, ball_x, ball_xlim, ball_xinit;
+	wire[8:0] ball_yRef, ball_y, ball_ylim, ball_yinit;
+
+	assign ball_xinit = 10'd320;
+	assign ball_yinit = 9'd240;
+	assign ball_xlim = 10'd628;
+	assign ball_ylim = 9'd463;
+		
+	reg[9:0] segLeft_xRef = 10'd2;
+	reg[8:0] segLeft_yRef = 9'd240;
+
+	wire[9:0] segLeft_leftBound, segLeft_rightBound;
+	wire[8:0] segLeft_topBound, segLeft_bottomBound;
+	assign segLeft_leftBound = segLeft_xRef - 2;
+	assign segLeft_rightBound = segLeft_xRef + 2;
+	assign segLeft_topBound = segLeft_yRef - 40;
+	assign segLeft_bottomBound = segLeft_yRef + 40;
+
+	reg[9:0] segRight_xRef = 10'd638;
+	reg[8:0] segRight_yRef = 9'd240;
+
+	wire[9:0] segRight_leftBound, segRight_rightBound;
+	wire[8:0] segRight_topBound, segRight_bottomBound;
+	assign segRight_leftBound = segRight_xRef - 2;
+	assign segRight_rightBound = segRight_xRef + 2;
+	assign segRight_topBound = segRight_yRef - 40;
+	assign segRight_bottomBound = segRight_yRef + 40;
+
+	
+	wire posEdgeScreenEnd;
+
+	assign posEdgeScreenEnd = 1'b1;
+
+	wire[2:0] winner;
+
 	regfile RegisterFile(.clock(clock), 
 	.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
 	.ctrl_writeReg(rd),
