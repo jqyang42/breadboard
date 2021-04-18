@@ -15,11 +15,10 @@
 # $r17, $r18, $r19, $r20 = p2 paddle bounds
 # $r28 = calculating change of ball in any dir (temporary storage)
 
-
 # OUTPUT
 # $r21 = winner (0 none, 1 p1, 2 p2)
 # $r22, $r23 = ball x,y
-# $r29 = temporary hold for ball x and y
+# $r29, $r30 = temporary hold for ball x and y
 
 # ACTUAL GAME
 #
