@@ -158,16 +158,17 @@ module VGAController(
 	reg posEdgeScreenEnd;
 	//assign posEdgeScreenEnd = 0;
 
-	always @(negedge screenEnd) begin
-		posEdgeScreenEnd <= 0;
-	end
+//	always @(negedge screenEnd) begin
+//		posEdgeScreenEnd <= 0;
+//	end
+
+    dffe_ref ballX_stall(.q(ball_xRef), .d(ball_x), .clk(clk25), .en(screenEnd), .clr(1'b0));
+    dffe_ref ballY_stall(.q(ball_yRef), .d(ball_y), .clk(clk25), .en(screenEnd), .clr(1'b0));
 
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
 		stall <= 0;
 		posEdgeScreenEnd <= 1;
-		dffe_ref ballX_stall(.q(ball_xRef), .d(ball_x), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
-		dffe_ref ballY_stall(.q(ball_yRef), .d(ball_y), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
 			if (p1_left)
 				p1_xRef <= p1_xRef - 1;
@@ -259,7 +260,7 @@ module VGAController(
 
 	// Assign to output color from register if active
 	wire[BITS_PER_COLOR-1:0] colorOut; 			  // Output color 
-	assign colorOut = active ? ((p1_inSquare || p2_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
+	assign colorOut = active ? ((p1_inSquare || p2_inSquare || ball_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
 
 	// Quickly assign the output colors to their channels using concatenation
 	assign {VGA_R, VGA_G, VGA_B} = colorOut;
@@ -268,7 +269,7 @@ module VGAController(
 	// output: ball x, y, winner
 	// input: paddles' bounds, ball limits, and winning segment y - val, initial ball x, y
 
-	Wrapper proc(clk25, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
+	Wrapper proc(clk25, reset, screenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
 				p1_leftBound, p1_rightBound, p1_topBound, p1_bottomBound, 
 				p2_leftBound, p2_rightBound, p2_topBound, p2_bottomBound,
 				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 

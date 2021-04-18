@@ -33,7 +33,7 @@
  *
  **/
 
-module Wrapper_tb #(parameter FILE = "multdiv_basic");
+module Wrapper_tb #(parameter FILE = "logic");
 
 	// FileData
 	localparam DIR = "Test Files/";
@@ -101,11 +101,21 @@ module Wrapper_tb #(parameter FILE = "multdiv_basic");
 		.dataOut(instData));
 	
 	// Register File
+	// regfile RegisterFile(.clock(clock), 
+	// 	.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
+	// 	.ctrl_writeReg(rd),
+	// 	.ctrl_readRegA(rs1_in), .ctrl_readRegB(rs2), 
+	// 	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB));
 	regfile RegisterFile(.clock(clock), 
-		.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
-		.ctrl_writeReg(rd),
-		.ctrl_readRegA(rs1_in), .ctrl_readRegB(rs2), 
-		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB));
+	.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
+	.ctrl_writeReg(rd),
+	.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
+	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), .posEdgeScreenEnd(posEdgeScreenEnd),
+	.winner(winner), .ball_x(ball_x), .ball_y(ball_y), .ball_xinit(ball_xinit), .ball_yinit(ball_yinit),
+	.p1_leftBound(p1_leftBound), .p1_rightBound(p1_rightBound), .p1_topBound(p1_topBound), .p1_bottomBound(p1_bottomBound), 
+	.p2_leftBound(p2_leftBound), .p2_rightBound(p2_rightBound), .p2_topBound(p2_topBound), .p2_bottomBound(p2_bottomBound),
+	.ball_xlim(ball_xlim), .ball_ylim(ball_ylim), .segLeft_topBound(segLeft_topBound), .segLeft_bottomBound(segLeft_bottomBound), 
+	.segRight_topBound(segRight_topBound), .segRight_bottomBound(segRight_bottomBound));
 						
 	// Processor Memory (RAM)
 	RAM ProcMem(.clk(clock), 
