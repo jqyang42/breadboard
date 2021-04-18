@@ -87,19 +87,19 @@ move_ball_y:
 #
 ball_handle:
     # checking wall collisions for ball
-    blt     $r23,   $r25,    ball_flip_y     #check if ball hit top
+    blt     $r30,   $r25,    ball_flip_y     #check if ball hit top
     nop
     nop
     nop
-    bgt     $r23,   $r12,   ball_flip_y     #check if ball hit bottom
+    bgt     $r30,   $r12,   ball_flip_y     #check if ball hit bottom
     nop
     nop
     nop
-    blt     $r22,   $r24,    ball_left_edge
+    blt     $r29,   $r24,    ball_left_edge
     nop
     nop
     nop
-    bgt     $r22,   $r11,    ball_right_edge
+    bgt     $r29,   $r11,    ball_right_edge
     nop
     nop
     nop
@@ -108,20 +108,20 @@ ball_handle:
 check_p1_left:
     # if b_right >= p1_left
     and     $r28,   $r0,    $r28 
-    addi    $r28,   $r22,   10     # $r28 = right edge of ball
+    addi    $r28,   $r29,   10     # $r28 = right edge of ball
     bgt     $r28,   $r15,   check_p1L_1
     j		check_p1_right				# jump to check_p1_right
 check_p1L_1:
     # if b_right >= p1_left && b_left < p1_left
     and     $r28,   $r0,    $r28   
-    addi    $r28,   $r22,   -10      # r28 = left edge
+    addi    $r28,   $r29,   -10      # r28 = left edge
     blt     $r28,   $r15,   check_p1L_type1
     j		check_p1_right				# jump to check_p1_right 
 check_p1L_type1:
     # if b_right >= p1_left && b_left < p1_left
         # if b_top < p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r13,   check_p1L_type1_1
     j		check_p1L_type2				# jump to check_p1L_type2
 check_p1L_type1_1:
@@ -129,35 +129,35 @@ check_p1L_type1_1:
         # if b_top < p1_top && p1_top < b1_bot
             # flip x dir (it is a left p1 hit)
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r13,   $r28,   ball_flip_x
     j		check_p1L_type2				# jump to check_p1L_type2
 check_p1L_type2:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r14,   $r28,   check_p1L_type2_1
     j		check_p1L_type3				# jump to check_p1L_type3
 check_p1L_type2_1:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot && b_top < p1_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r13,   ball_flip_x
     j		check_p1L_type3				# jump to check_p1L_type3
 check_p1L_type3:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     bgt     $r28,   $r13,   check_p1L_type3_1
     j		check_p1_right				# jump to check_p1_right
 check_p1L_type3_1:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top && p1_bot >= b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     bgt     $r14,   $r28,   ball_flip_x
     j		check_p1_right				# jump to check_p1_right
     
@@ -165,20 +165,20 @@ check_p1L_type3_1:
 check_p1_right:
     # if p1_right >= b_left
     and     $r28,   $r0,    $r28 
-    addi    $r28,   $r22,   -10     # $r28 = left edge of ball
+    addi    $r28,   $r29,   -10     # $r28 = left edge of ball
     bgt     $r16,   $r28,   check_p1R_1
     j		check_p1_top				# jump to check_p1_top
 check_p1R_1:
     # if p1_right >= b_left && p1_right < b_right
     and     $r28,   $r0,    $r28 
-    addi    $r28,   $r22,   10     # $r28 = right edge of ball
+    addi    $r28,   $r29,   10     # $r28 = right edge of ball
     blt     $r16,   $r28,   check_p1R_type1
     j		check_p1_top				# jump to check_p1_top
 check_p1R_type1:
     # if b_right >= p1_left && b_left < p1_left
         # if b_top < p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r13,   check_p1R_type1_1
     j		check_p1R_type2				# jump to check_p1L_type2
 check_p1R_type1_1:
@@ -186,35 +186,35 @@ check_p1R_type1_1:
         # if b_top < p1_top && p1_top < b1_bot
             # flip x dir (it is a left p1 hit)
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r13,   $r28,   ball_flip_x
     j		check_p1R_type2				# jump to check_p1L_type2
 check_p1R_type2:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r14,   $r28,   check_p1R_type2_1
     j		check_p1R_type3				# jump to check_p1L_type3
 check_p1R_type2_1:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot && b_top < p1_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r13,   ball_flip_x
     j		check_p1R_type3				# jump to check_p1L_type3
 check_p1R_type3:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     bgt     $r28,   $r13,   check_p1R_type3_1
     j		check_p1_top				# jump to check_p1_top
 check_p1R_type3_1:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top && p1_bot >= b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     bgt     $r14,   $r28,   ball_flip_x
     j		check_p1_top 			# jump to check_p1_top
 
@@ -222,55 +222,55 @@ check_p1R_type3_1:
 check_p1_top:
     # if b_bot >= p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     bgt     $r28,   $r13,   check_p1T_1
     j		check_p1_bot 			# jump to check_p1_bot
 check_p1T_1:
     # if b_bot >= p1_top && btop < p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r13,   check_p1T_type1
     j		check_p1_bot 			# jump to check_p1_bot
 check_p1T_type1:
     # if p1_top >= b_bot && btop < p1_top
         # if p1_left < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r15,   $r28,   check_p1T_type1_1
     j		check_p1T_type2 			# jump to check_p1_bot
 check_p1T_type1_1:
     # if p1_top >= b_bot && btop < p1_top   
         # if p1_left < b_right && b_left < p1_left
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r15,   ball_flip_y
     j		check_p1T_type2 			# jump to check_p1_bot
 check_p1T_type2:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r16,   check_p1T_type2_1
     j		check_p1T_type3			# jump to check_p1_type3
 check_p1T_type2_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right && p1_right < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r16,   $r28,   ball_flip_y
     j		check_p1T_type3			# jump to check_p1_type3
 check_p1T_type3:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     bgt     $r28,   $r15,   check_p1T_type3_1
     j		check_p1_bot			# jump to check_p1_bot
 check_p1T_type3_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left && p1_right >= b_right
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     bgt     $r16,   $r28,   ball_flip_y
     j		check_p1_bot			# jump to check_p1_type3
 
@@ -278,55 +278,55 @@ check_p1T_type3_1:
 check_p1_bot: 
     # if p1_bot >= b_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     bgt     $r14,   $r28,   check_p1B_1
     j		check_p2_left			# NO COLLISIONS WITH P1, CHECK P2
 check_p1B_1:
     # if p1_bot >= b_top && p1_bot < b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r14,   $r28,   check_p1B_type1
     j		check_p2_left 			# NO COLLISIONS WITH P1, CHECK P2
 check_p1B_type1:
     # if p1_top >= b_bot && btop < p1_top
         # if p1_left < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r15,   $r28,   check_p1B_type1_1
     j		check_p1B_type2 			# jump to check_p1_bot
 check_p1B_type1_1:
     # if p1_top >= b_bot && btop < p1_top   
         # if p1_left < b_right && b_left < p1_left
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r15,   ball_flip_y
     j		check_p1B_type2 			# jump to check_p1_bot
 check_p1B_type2:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r16,   check_p1B_type2_1
     j		check_p1B_type3			# jump to check_p1_type3
 check_p1B_type2_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right && p1_right < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r16,   $r28,   ball_flip_y
     j		check_p1B_type3			# jump to check_p1_type3
 check_p1B_type3:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     bgt     $r28,   $r15,   check_p1B_type3_1
     j		check_p2_left 			# NO COLLISIONS WITH P1, CHECK P2
 check_p1B_type3_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left && p1_right >= b_right
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     bgt     $r16,   $r28,   ball_flip_y
     j		check_p2_left 			# NO COLLISIONS WITH P1, CHECK P2
 
@@ -337,20 +337,20 @@ check_p1B_type3_1:
 check_p2_left:
     # if b_right >= p2_left
     and     $r28,   $r0,    $r28 
-    addi    $r28,   $r22,   10     # $r28 = right edge of ball
+    addi    $r28,   $r29,   10     # $r28 = right edge of ball
     bgt     $r28,   $r19,   check_p2L_1
     j		check_p2_right				# jump to check_p1_right
 check_p2L_1:
     # if b_right >= p1_left && b_left < p1_left
     and     $r28,   $r0,    $r28   
-    addi    $r28,   $r22,   -10      # r28 = left edge
+    addi    $r28,   $r29,   -10      # r28 = left edge
     blt     $r28,   $r19,   check_p2L_type1
     j		check_p2_right				# jump to check_p1_right 
 check_p2L_type1:
     # if b_right >= p1_left && b_left < p1_left
         # if b_top < p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r17,   check_p2L_type1_1
     j		check_p2L_type2				# jump to check_p1L_type2
 check_p2L_type1_1:
@@ -358,35 +358,35 @@ check_p2L_type1_1:
         # if b_top < p1_top && p1_top < b1_bot
             # flip x dir (it is a left p1 hit)
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r17,   $r28,   ball_flip_x
     j		check_p2L_type2				# jump to check_p1L_type2
 check_p2L_type2:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r18,   $r28,   check_p2L_type2_1
     j		check_p2L_type3				# jump to check_p1L_type3
 check_p2L_type2_1:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot && b_top < p1_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r18,   ball_flip_x
     j		check_p2L_type3				# jump to check_p1L_type3
 check_p2L_type3:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     bgt     $r28,   $r17,   check_p2L_type3_1
     j		check_p2_right				# jump to check_p1_right
 check_p2L_type3_1:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top && p1_bot >= b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     bgt     $r18,   $r28,   ball_flip_x
     j		check_p2_right				# jump to check_p1_right
     
@@ -394,20 +394,20 @@ check_p2L_type3_1:
 check_p2_right:
     # if p1_right >= b_left
     and     $r28,   $r0,    $r28 
-    addi    $r28,   $r22,   -10     # $r28 = left edge of ball
+    addi    $r28,   $r29,   -10     # $r28 = left edge of ball
     bgt     $r20,   $r28,   check_p2R_1
     j		check_p2_top				# jump to check_p1_top
 check_p2R_1:
     # if p1_right >= b_left && p1_right < b_right
     and     $r28,   $r0,    $r28 
-    addi    $r28,   $r22,   10     # $r28 = right edge of ball
+    addi    $r28,   $r29,   10     # $r28 = right edge of ball
     blt     $r20,   $r28,   check_p2R_type1
     j		check_p2_top				# jump to check_p1_top
 check_p2R_type1:
     # if b_right >= p1_left && b_left < p1_left
         # if b_top < p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r17,   check_p2R_type1_1
     j		check_p2R_type2				# jump to check_p1L_type2
 check_p2R_type1_1:
@@ -415,35 +415,35 @@ check_p2R_type1_1:
         # if b_top < p1_top && p1_top < b1_bot
             # flip x dir (it is a left p1 hit)
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r17,   $r28,   ball_flip_x
     j		check_p2R_type2				# jump to check_p1L_type2
 check_p2R_type2:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r18,   $r28,   check_p2R_type2_1
     j		check_p2R_type3				# jump to check_p1L_type3
 check_p2R_type2_1:
     # if b_right >= p1_left && b_left < p1_left
         # if p1_bot < b_bot && b_top < p1_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r18,   ball_flip_x
     j		check_p2R_type3				# jump to check_p1L_type3
 check_p2R_type3:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     bgt     $r28,   $r17,   check_p2R_type3_1
     j		check_p2_top				# jump to check_p1_top
 check_p2R_type3_1:
     # if b_right >= p1_left && b_left < p1_left
         # b_top >= p1_top && p1_bot >= b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     bgt     $r18,   $r28,   ball_flip_x
     j		check_p2_top 			# jump to check_p1_top
 
@@ -451,55 +451,55 @@ check_p2R_type3_1:
 check_p2_top:
     # if b_bot >= p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     bgt     $r28,   $r17,   check_p2T_1
     j		check_p2_bot 			# jump to check_p1_bot
 check_p2T_1:
     # if b_bot >= p1_top && btop < p1_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     blt     $r28,   $r12,   check_p2T_type1
     j		check_p2_bot 			# jump to check_p1_bot
 check_p2T_type1:
     # if p1_top >= b_bot && btop < p1_top
         # if p1_left < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r19,   $r28,   check_p2T_type1_1
     j		check_p2T_type2 			# jump to check_p1_bot
 check_p2T_type1_1:
     # if p1_top >= b_bot && btop < p1_top   
         # if p1_left < b_right && b_left < p1_left
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r19,   ball_flip_y
     j		check_p2T_type2 			# jump to check_p1_bot
 check_p2T_type2:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r20,   check_p2T_type2_1
     j		check_p2T_type3			# jump to check_p1_type3
 check_p2T_type2_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right && p1_right < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r20,   $r28,   ball_flip_y
     j		check_p2T_type3			# jump to check_p1_type3
 check_p2T_type3:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     bgt     $r28,   $r19,   check_p2T_type3_1
     j		check_p1_bot			# jump to check_p1_bot
 check_p2T_type3_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left && p1_right >= b_right
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     bgt     $r20,   $r28,   ball_flip_y
     j		check_p2_bot			# jump to check_p1_type3
 
@@ -507,55 +507,55 @@ check_p2T_type3_1:
 check_p2_bot: 
     # if p1_bot >= b_top
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   -15      #r28 = ball top
+    addi    $r28,   $r30,   -15      #r28 = ball top
     bgt     $r18,   $r28,   check_p2B_1
     j		check_cont 			# NO COLLISIONS 
 check_p2B_1:
     # if p1_bot >= b_top && p1_bot < b_bot
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r23,   15      #r28 = ball bottom
+    addi    $r28,   $r30,   15      #r28 = ball bottom
     blt     $r18,   $r28,   check_p2B_type1
     j		check_cont 			# NO COLLISIONS 
 check_p2B_type1:
     # if p1_top >= b_bot && btop < p1_top
         # if p1_left < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r19,   $r28,   check_p2B_type1_1
     j		check_p2B_type2 			# jump to check_p1_bot
 check_p2B_type1_1:
     # if p1_top >= b_bot && btop < p1_top   
         # if p1_left < b_right && b_left < p1_left
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r19,   ball_flip_y
     j		check_p2B_type2 			# jump to check_p1_bot
 check_p2B_type2:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     blt     $r28,   $r20,   check_p2B_type2_1
     j		check_p2B_type3			# jump to check_p1_type3
 check_p2B_type2_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left < p1_right && p1_right < b_right
     and     $r28,   $r0,    $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     blt     $r20,   $r28,   ball_flip_y
     j		check_p2B_type3			# jump to check_p1_type3
 check_p2B_type3:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   -10      #r28 = ball left
+    addi    $r28,   $r29,   -10      #r28 = ball left
     bgt     $r28,   $r19,   check_p2B_type3_1
     j		check_cont 			# NO COLLISIONS 
 check_p2B_type3_1:
     # if p1_top >= b_bot && btop < p1_top
         # if b_left >= p1_left && p1_right >= b_right
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r22,   10      #r28 = ball right
+    addi    $r28,   $r29,   10      #r28 = ball right
     bgt     $r20,   $r28,   ball_flip_y
     j		check_cont 			# NO COLLISIONS 
 
@@ -564,18 +564,18 @@ check_p2B_type3_1:
 #
 ball_left_edge:
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   -15      # r28 = ball top
+    addi    $r28,   $r30,   -15      # r28 = ball top
     blt     $r28,   $r7,    ball_flip_x     #check if ball top < segment top then bounce
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   15      # r28 = ball bott
+    addi    $r28,   $r30,   15      # r28 = ball bott
     blt     $r8,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
     j       left_lose   # ball hit in segment
 ball_right_edge:
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   -15      # r28 = ball top
+    addi    $r28,   $r30,   -15      # r28 = ball top
     blt     $r28,   $r9,    ball_flip_x     #check if ball top < segment top then bounce
     and     $r28,   $r0,   $r28
-    addi    $r28,   $r23,   15      # r28 = ball bott
+    addi    $r28,   $r30,   15      # r28 = ball bott
     blt     $r10,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
     j       right_lose   # ball hit in segment
 
