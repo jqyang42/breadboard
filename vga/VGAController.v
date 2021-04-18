@@ -16,8 +16,7 @@ module VGAController(
 	input p2_up,
 	input p2_down,
 	input p2_left,
-	input p2_right,
-	output p2_cross);
+	input p2_right);
 	
 	// Lab Memory Files Location
 	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
@@ -79,12 +78,68 @@ module VGAController(
 	end
 
 	// ball creation
-	// p2 paddle creation
-	reg[9:0] ball_xRef = 320;
-	reg[8:0] ball_yRef = 240;
+	wire[9:0] ball_xRef, ball_x, ball_xlim, ball_xinit;
+	wire[8:0] ball_yRef, ball_y, ball_ylim, ball_yinit;
+	assign ball_xinit = 320;
+	assign ball_yinit = 240;
+	assign ball_xlim = 628;
+	assign ball_ylim = 463;
 
+	dffe_ref ballX_stall(.q(ball_xRef), .d(ball_x), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
+	dffe_ref ballY_stall(.q(ball_yRef), .d(ball_y), .clk(clk25), .en(posEdgeScreenEnd), .clr(1'b0));
+	
+	wire[9:0] ball_leftBound, ball_rightBound;
+	wire[8:0] ball_topBound, ball_bottomBound;
 	reg ball_inSquare = 0;
+	assign ball_leftBound = ball_xRef - 10;
+	assign ball_rightBound = ball_xRef + 10;
+	assign ball_topBound = ball_yRef - 15;
+	assign ball_bottomBound = ball_yRef + 15;
 
+	always @(x or y) begin
+		if (x > ball_leftBound && x < ball_rightBound && y > ball_topBound && y < ball_bottomBound)
+			ball_inSquare <= 1'b1;
+		else
+			ball_inSquare <= 1'b0;
+	end
+
+	// segment win creation
+	reg[9:0] segLeft_xRef = 2;
+	reg[8:0] segLeft_yRef = 240;
+	
+	wire[9:0] segLeft_leftBound, segLeft_rightBound;
+	wire[8:0] segLeft_topBound, segLeft_bottomBound;
+	reg segLeft_inSquare = 0;
+	assign segLeft_leftBound = segLeft_xRef - 2;
+	assign segLeft_rightBound = segLeft_xRef + 2;
+	assign segLeft_topBound = segLeft_yRef - 40;
+	assign segLeft_bottomBound = segLeft_yRef + 40;
+
+	always @(x or y) begin
+		if (x > segLeft_leftBound && x < segLeft_rightBound && y > segLeft_topBound && y < segLeft_bottomBound)
+			segLeft_inSquare <= 1'b1;
+		else
+			segLeft_inSquare <= 1'b0;
+	end
+
+	// segment win creation
+	reg[9:0] segRight_xRef = 638;
+	reg[8:0] segRight_yRef = 240;
+	
+	wire[9:0] segRight_leftBound, segRight_rightBound;
+	wire[8:0] segRight_topBound, segRight_bottomBound;
+	reg segRight_inSquare = 0;
+	assign segRight_leftBound = segRight_xRef - 2;
+	assign segRight_rightBound = segRight_xRef + 2;
+	assign segRight_topBound = segRight_yRef - 40;
+	assign segRight_bottomBound = segRight_yRef + 40;
+
+	always @(x or y) begin
+		if (x > segRight_leftBound && x < segRight_rightBound && y > segRight_topBound && y < segRight_bottomBound)
+			segRight_inSquare <= 1'b1;
+		else
+			segRight_inSquare <= 1'b0;
+	end
 
 	// p1 and p2 movement logic
 	wire[9:0] screenMiddle, p1_xBound;
@@ -92,11 +147,20 @@ module VGAController(
 	assign p1_xBound = screenMiddle - 50;
 	assign p2_xBound = 370;
 
-	assign p2_cross = p2_xRef >= 370;
+	// WINNER STATS
+	wire[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
+	
+	wire posEdgeScreenEnd;
+	assign posEdgeScreenEnd = 0;
+
+	always @(negedge screenEnd) begin
+		assign posEdgeScreenEnd = 0;
+	end
 
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
-		// if ((p1_xRef <= screenMiddle - 25) && (p1_xRef >= 0) && (p1_yRef >= 0) && (p1_yRef <= VIDEO_HEIGHT - 33)) begin
+		assign stall = 0;
+		assign posEdgeScreenEnd = 1;
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
 			if (p1_left)
 				p1_xRef <= p1_xRef - 1;
@@ -115,7 +179,6 @@ module VGAController(
 		else begin
 			p1_yRef <= (p1_yRef >= VIDEO_HEIGHT - 33) ? VIDEO_HEIGHT - 34 : 34;
 		end
-		// if ((p2_xRef >= screenMiddle + 25) && (p2_xRef <= VIDEO_WIDTH - 25) && (p2_yRef >= 33) && (p2_yRef <= VIDEO_HEIGHT - 33)) begin
 		if(p2_xRef >= 370 && p2_xRef < VIDEO_WIDTH-25) begin
 			if (p2_left)
 				p2_xRef <= p2_xRef - 1;
@@ -195,11 +258,13 @@ module VGAController(
 	assign {VGA_R, VGA_G, VGA_B} = colorOut;
 
 	// // Processor wrapper module
-	// wire [9:0] ball_xlim;
-	// wire [8:0] ball_ylim;
-	// assign ball_xlim = 
-	// Wrapper proc(clock, reset, winner, );
+	// output: ball x, y, winner
+	// input: paddles' bounds, ball limits, and winning segment y - val, initial ball x, y
 
-
+	Wrapper proc(clk25, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
+				p1_leftBound, p1_rightBound, p1_topBound, p1_bottomBound, 
+				p2_leftBound, p2_rightBound, p2_topBound, p2_bottomBound,
+				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
+				segRight_topBound, segRight_bottomBound);
 
 endmodule
