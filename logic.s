@@ -22,16 +22,7 @@
 
 # ACTUAL GAME
 #
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop 
 initial_regs:
-    # make directions 1 adn -1
     addi	$r1, $r0, 1			# $r1 = $r0 + 1
     addi	$r2, $r0, -1			# $r2 = $r0 + -1
     addi    $r4, $r0, 2
@@ -49,11 +40,18 @@ initial_game:
 
 checking_stall:
     beq     $r3,    $r1,    wait_for_neg
-    stall   $r3,   $r0,   1   # stall while $r3 != 1
+checking_stall_0:
+    beq     $r3,    $r0,    wait_for_neg_1
+    #stall   $r3,   $r0,   1   # stall while $r3 != 1
     j		game				# jump to game
 wait_for_neg:
     nop
     j   checking_stall
+wait_for_neg_1:
+    nop
+    j		checking_stall_0				# jump to checking_stall_0
+    
+
 
 #
 # GAME LOOP

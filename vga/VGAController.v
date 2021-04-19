@@ -23,10 +23,12 @@ module VGAController(
 	output cd, 
 	output ce, 
 	output cf, 
-	output cg);
+	output cg, 
+	output ball_inSq);
 	
 	// Lab Memory Files Location
-	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
+	localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/";
+	
 
 	// Clock divider 100 MHz -> 25 MHz
 	wire clk25; // 25MHz clock
@@ -96,20 +98,22 @@ module VGAController(
 
 	wire[9:0] ball_leftBound, ball_rightBound;
 	wire[8:0] ball_topBound, ball_bottomBound;
-	reg ball_inSquare = 1'b1;
+	reg ball_inSquare = 0;
 	
     reg[9:0] ball_xRef;
 	reg[8:0] ball_yRef;
 
 	initial begin
-		ball_xRef = ball_xinit;
-		ball_yRef = ball_yinit;
+		ball_xRef = 320;
+		ball_yRef = 240;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
 	assign ball_rightBound = ball_xRef + 10;
 	assign ball_topBound = ball_yRef - 15;
 	assign ball_bottomBound = ball_yRef + 15;
+
+	wire ball_inSq = ball_xRef == 10'd320;
 
 	always @(x or y) begin
 		if (x > ball_leftBound && x < ball_rightBound && y > ball_topBound && y < ball_bottomBound)
@@ -177,8 +181,8 @@ module VGAController(
 	always @(posedge screenEnd) begin
 		// ball_xRef <= ball_xinit;
 		// ball_yRef <= ball_yinit;
-		// ball_xRef <= ball_x;
-		// ball_yRef <= ball_y;
+		ball_xRef <= ball_x;
+		ball_yRef <= ball_y;
 		stall <= 0;
 		posEdgeScreenEnd <= 1;
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
@@ -271,8 +275,9 @@ module VGAController(
 	
 
 	// Assign to output color from register if active
-	wire[BITS_PER_COLOR-1:0] colorOut; 			  // Output color 
-	assign colorOut = active ? ((p1_inSquare || p2_inSquare || ball_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
+	wire[BITS_PER_COLOR-1:0] colorOut; 			  // Output color
+	 
+	assign colorOut= active ? ((p1_inSquare || p2_inSquare || ball_inSquare || segLeft_inSquare || segRight_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
 
 	// Quickly assign the output colors to their channels using concatenation
 	assign {VGA_R, VGA_G, VGA_B} = colorOut;

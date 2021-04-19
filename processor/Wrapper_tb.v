@@ -43,7 +43,7 @@ module Wrapper_tb #(parameter FILE = "logic");
 	localparam DEFAULT_CYCLES = 255;
 
 	// Inputs to the processor
-	reg clock = 0, reset = 0;
+	reg clock = 0, reset = 0, screenEnd = 0;
 
 	// I/O for the processor
 	wire rwe, mwe;
@@ -156,10 +156,6 @@ module Wrapper_tb #(parameter FILE = "logic");
 	assign segRight_topBound = segRight_yRef - 40;
 	assign segRight_bottomBound = segRight_yRef + 40;
 
-	
-	wire posEdgeScreenEnd;
-
-	assign posEdgeScreenEnd = 1'b1;
 
 	wire[2:0] winner;
 
@@ -167,7 +163,7 @@ module Wrapper_tb #(parameter FILE = "logic");
 	.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
 	.ctrl_writeReg(rd),
 	.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
-	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), .posEdgeScreenEnd(posEdgeScreenEnd),
+	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), .posEdgeScreenEnd(screenEnd),
 	.winner(winner), .ball_x(ball_x), .ball_y(ball_y), .ball_xinit(ball_xinit), .ball_yinit(ball_yinit),
 	.p1_leftBound(p1_leftBound), .p1_rightBound(p1_rightBound), .p1_topBound(p1_topBound), .p1_bottomBound(p1_bottomBound), 
 	.p2_leftBound(p2_leftBound), .p2_rightBound(p2_rightBound), .p2_topBound(p2_topBound), .p2_bottomBound(p2_bottomBound),
@@ -183,7 +179,9 @@ module Wrapper_tb #(parameter FILE = "logic");
 
 	// Create the clock
 	always
-		#10 clock = ~clock; 
+		#5 clock = ~clock; 
+	always 
+		#50 screenEnd = ~screenEnd;
 
 	//////////////////
 	// Test Harness //
