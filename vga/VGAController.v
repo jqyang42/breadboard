@@ -173,6 +173,7 @@ module VGAController(
 	
 	reg stall;
 	reg posEdgeScreenEnd;
+	reg[31:0] ball_xdir_factor, ball_ydir_factor
 	//assign posEdgeScreenEnd = 0;
 
 //	always @(negedge screenEnd) begin
@@ -181,12 +182,87 @@ module VGAController(
     
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
-		// ball_xRef <= ball_xinit;
-		// ball_yRef <= ball_yinit;
 		ball_xRef <= ball_x;
 		ball_yRef <= ball_y;
 		stall <= 0;
-		posEdgeScreenEnd <= 1;
+
+		//BALL DIRECTIONALITY WITH PADDLE INFO
+		// PLAYER 1 COLLISIONS
+		if(ball_xRef+10 >= p1_xRef-25 && ball_xRef-10 < p1_xRef-25) begin
+			if(ball_yRef-15 < p1_yRef-33 && p1_yRef < ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end else if(p1_yRef+33 < ball_yRef+15 && ball_yRef < p1_yRef+33) begin
+				ball_xdir_factor <= -1;
+			end else if(ball_yRef-15 >= p1_yRef-33 && p1_yRef+33 >= ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end
+		end else if(p1_xRef+25 >= ball_xRef-10 && p1_xRef+25 < ball_xRef+10) begin
+			if(ball_yRef-15 < p1_yRef-33 && p1_yRef < ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end else if(p1_yRef+33 < ball_yRef+15 && ball_yRef < p1_yRef+33) begin
+				ball_xdir_factor <= -1;
+			end else if(ball_yRef-15 >= p1_yRef-33 && p1_yRef+33 >= ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end
+		end else if(ball_yRef+15 >= p1_yRef-33 && ball_yRef-15 < p1_yRef-33) begin
+			if(p1_xRef-25 < ball_xRef+10 && ball_xRef-10 < p1_xRef-25) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 < p1_xRef+33 && p1_xRef+33 < ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 >= p1_xRef-33 && p1_xRef+33 >= ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end
+		end else if(p1_yRef+33 >= ball_yRef-15 && p1_yRef+33 < ball_yRef+15) begin
+			if(p1_xRef-25 < ball_xRef+10 && ball_xRef-10 < p1_xRef-25) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 < p1_xRef+33 && p1_xRef+33 < ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 >= p1_xRef-33 && p1_xRef+33 >= ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end
+		end
+
+		// PLAYER 2 COLLISIONS
+		else if(ball_xRef+10 >= p2_xRef-25 && ball_xRef-10 < p2_xRef-25) begin
+			if(ball_yRef-15 < p2_yRef-33 && p2_yRef < ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end else if(p2_yRef+33 < ball_yRef+15 && ball_yRef < p2_yRef+33) begin
+				ball_xdir_factor <= -1;
+			end else if(ball_yRef-15 >= p2_yRef-33 && p2_yRef+33 >= ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end
+		end else if(p2_xRef+25 >= ball_xRef-10 && p2_xRef+25 < ball_xRef+10) begin
+			if(ball_yRef-15 < p2_yRef-33 && p2_yRef < ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end else if(p2_yRef+33 < ball_yRef+15 && ball_yRef < p2_yRef+33) begin
+				ball_xdir_factor <= -1;
+			end else if(ball_yRef-15 >= p2_yRef-33 && p2_yRef+33 >= ball_yRef+15) begin
+				ball_xdir_factor <= -1;
+			end
+		end else if(ball_yRef+15 >= p2_yRef-33 && ball_yRef-15 < p2_yRef-33) begin
+			if(p2_xRef-25 < ball_xRef+10 && ball_xRef-10 < p2_xRef-25) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 < p2_xRef+33 && p2_xRef+33 < ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 >= p2_xRef-33 && p2_xRef+33 >= ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end
+		end else if(p2_yRef+33 >= ball_yRef-15 && p2_yRef+33 < ball_yRef+15) begin
+			if(p2_xRef-25 < ball_xRef+10 && ball_xRef-10 < p2_xRef-25) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 < p2_xRef+33 && p2_xRef+33 < ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end else if(ball_xRef-10 >= p2_xRef-33 && p2_xRef+33 >= ball_xRef+10) begin
+				ball_ydir_factor <= -1;
+			end
+		end
+		//NO CHANGE IN DIRECTION
+		else begin
+			ball_xdir_factor <= 1;
+			ball_ydir_factor <= 1;
+		end
+
+		//PADDLE MOVEMENT CALCULATION
 		if(p1_xRef <= p1_xBound && p1_xRef > 25 ) begin
 			if (p1_left)
 				p1_xRef <= p1_xRef - 1;
