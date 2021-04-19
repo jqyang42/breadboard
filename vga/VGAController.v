@@ -105,7 +105,7 @@ module VGAController(
 	reg[31:0] ball_yRef;
 
 	initial begin
-		ball_xRef = 320;
+		ball_xRef = 160;//320;
 		ball_yRef = 240;
 	end
 	
@@ -114,8 +114,6 @@ module VGAController(
 	assign ball_topBound = ball_yRef - 15;
 	assign ball_bottomBound = ball_yRef + 15;
 
-    wire ball_inSq;
-	assign ball_inSq = ball_xRef == 10'd320;
 
 	reg[31:0] ball_x_term;
 	reg[31:0] ball_y_term;
@@ -186,6 +184,8 @@ module VGAController(
 //	always @(negedge screenEnd) begin
 //		posEdgeScreenEnd <= 0;
 //	end
+
+	reg ball_inSq = 0;
     
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
@@ -198,34 +198,46 @@ module VGAController(
 		if(ball_xRef+10 >= p1_xRef-25 && ball_xRef-10 < p1_xRef-25) begin
 			if(ball_yRef-15 < p1_yRef-33 && p1_yRef < ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(p1_yRef+33 < ball_yRef+15 && ball_yRef < p1_yRef+33) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p1_yRef-33 && p1_yRef+33 >= ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end else if(p1_xRef+25 >= ball_xRef-10 && p1_xRef+25 < ball_xRef+10) begin
 			if(ball_yRef-15 < p1_yRef-33 && p1_yRef < ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(p1_yRef+33 < ball_yRef+15 && ball_yRef < p1_yRef+33) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p1_yRef-33 && p1_yRef+33 >= ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end else if(ball_yRef+15 >= p1_yRef-33 && ball_yRef-15 < p1_yRef-33) begin
 			if(p1_xRef-25 < ball_xRef+10 && ball_xRef-10 < p1_xRef-25) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p1_xRef+33 && p1_xRef+33 < ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p1_xRef-33 && p1_xRef+33 >= ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end else if(p1_yRef+33 >= ball_yRef-15 && p1_yRef+33 < ball_yRef+15) begin
 			if(p1_xRef-25 < ball_xRef+10 && ball_xRef-10 < p1_xRef-25) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p1_xRef+33 && p1_xRef+33 < ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p1_xRef-33 && p1_xRef+33 >= ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end
 
@@ -233,40 +245,54 @@ module VGAController(
 		else if(ball_xRef+10 >= p2_xRef-25 && ball_xRef-10 < p2_xRef-25) begin
 			if(ball_yRef-15 < p2_yRef-33 && p2_yRef < ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(p2_yRef+33 < ball_yRef+15 && ball_yRef < p2_yRef+33) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p2_yRef-33 && p2_yRef+33 >= ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end else if(p2_xRef+25 >= ball_xRef-10 && p2_xRef+25 < ball_xRef+10) begin
 			if(ball_yRef-15 < p2_yRef-33 && p2_yRef < ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(p2_yRef+33 < ball_yRef+15 && ball_yRef < p2_yRef+33) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p2_yRef-33 && p2_yRef+33 >= ball_yRef+15) begin
 				ball_xdir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end else if(ball_yRef+15 >= p2_yRef-33 && ball_yRef-15 < p2_yRef-33) begin
 			if(p2_xRef-25 < ball_xRef+10 && ball_xRef-10 < p2_xRef-25) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p2_xRef+33 && p2_xRef+33 < ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p2_xRef-33 && p2_xRef+33 >= ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end else if(p2_yRef+33 >= ball_yRef-15 && p2_yRef+33 < ball_yRef+15) begin
 			if(p2_xRef-25 < ball_xRef+10 && ball_xRef-10 < p2_xRef-25) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p2_xRef+33 && p2_xRef+33 < ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p2_xRef-33 && p2_xRef+33 >= ball_xRef+10) begin
 				ball_ydir_factor <= -1;
+				ball_inSq <= 1;
 			end
 		end
 		//NO CHANGE IN DIRECTION
 		else begin
 			ball_xdir_factor <= 1;
 			ball_ydir_factor <= 1;
+			ball_inSq <= 0;
+			ball_inSq <= 0;
 		end
 
 		//PADDLE MOVEMENT CALCULATION
