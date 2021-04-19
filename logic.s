@@ -11,7 +11,7 @@
 # $r11, $r12 = ball xlim, ylim
 # $r13 = x dir change from VGAController (paddle collision)
 # $r14 = y dir change from VGA Controller
-# $r13-$r20 
+# $r17-$r20 
 # $r24, $r25 = ball lowerxlim, ylim (10,15)
 # $r26, $r27 = ball xdir, ydir
 # $r28 = calculating change of ball in any dir (temporary storage)
@@ -19,7 +19,7 @@
 # OUTPUT
 # $r21 = winner (0 none, 1 p1, 2 p2)
 # $r22, $r23 = ball x,y
-# $r29, $r30 = temporary hold for ball x and y
+# $r15, $r16 = temporary hold for ball x and y
 
 # ACTUAL GAME
 #
@@ -34,8 +34,8 @@ initial_regs:
 initial_game:
     add     $r22,   $r5,   $r0      # initialize ball x
     add     $r23,   $r6,   $r0     # initialize ball y
-    add     $r29,   $r5,    $r0
-    add     $r30,   $r6,    $r0
+    add     $r15,   $r5,    $r0
+    add     $r16,   $r6,    $r0
     addi	$r26, $r0, 1			# $r26 = $r0 + 1
     addi	$r27, $r0, 1			# $r27 = $r0 + 1
 
@@ -66,6 +66,7 @@ check_cont:
 move_ball_x:
     mul     $r28,   $r26,    $r4    #amt move = xdir * ball mvmt change
     add     $r29,   $r29,   $r28    # apply change to ball_x
+    and     $r22,   $r1,    $r0
     add     $r22,   $r29,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r28,   $r0,    $r28    #reset the math reg
     j		move_ball_y				# jump to move_ball_y
@@ -74,6 +75,7 @@ move_ball_x:
 move_ball_y:
     mul     $r28,   $r27,   $r4     #should we add noop LOL
     add     $r30,   $r30,   $r28
+    and     $r23,   $r1,    $r0
     add     $r23,   $r30,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r28,   $r0,    $r28    #reset the math reg
     j		ball_handle				# jump to ball_handle
@@ -83,22 +85,24 @@ move_ball_y:
 #
 ball_handle:
     # checking wall collisions for ball
-    blt     $r30,   $r25,    ball_flip_y     #check if ball hit top
+    blt     $r16,   $r25,    ball_flip_y     #check if ball hit top
     nop
     nop
     nop
-    bgt     $r30,   $r12,   ball_flip_y     #check if ball hit bottom
+    bgt     $r16,   $r12,   ball_flip_y     #check if ball hit bottom
     nop
     nop
     nop
-    blt     $r29,   $r24,    ball_left_edge
+    blt     $r15,   $r24,    ball_left_edge
     nop
     nop
     nop
-    bgt     $r29,   $r11,    ball_right_edge
+    bgt     $r15,   $r11,    ball_right_edge
     nop
     nop
     nop
+    mul     $r26,   $r26,   $r13
+    mul     $r27,   $r27,   $r14  
 #
 # HITTING LEFT OR RIGHT EDGE AND CHECKING IF WIN OR NOT
 #

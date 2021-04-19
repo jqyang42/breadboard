@@ -105,7 +105,7 @@ module VGAController(
 	reg[31:0] ball_yRef;
 
 	initial begin
-		ball_xRef = 160;//320;
+		ball_xRef = 320;
 		ball_yRef = 240;
 	end
 	
@@ -189,8 +189,8 @@ module VGAController(
     
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
-		// ball_xRef <= ball_x;
-		// ball_yRef <= ball_y;
+		ball_xRef <= ball_x;
+		ball_yRef <= ball_y;
 		stall <= 0;
 
 		//BALL DIRECTIONALITY WITH PADDLE INFO
