@@ -90,19 +90,19 @@ module VGAController(
 	// ball creation
 	wire[9:0] ball_xlim, ball_xinit;
 	wire[8:0] ball_ylim, ball_yinit;
+	wire[9:0] ball_radius, ball_radius_sqr;
+
 	assign ball_xlim = 628;
 	assign ball_ylim = 463;
 	assign ball_xinit = 320;
 	assign ball_yinit = 240;
 
-	
-
 	wire[9:0] ball_leftBound, ball_rightBound;
 	wire[8:0] ball_topBound, ball_bottomBound;
-	reg ball_inSquare = 0;
+	reg ball_inHitBox = 0;
 	
-    reg[9:0] ball_xRef;
-	reg[8:0] ball_yRef;
+    reg[31:0] ball_xRef;
+	reg[31:0] ball_yRef;
 
 	initial begin
 		ball_xRef = 320;
@@ -117,11 +117,18 @@ module VGAController(
     wire ball_inSq;
 	assign ball_inSq = ball_xRef == 10'd320;
 
+	reg[31:0] ball_x_term;
+	reg[31:0] ball_y_term;
+	reg[31:0] ball_total_pos_term;
+
 	always @(x or y) begin
-		if (x > ball_leftBound && x < ball_rightBound && y > ball_topBound && y < ball_bottomBound)
-			ball_inSquare <= 1'b1;
+		ball_x_term <= (x - ball_xRef) * (x - ball_xRef);
+		ball_y_term <= (y - ball_yRef) * (y - ball_yRef);
+		ball_total_pos_term <= (ball_x_term * 225) + (ball_y_term * 100);
+		if (ball_total_pos_term < 22500)
+			ball_inHitBox <= 1'b1;
 		else
-			ball_inSquare <= 1'b0;
+			ball_inHitBox <= 1'b0;
 	end
 
 	// segment win creation
@@ -173,7 +180,7 @@ module VGAController(
 	
 	reg stall;
 	reg posEdgeScreenEnd;
-	reg[31:0] ball_xdir_factor, ball_ydir_factor
+	reg[31:0] ball_xdir_factor, ball_ydir_factor;
 	//assign posEdgeScreenEnd = 0;
 
 //	always @(negedge screenEnd) begin
@@ -182,8 +189,8 @@ module VGAController(
     
 	// make a slower clock :')
 	always @(posedge screenEnd) begin
-		ball_xRef <= ball_x;
-		ball_yRef <= ball_y;
+		// ball_xRef <= ball_x;
+		// ball_yRef <= ball_y;
 		stall <= 0;
 
 		//BALL DIRECTIONALITY WITH PADDLE INFO
@@ -355,7 +362,7 @@ module VGAController(
 	// Assign to output color from register if active
 	wire[BITS_PER_COLOR-1:0] colorOut; 			  // Output color
 	 
-	assign colorOut= active ? ((p1_inSquare || p2_inSquare || ball_inSquare || segLeft_inSquare || segRight_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
+	assign colorOut= active ? ((p1_inSquare || p2_inSquare || ball_inHitBox || segLeft_inSquare || segRight_inSquare) ? 12'd24 : colorData) : 12'd0; // When not active, output black
 
 	// Quickly assign the output colors to their channels using concatenation
 	assign {VGA_R, VGA_G, VGA_B} = colorOut;
@@ -365,8 +372,7 @@ module VGAController(
 	// input: paddles' bounds, ball limits, and winning segment y - val, initial ball x, y
 
 	Wrapper proc(clk25, reset, screenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
-				p1_leftBound, p1_rightBound, p1_topBound, p1_bottomBound, 
-				p2_leftBound, p2_rightBound, p2_topBound, p2_bottomBound,
+				ball_xdir_factor, ball_ydir_factor,
 				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
 				segRight_topBound, segRight_bottomBound);
 	
