@@ -141,8 +141,9 @@ module processor(
     assign jal_ir[31:27] = fd_ir[31:27];
     assign jal_ir[26:22] = 5'd31;
     assign jal_ir[21:0] = d_pc_plus_one;
-    assign dx_ir_actual =  stall ? dx_ir : (
-                            fd_ir);
+    assign dx_ir_actual =   (stall && multdiv_in_progress) ? 32'b0 : (
+                            stall ? dx_ir : (
+                            fd_ir));
     register_32 dx_program_counter(.outA(dx_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(fd_pc), .write_ctrl(1'b1));
     register_32 dx_instruction_register(.outA(dx_ir), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(dx_ir_actual), .write_ctrl(1'b1));
     register_32 dx_data_a(.outA(dx_a), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(data_readRegA), .write_ctrl(1'b1));
