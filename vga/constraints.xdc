@@ -89,3 +89,6 @@ set_property PACKAGE_PIN K13 [get_ports cd]
 set_property PACKAGE_PIN P15 [get_ports ce]
 set_property PACKAGE_PIN T11 [get_ports cf]
 set_property PACKAGE_PIN L18 [get_ports cg]
+
+set_property package_pin H17 [get_ports ball_inSq]
+set_property IOSTANDARD LVCMOS33 [get_ports ball_inSq]

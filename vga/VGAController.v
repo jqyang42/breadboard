@@ -27,7 +27,8 @@ module VGAController(
 	output ball_inSq);
 	
 	// Lab Memory Files Location
-	localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/";
+	//localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
+	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
 	
 
 	// Clock divider 100 MHz -> 25 MHz
@@ -113,7 +114,8 @@ module VGAController(
 	assign ball_topBound = ball_yRef - 15;
 	assign ball_bottomBound = ball_yRef + 15;
 
-	wire ball_inSq = ball_xRef == 10'd320;
+    wire ball_inSq;
+	assign ball_inSq = ball_xRef == 10'd320;
 
 	always @(x or y) begin
 		if (x > ball_leftBound && x < ball_rightBound && y > ball_topBound && y < ball_bottomBound)
