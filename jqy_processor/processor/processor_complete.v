@@ -63,15 +63,15 @@ module processor(
 
 	/* YOUR CODE STARTS HERE */
 
-    // original program counter     
+    // original program counter     //will need to hook up to mux for jump/branch instr
 	wire [31:0] base_pc;
     wire [31:0] incremented_pc;
-    wire [31:0] alternate_pc;       
+    wire [31:0] alternate_pc;       //use mux whatever
     wire [31:0] next_pc;
     wire overflow_pc;
     wire stall;
     add_32 add_program_counter(.A(base_pc), .B(32'b0), .Cin(!stall), .Sout(incremented_pc), .Cout(overflow_pc));
-    assign next_pc =    ((d_opcode == 5'b00001) || (d_opcode == 5'b00011)) ? d_padded_target : (    // j or jal: go to T
+    assign next_pc =    ((x_opcode == 5'b00001) || (x_opcode == 5'b00011)) ? x_padded_target : (    // j or jal: go to T
                         (x_opcode == 5'b00100) ? jr_branch_pc : (   // jr: go to $rd
                         ((x_opcode == 5'b10110) && x_not_equal) ? x_padded_target : (   // bex go to T
                         (((x_opcode == 5'b00010) && x_not_equal) || ((x_opcode == 5'b00110) && x_less_than) ? branch_pc : ( // bne and blt
@@ -90,8 +90,10 @@ module processor(
     assign fd_write_enable = !stall;    // clear datapath control signals -> multiplexers
     register_32 fd_program_counter(.outA(fd_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(base_pc), .write_ctrl(fd_write_enable));
     register_32 fd_instruction_register(.outA(fd_ir_init), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(q_imem), .write_ctrl(fd_write_enable));
-    assign fd_ir =  ((x_opcode == 5'b00011) || (x_opcode == 5'b00100) || (((x_opcode == 5'b00010) || (x_opcode == 5'b10110)) && x_not_equal) || 
-                    ((x_opcode == 5'b00110) && x_less_than)) ? 32'b0 :    // write nop into program
+    assign fd_ir =  ((x_opcode == 5'b00011) || (x_opcode == 5'b00100) || (((x_opcode == 5'b00010) || (x_opcode == 5'b10110)) && x_not_equal) 
+                    || (((x_opcode == 5'b00110) || (m_opcode == 5'b00110)) && x_latched_less_than) || (x_opcode == 5'b00001) 
+                    || (x_opcode == 5'b00011) || ((m_opcode == 5'b00100) || (m_opcode == 5'b00010) || (m_opcode == 5'b00001)
+                    || (m_opcode == 5'b00011) || (m_opcode == 5'b10110))) ? 32'b0 : // write nop into program, flush memory so not writing
                     (fd_ir_init); 
 
     // Decode
@@ -126,9 +128,9 @@ module processor(
     assign jal_ir[31:27] = fd_ir[31:27];
     assign jal_ir[26:22] = 5'd31;
     assign jal_ir[21:0] = d_pc_plus_one;
-    assign dx_ir_actual =   (d_opcode == 5'b00011) ? jal_ir : ( // use new jal instruction
-                            (stall || ((m_opcode == 5'b00100) || (m_opcode == 5'b00010) || (m_opcode == 5'b00110))) ? 32'b0 : (    // flush memory so not writing
-                            fd_ir));
+    assign dx_ir_actual =  stall ? 32'd0 : (
+                           // (stall || ((m_opcode == 5'b00100) || (m_opcode == 5'b00010) || (m_opcode == 5'b00110) || (m_opcode == 5'b00001) || (m_opcode == 5'b00011))) ? 32'b0 : (    
+                            fd_ir);
     register_32 dx_program_counter(.outA(dx_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(fd_pc), .write_ctrl(1'b1));
     register_32 dx_instruction_register(.outA(dx_ir), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(dx_ir_actual), .write_ctrl(1'b1));
     register_32 dx_data_a(.outA(dx_a), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(data_readRegA), .write_ctrl(1'b1));
@@ -153,18 +155,22 @@ module processor(
     wire x_not_equal;
     wire x_less_than;
     sign_extend_17 x_extended_immediate(.out(x_sx_immediate), .in(x_immediate));
-    add_32 branch_pc_calc(.A(dx_pc), .B(x_immediate), .Cin(1'b1), .Sout(branch_pc), .Cout(overflow_pc));
+    add_32 branch_pc_calc(.A(dx_pc), .B(x_sx_immediate), .Cin(1'b1), .Sout(branch_pc), .Cout(overflow_pc));
     assign x_padded_target[31:27] = 5'b0;
     assign x_padded_target[26:0] = x_target;
     assign mx_jr_bypassing = (m_rd == x_rd) && (x_opcode == 5'b00100);
     assign jr_branch_pc = mx_jr_bypassing ? xm_o : dx_b;
 
     wire [4:0] x_alu_opcode_actual;
+    wire [31:0] x_a_bypassing;
+    wire [31:0] x_b_bypassing;
     wire mx_a_bypassing;
     wire wx_a_bypassing;
     wire mx_b_bypassing;
     wire wx_b_bypassing;
-    wire same_rd_bypassing;
+    wire mx_rd_bypassing;
+    wire wx_rd_bypassing;
+    wire bex_bypassing;
     wire [31:0] x_alu_a_input;
     wire [31:0] x_alu_b_input;    
     wire [31:0] x_alu_result;
@@ -174,20 +180,27 @@ module processor(
     assign wx_a_bypassing = (w_rd == x_rs) && !(w_rd == 5'b00000) && w_opcode != 5'b00111; // 2 stage lag for a; sw won't affect registers
     assign mx_b_bypassing = (m_rd == x_rt) && !(m_rd == 5'b00000); // 1 stage lag for b
     assign wx_b_bypassing = (w_rd == x_rt) && !(w_rd == 5'b00000) && w_opcode != 5'b00111; // 2 stage lag for b; sw won't affect registers
-    assign same_rd_bypassing = (m_rd == x_rd) && ((x_opcode == 5'b00100) || (x_opcode == 5'b00110));
-    assign x_alu_a_input =  (same_rd_bypassing || mx_a_bypassing) ? xm_o : (   // mx vs wx bypassing 
+    assign mx_rd_bypassing = (x_rd == m_rd) && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110));
+    assign wx_rd_bypassing = (x_rd == w_rd) && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110));
+    assign bex_bypassing = (x_opcode == 5'b10110) && (m_opcode == 5'b10101);
+    assign x_a_bypassing =  (mx_a_bypassing) ? xm_o : (   // mx vs wx bypassing 
                             wx_a_bypassing ? data_writeReg : (
-                            ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b10110)) ? dx_b : (   // if blt, bne, bex, a = $rd
-                            dx_a)));  
-    assign x_alu_b_input =  (same_rd_bypassing || mx_b_bypassing) ? xm_o : (   //  mx vs wx bypassing
-                            wx_b_bypassing ? data_writeReg : (
-                            ((x_opcode == 5'b00010) || (x_opcode == 5'b00110)) ? dx_a : (   // if blt, bne, b = $rs
+                            dx_a));  
+    assign x_b_bypassing =  (mx_b_bypassing || mx_rd_bypassing || bex_bypassing) ? xm_o : (   //  mx vs wx bypassing
+                            (wx_b_bypassing || wx_rd_bypassing) ? data_writeReg : (
+                            (x_opcode == 5'b00101) || (x_opcode == 5'b00111) || (x_opcode == 5'b01000)) ? x_sx_immediate : (    // lw/sw/addi
+                            dx_b));   
+    assign x_alu_a_input =  ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b10110)) ? x_b_bypassing : ( // if blt, bne, bex, a = $rd
+                            x_a_bypassing);
+    assign x_alu_b_input =  ((x_opcode == 5'b00010) || (x_opcode == 5'b00110)) ? x_a_bypassing : (   // if blt, bne, b = $rs
                             (x_opcode == 5'b10110) ? 32'b0 : (  // if bex, b = 0
-                            x_opcode == 5'b0) ? dx_b : (    // R type
-                            x_sx_immediate))));   // lw/sw/addi
+                            x_b_bypassing));
     alu x_alu(  .data_result(x_alu_result), .overflow(x_alu_overflow), .isNotEqual(x_not_equal), .isLessThan(x_less_than), 
                 .data_operandA(x_alu_a_input), .data_operandB(x_alu_b_input), 
                 .ctrl_ALUopcode(x_alu_opcode_actual), .ctrl_shiftamt(x_shamt));
+    
+    wire x_latched_less_than;
+    register_32 less_than(.outA(x_latched_less_than), .clk(clock), .ie(x_opcode == 5'b00110), .oeA(1'b1), .clr(1'b0), .in(x_less_than), .write_ctrl(1'b1));
 
     wire [31:0] x_multdiv_result;
     wire isMult;
@@ -220,7 +233,7 @@ module processor(
         (rstatus_opcode == 5'b00110) ? 17'd4 : (
         (rstatus_opcode == 5'b00111) ? 17'd5 : (
         (rstatus_opcode == 5'b10101) ? x_target : 17'd0))))); // add rstatus for setx
-    assign rstatus_ir[31:27] = 5'b00101;    // use addi
+    assign rstatus_ir[31:27] = x_opcode;
     assign rstatus_ir[26:22] = 5'd30;       // $rd = $r30
     assign rstatus_ir[21:17] = 5'd0;        // $rs = $r0
     assign rstatus_ir[16:0] = rstatus_val;  // immediate = rstatus_val
@@ -239,8 +252,12 @@ module processor(
     wire [31:0] xm_b;
     wire [31:0] xm_ir_actual;
     wire [31:0] xm_o_actual;
-    assign xm_ir_actual = (x_overflow || (x_opcode == 5'b10101)) ? rstatus_ir : (dx_ir);
-    assign xm_o_actual = x_overflow ? rstatus_val : x_alu_result;
+    wire [31:0] xm_o_latched;
+    assign xm_ir_actual =   (x_overflow || (x_opcode == 5'b10101)) ? rstatus_ir : (
+                            (d_opcode == 5'b00011)) ? jal_ir : dx_ir;   // use new jal instruction
+    assign xm_o_actual =    (x_overflow || (x_opcode == 5'b10101)) ? rstatus_val : (
+                            (x_opcode == 5'b00100) || (x_opcode == 5'b00010) || (x_opcode == 5'b00110)) ? xm_o_latched : x_alu_result;
+    register_32 latched_xm_o(.outA(xm_o_latched), .clk(!clock), .ie(!((x_opcode == 5'b00100) || (x_opcode == 5'b00010) || (x_opcode == 5'b00110))), .oeA(1'b1), .clr(reset), .in(xm_o_actual), .write_ctrl(1'b1));
     register_32 xm_instruction_register(.outA(xm_ir), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(xm_ir_actual), .write_ctrl(1'b1));
     register_32 xm_ouput(.outA(xm_o), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(xm_o_actual), .write_ctrl(1'b1));
     register_32 xm_written_b(.outA(xm_b), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(dx_b), .write_ctrl(1'b1));
@@ -281,7 +298,7 @@ module processor(
     wire [16:0] w_immediate = mw_ir[16:0];    // I only
     wire [26:0] w_target = mw_ir[26:0]; // JI only
     wire [21:0] w_jii_zeroes = mw_ir[21:0]; // JII only
-    assign ctrl_writeEnable = !(w_opcode == 5'b00111) && !(w_opcode == 5'b00100) && !(w_opcode == 5'b00010) && !(w_opcode == 5'b00110); // write when not sw
+    assign ctrl_writeEnable = !(w_opcode == 5'b00111) && !(w_opcode == 5'b00100) && !(w_opcode == 5'b00010) && !(w_opcode == 5'b00110); // write when not sw, bne, bex
     assign ctrl_writeReg = x_multdiv_ready_actual ? p_rd : w_rd;    // write to $ra or write to multdiv reg when ready
     assign data_writeReg =  (w_opcode == 5'b00011) ? w_jii_zeroes : // use last 22 bits if jal
                             (x_multdiv_ready_actual ? x_multdiv_result : ((w_opcode == 5'b01000) ? mw_d : mw_o));    // write from memory when lw; from pw_p when multdiv
