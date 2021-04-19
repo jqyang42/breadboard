@@ -1,0 +1,37 @@
+module check_one(isOne, operand);
+    input [31:0] operand;
+    output isOne;
+
+    assign isOne = (operand[0]
+        && operand[1]
+        && operand[2]
+        && operand[3]
+        && operand[4]
+        && operand[5]
+        && operand[6]
+        && operand[7]
+        && operand[8]
+        && operand[9]
+        && operand[10]
+        && operand[11]
+        && operand[12]
+        && operand[13]
+        && operand[14]
+        && operand[15]
+        && operand[16]
+        && operand[17]
+        && operand[18]
+        && operand[19]
+        && operand[20]
+        && operand[21]
+        && operand[22]
+        && operand[23]
+        && operand[24]
+        && operand[25]
+        && operand[26]
+        && operand[27]
+        && operand[28]
+        && operand[29]
+        && operand[30]
+        && operand[31]);
+endmodule
