@@ -19,7 +19,7 @@ addi 	$r20, $r20, 1	# r20 += 1 (Incorrect)
 addi 	$r20, $r20, 1	# r20 += 1 (Incorrect)
 b3: 
 addi $r10, $r10, 1	# r10 += 1 (Correct)
-bgt $r2, $r2, b4	# r2 == r2 --> not taken
+bgt $r2, $r1, b4	# r2 < r2 --> not taken
 nop			# nop in case of flush
 nop			# nop in case of flush
 nop			# Spacer 

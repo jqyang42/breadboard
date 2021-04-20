@@ -67,6 +67,7 @@ module processor(
         Custom instruction information
         * beq - 11111 - I - if ($rd == $rs) PC = PC + 1 + N
         * bgt - 11110 - I - if ($rd > $rs) PC = PC + 1 + N
+        * stall - 11101 - I - if $rd != $rs + N then stall
     */
     // original program counter    
 	wire [31:0] base_pc;
