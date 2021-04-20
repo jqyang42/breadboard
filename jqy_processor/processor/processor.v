@@ -98,12 +98,19 @@ module processor(
     assign fd_write_enable = !stall;    // clear datapath control signals -> multiplexers
     register_32 fd_program_counter(.outA(fd_pc), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(base_pc), .write_ctrl(fd_write_enable));
     register_32 fd_instruction_register(.outA(fd_ir_init), .clk(!clock), .ie(1'b1), .oeA(1'b1), .clr(reset), .in(q_imem), .write_ctrl(fd_write_enable));
-    assign fd_ir =  ((x_opcode == 5'b00011) || (x_opcode == 5'b00100) || (((x_opcode == 5'b00010) || (x_opcode == 5'b10110)) && x_latched_not_equal) 
-                    || (((x_opcode == 5'b00110) || (m_opcode == 5'b00110)) && x_latched_less_than) || (x_opcode == 5'b00001) 
-                    || (((x_opcode == 5'b11111) && !x_latched_not_equal && !x_latched_less_than) || ((x_opcode == 5'b11110) && x_latched_not_equal && !x_latched_less_than))    // beq and bgt
-                    || (x_opcode == 5'b00011) || ((m_opcode == 5'b00100) || (m_opcode == 5'b00010) || (m_opcode == 5'b00001)
-                    || (m_opcode == 5'b00011) || (m_opcode == 5'b10110))) ? 32'b0 : // write nop into program, flush memory so not writing
-                    (fd_ir_init); 
+    // assign fd_ir =  ((x_opcode == 5'b00011) || (x_opcode == 5'b00100) || (((x_opcode == 5'b00010) || (x_opcode == 5'b10110)) && x_latched_not_equal) 
+    //                 || (((x_opcode == 5'b00110) || (m_opcode == 5'b00110)) && x_latched_less_than) || (x_opcode == 5'b00001) 
+    //                 || (((x_opcode == 5'b11111) && !x_latched_not_equal && !x_latched_less_than) || ((x_opcode == 5'b11110) && x_latched_not_equal && !x_latched_less_than))    // beq and bgt
+    //                 || (x_opcode == 5'b00011) || ((m_opcode == 5'b00100) || (m_opcode == 5'b00010) || (m_opcode == 5'b00001)
+    //                 || (m_opcode == 5'b00011) || (m_opcode == 5'b10110))) ? 32'b0 : // write nop into program, flush memory so not writing
+    //                 (fd_ir_init); 
+    assign fd_ir =  ((x_opcode == 5'b00011 || m_opcode == 5'b00011) 
+                || (x_opcode == 5'b00100 || m_opcode == 5'b00100) 
+                || ((x_opcode == 5'b00010 || m_opcode == 5'b00010) && x_latched_not_equal)
+                || ((x_opcode == 5'b10110 || m_opcode == 5'b10110) && x_latched_not_equal) 
+                || ((x_opcode == 5'b00110 || m_opcode == 5'b00110) && x_latched_less_than) 
+                || (x_opcode == 5'b00001 || m_opcode == 5'b00001)) ? 32'b0 : // write nop into program, flush memory so not writing
+                (fd_ir_init); 
 
     // Decode
     wire [4:0] d_opcode = fd_ir[31:27];
