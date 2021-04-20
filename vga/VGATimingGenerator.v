@@ -72,8 +72,10 @@ module VGATimingGenerator #(parameter HEIGHT=480, WIDTH=640) (
 		end else begin
 			if(hPos == H_LINE - 1) begin // End of horizontal line
 				hPos <= 0;
-				if(vPos == V_LINE - 1)   // End of vertical line
+				if(vPos == V_LINE - 1) begin   // End of vertical line
 					vPos <= 0;
+					#2000;
+				end
 				else begin
 					vPos <= vPos + 1;
 				end
