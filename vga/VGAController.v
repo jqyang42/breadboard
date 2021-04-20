@@ -403,4 +403,13 @@ module VGAController(
 				segRight_topBound, segRight_bottomBound);
 	
     segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
+
+	
+	// defome waveform
+	initial begin
+		// output file name
+		$dumpfile("processorish.vcd");
+		// module to caputre and what level, 0 = all wires
+		$dumpvars(0, VGAController);
+	end
 endmodule

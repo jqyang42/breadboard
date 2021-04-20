@@ -12,15 +12,15 @@ module regfile (
 	input clock, ctrl_writeEnable, ctrl_reset, posEdgeScreenEnd;
 	input [4:0] ctrl_writeReg, ctrl_readRegA, ctrl_readRegB;
 	input [31:0] data_writeReg;
-	input [9:0] ball_xlim, ball_xinit;//, p1_leftBound, p1_rightBound, p2_leftBound, p2_rightBound;
-	input [8:0] ball_ylim, ball_yinit,// p1_topBound, p1_bottomBound, p2_topBound, p2_bottomBound,
+	input [31:0] ball_xlim, ball_xinit;//, p1_leftBound, p1_rightBound, p2_leftBound, p2_rightBound;
+	input [31:0] ball_ylim, ball_yinit,// p1_topBound, p1_bottomBound, p2_topBound, p2_bottomBound,
 				segLeft_topBound, segLeft_bottomBound, segRight_topBound, segRight_bottomBound;
-	input [8:0] ball_xdir_factor, ball_ydir_factor;
+	input [31:0] ball_xdir_factor, ball_ydir_factor;
 
 	output [31:0] data_readRegA, data_readRegB;
-	output [1:0] winner;
-	output [9:0] ball_x;
-	output [8:0] ball_y;
+	output [31:0] winner;
+	output [31:0] ball_x;
+	output [31:0] ball_y;
 
 	wire [31:0] d_write, d_readA, d_readB;
 	// add your code here

@@ -33,7 +33,7 @@
  *
  **/
 
-module Wrapper_tb #(parameter FILE = "logic");
+module Wrapper_tb #(parameter FILE = "bne");
 
 	// FileData
 	localparam DIR = "Test Files/";
@@ -164,7 +164,7 @@ module Wrapper_tb #(parameter FILE = "logic");
 	.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), .posEdgeScreenEnd(screenEnd),
 	.winner(winner), .ball_x(ball_x), .ball_y(ball_y), .ball_xinit(ball_xinit), .ball_yinit(ball_yinit),
-	.ball_xdir_factor(32'd1), .ball_ydir_factor(-32'd1),
+	.ball_xdir_factor(32'd1), .ball_ydir_factor(32'b11111111111111111111111111111111),
 	.ball_xlim(ball_xlim), .ball_ylim(ball_ylim), .segLeft_topBound(segLeft_topBound), .segLeft_bottomBound(segLeft_bottomBound), 
 	.segRight_topBound(segRight_topBound), .segRight_bottomBound(segRight_bottomBound));
 						

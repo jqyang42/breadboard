@@ -5,75 +5,55 @@ Cycle   7: Wrote 12 into register 24
 Cycle   8: Wrote 15 into register 25
 Cycle   9: Wrote 320 into register 22
 Cycle  10: Wrote 240 into register 23
-Cycle  11: Wrote 320 into register 29
-Cycle  12: Wrote 240 into register 30
+Cycle  11: Wrote 320 into register 15
+Cycle  12: Wrote 240 into register 16
 Cycle  13: Wrote 1 into register 26
 Cycle  14: Wrote 1 into register 27
-Cycle  23: Wrote Z into register 28
-Cycle  38: Wrote 2 into register 28
-Cycle  41: Wrote 322 into register 29
-Cycle  42: Wrote 322 into register 22
-Cycle  43: Wrote 0 into register 28
-Cycle  47: Wrote Z into register 28
-Cycle  62: Wrote 2 into register 28
-Cycle  65: Wrote 242 into register 30
-Cycle  66: Wrote 242 into register 23
-Cycle  67: Wrote 0 into register 28
-Cycle  87: Wrote 0 into register 28
-Cycle  88: Wrote 332 into register 28
-Cycle  91: Wrote 0 into register 28
-Cycle  92: Wrote 0 into register 28
-Cycle  93: Wrote 312 into register 28
-Cycle  98: Wrote 0 into register 28
-Cycle  99: Wrote 312 into register 28
+Cycle  58: Wrote Z into register 28
+Cycle  73: Wrote 2 into register 28
+Cycle  76: Wrote 2 into register 29
+Cycle  77: Wrote 0 into register 22
+Cycle  78: Wrote 2 into register 22
+Cycle  79: Wrote 0 into register 28
+Cycle  83: Wrote Z into register 28
+Cycle  98: Wrote 2 into register 28
+Cycle 101: Wrote 2 into register 30
+Cycle 102: Wrote 0 into register 23
+Cycle 103: Wrote 2 into register 23
 Cycle 104: Wrote 0 into register 28
-Cycle 105: Wrote 257 into register 28
-Cycle 108: Wrote 0 into register 28
-Cycle 109: Wrote 0 into register 28
-Cycle 110: Wrote 227 into register 28
-Cycle 115: Wrote 0 into register 28
-Cycle 116: Wrote 227 into register 28
-Cycle 119: Wrote 0 into register 28
-Cycle 120: Wrote 0 into register 28
-Cycle 121: Wrote 257 into register 28
-Cycle 126: Wrote 0 into register 28
-Cycle 127: Wrote 332 into register 28
-Cycle 132: Wrote 0 into register 28
-Cycle 133: Wrote 312 into register 28
-Cycle 138: Wrote 0 into register 28
-Cycle 139: Wrote 257 into register 28
-Cycle 142: Wrote 0 into register 28
-Cycle 143: Wrote 0 into register 28
+Cycle 124: Wrote Z into register 26
+Cycle 139: Wrote 1 into register 26
+Cycle 142: Wrote Z into register 27
 ============== Testing Mode ==============
-Reg  0:           0
-Reg  1:           0
-Reg  2:           0
-Reg  3:           0
-Reg  4:           0
-Reg  5:           0
-Reg  6:           0
-Reg  7:           0
-Reg  8:           0
-Reg  9:           0
-Reg 10:           0
-Reg 11:           0
-Reg 12:           0
-Reg 13:           0
-Reg 14:           0
-Reg 15:           0
-Reg 16:           0
-Reg 17:           0
-Reg 18:           0
-Reg 19:           0
-Reg 20:           0
-Reg 21:           0
-Reg 22:           0
-Reg 23:           0
-Reg 24:           0
-Reg 25:         322
-Reg 26:         322
-Reg 27:         322
-Reg 28:         322
-Reg 29:         322
-Reg 30:         322
-Reg 31:         322
+Reg  0:           Z
+Reg  1:           Z
+Reg  2:           Z
+Reg  3:           Z
+Reg  4:           Z
+Reg  5:           Z
+Reg  6:           Z
+Reg  7:           Z
+Reg  8:           Z
+Reg  9:           Z
+Reg 10:           Z
+Reg 11:           Z
+Reg 12:           Z
+Reg 13:           Z
+Reg 14:           Z
+Reg 15:           Z
+Reg 16:           Z
+Reg 17:           Z
+Reg 18:           Z
+Reg 19:           Z
+Reg 20:           Z
+Reg 21:           Z
+Reg 22:           Z
+Reg 23:           Z
+Reg 24:           Z
+Reg 25:           Z
+Reg 26:           Z
+Reg 27:           Z
+Reg 28:           Z
+Reg 29:           Z
+Reg 30:           Z
+Reg 31:           Z
