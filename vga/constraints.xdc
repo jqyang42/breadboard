@@ -92,3 +92,8 @@ set_property PACKAGE_PIN L18 [get_ports cg]
 
 set_property package_pin H17 [get_ports ball_inSq]
 set_property IOSTANDARD LVCMOS33 [get_ports ball_inSq]
+
+set_property IOSTANDARD LVCMOS33 [get_ports active_on]
+set_property PACKAGE_PIN V17 [get_ports active_on]
+set_property IOSTANDARD LVCMOS33 [get_ports screenEnd_on]
+set_property PACKAGE_PIN R18 [get_ports screenEnd_on]

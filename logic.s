@@ -31,14 +31,12 @@ check_cont:
 move_ball_x:                        # BALL BASIC MOVEMENT
     mul     $r28,   $r26,    $r4    # amt move = xdir * ball mvmt change
     add     $r29,   $r29,   $r28    # apply change to ball_x
-    and     $r22,   $r1,    $r0
     add     $r22,   $r29,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r28,   $r0,    $r28    #reset the math reg
     j		move_ball_y				# jump to move_ball_y
 move_ball_y:
     mul     $r28,   $r27,   $r4     #should we add noop LOL
     add     $r30,   $r30,   $r28
-    and     $r23,   $r1,    $r0
     add     $r23,   $r30,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r28,   $r0,    $r28    #reset the math reg
     j		ball_handle				# jump to ball_handle
@@ -61,7 +59,8 @@ ball_handle:                                    # HANDLING AUTOMATIC BALL MVMT
     nop
     nop
     mul     $r26,   $r26,   $r13
-    mul     $r27,   $r27,   $r14  
+    mul     $r27,   $r27,   $r14 
+    j		check_cont				# jump to check_cont
 ball_left_edge:                     # HITTING LEFT OR RIGHT EDGE AND CHECKING IF WIN OR NOT
     and     $r28,   $r0,   $r28
     addi    $r28,   $r30,   -15      # r28 = ball top
@@ -86,16 +85,16 @@ ball_flip_y:
     mul     $r27,   $r27,   $r2
     j		check_cont				# jump to paddle_handle
 left_lose:      # HIT GOAL
-    addi     $r21,    $r21,     2
+    addi     $r21,    $r0,     2
 right_lose:
-    addi     $r21,    $r21,    1
+    addi     $r21,    $r0,    1
 end_game:
     nop
 
 # top left is 0, 0
 # CONSTANTS
 # r1=1, $r2=-1 
-# $r4 = ball movement change
+# $r4 = ball movement change (2)
 
 # INPUT
 # $r3 = posEdgeScreenEnd -> =1 when posEdge aka stop stalling. =0 else. can only read from this

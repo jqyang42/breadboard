@@ -24,7 +24,9 @@ module VGAController(
 	output ce, 
 	output cf, 
 	output cg, 
-	output ball_inSq);
+	output ball_inSq, 
+	output active_on,
+	output screenEnd_on);
 	
 	// Lab Memory Files Location
 	//localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
@@ -46,6 +48,8 @@ module VGAController(
 		VIDEO_HEIGHT = 480; // Standard VGA Height
 
 	wire active, screenEnd;
+	assign active_on = active;
+	assign screenEnd_on = screenEnd;
 	wire[9:0] x;
 	wire[8:0] y;
 
