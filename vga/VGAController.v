@@ -36,6 +36,18 @@ module VGAController(
 	always @(posedge clk) begin
 		pixCounter <= pixCounter + 1; // Since the reg is only 3 bits, it will reset every 8 cycles
 	end
+	
+	reg clk_seg;  // 1 KHz
+	
+	reg[31:0] clk25_counter = 0;
+	always @(posedge clk25) begin
+	   if (clk25_counter == 31'd25000) begin
+	       clk_seg = ~clk_seg;
+	       clk25_counter <= 0;
+	   end
+	   else
+	       clk25_counter <= clk25_counter + 1;
+	end
 
 	// VGA Timing Generation for a Standard VGA Screen
 	localparam 
@@ -119,8 +131,8 @@ module VGAController(
 		ball_ydir = 1;
 		ball_xdir_factor = 1;
 		ball_ydir_factor = 1;
-		p1_score = 1;
-		p2_score = 2;
+		p1_score = 2;
+		p2_score = 3;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
@@ -188,32 +200,29 @@ module VGAController(
 	assign p1_xBound = screenMiddle - 50;
 	assign p2_xBound = 370;
 
-	
-
-
 	reg ball_inSq = 0;
-	// reg [2:0] p1_prevScore, p2_prevScore;
+	reg [2:0] p1_prevScore, p2_prevScore;
     
 	// ball collisions
 	always @(posedge screenEnd) begin
 		ball_xRef <= ball_x;
 		ball_yRef <= ball_y;
 
-		// p1_prevScore <= p1_score;
-		// p2_prevScore <= p2_score;
+		p1_prevScore <= p1_score;
+		p2_prevScore <= p2_score;
 
 		// BALL DIRECTIONALITY WITH WALLS
 		//right wall
 		if(ball_xRef+10 >= ball_xlim) begin
 			if(ball_yRef-10 < segRight_bottomBound && ball_yRef+10 > segRight_topBound) begin
-				// p1_score <= p1_prevScore + 1;
+				p1_score <= p1_prevScore + 1;
 			end
 			ball_xdir <= -1;
 			ball_inSq <= 1;
 		end
 		else if(ball_xRef-10 <= ball_xmin) begin
 			if(ball_yRef-10 < segLeft_bottomBound && ball_yRef+10 > segLeft_topBound) begin
-				// p2_score <= p2_prevScore+1;
+				p2_score <= p2_prevScore+1;
 			end
 			ball_xdir <= 1;
 			ball_inSq <= 1;
@@ -435,15 +444,8 @@ module VGAController(
 	// wire write_en_stall;
 	// assign write_en_stall = screenEnd && ;
 	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xdir, ball_ydir);
-
-	reg clk_seg;
-	initial begin
-		clk_seg = 0;
-	end
-
-	always
-		#50 clk_seg = ~clk_seg;
-		assign anodes = clk_seg ? 8'b11101111 : 8'b11111110; 
-		assign score = clk_seg ? p1_score : p2_score;
-		new_segment_decoder seg_number(.number(score), .cathodes(cathodes));
+	
+    assign anodes = clk_seg ? 8'b11101111 : 8'b11111110; 
+    wire[2:0] score = clk_seg ? p1_score : p2_score;
+    new_segment_decoder seg_number(.number(score), .cathodes(cathodes));
 endmodule

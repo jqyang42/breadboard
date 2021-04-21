@@ -129,4 +129,4 @@ set_property PACKAGE_PIN T11 [get_ports {cathodes[1]}]
 set_property PACKAGE_PIN L18 [get_ports {cathodes[0]}]
 
 set_property PACKAGE_PIN A4 [get_ports {VGA_R[3]}]
-set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets anodes_OBUF[0]]
+#set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets anodes_OBUF[0]]
