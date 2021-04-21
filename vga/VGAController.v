@@ -18,7 +18,7 @@ module VGAController(
 	input p2_left,
 	input p2_right,
 	output [6:0] cathodes,
-	output [7:0] anodes,
+	output reg [7:0] anodes,
 	output ball_inSq, 
 	output active_on,
 	output screenEnd_on);
@@ -37,12 +37,14 @@ module VGAController(
 		pixCounter <= pixCounter + 1; // Since the reg is only 3 bits, it will reset every 8 cycles
 	end
 	
-	reg clk_seg;  // 1 KHz
-	
+	reg [2:0] clk_seg;  // 1 KHz	
 	reg[31:0] clk25_counter = 0;
 	always @(posedge clk25) begin
 	   if (clk25_counter == 31'd25000) begin
-	       clk_seg = ~clk_seg;
+			if (clk_seg == 3'd7)
+				clk_seg <= 0;
+			else
+	    		clk_seg <= clk_seg + 1;
 	       clk25_counter <= 0;
 	   end
 	   else
@@ -121,7 +123,7 @@ module VGAController(
 	reg[31:0] ball_xdir, ball_ydir;
 	reg[31:0] ball_xdir_factor, ball_ydir_factor;
 // WINNER STATS
-	reg[2:0] p1_score, p2_score; //winner of round (player 1 v. 2; can change to increment score later)
+	reg[13:0] p1_score, p2_score; //winner of round (player 1 v. 2; can change to increment score later)
 
 
 	initial begin
@@ -131,8 +133,8 @@ module VGAController(
 		ball_ydir = 1;
 		ball_xdir_factor = 1;
 		ball_ydir_factor = 1;
-		p1_score = 2;
-		p2_score = 3;
+		p1_score = 0;
+		p2_score = 0;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
@@ -165,8 +167,8 @@ module VGAController(
 	reg segLeft_inSquare = 0;
 	assign segLeft_leftBound = segLeft_xRef - 2;
 	assign segLeft_rightBound = segLeft_xRef + 2;
-	assign segLeft_topBound = segLeft_yRef - 40;
-	assign segLeft_bottomBound = segLeft_yRef + 40;
+	assign segLeft_topBound = segLeft_yRef - 60;
+	assign segLeft_bottomBound = segLeft_yRef + 60;
 
 	always @(x or y) begin
 		if (x > segLeft_leftBound && x < segLeft_rightBound && y > segLeft_topBound && y < segLeft_bottomBound)
@@ -184,8 +186,8 @@ module VGAController(
 	reg segRight_inSquare = 0;
 	assign segRight_leftBound = segRight_xRef - 2;
 	assign segRight_rightBound = segRight_xRef + 2;
-	assign segRight_topBound = segRight_yRef - 40;
-	assign segRight_bottomBound = segRight_yRef + 40;
+	assign segRight_topBound = segRight_yRef - 60;
+	assign segRight_bottomBound = segRight_yRef + 60;
 
 	always @(x or y) begin
 		if (x > segRight_leftBound && x < segRight_rightBound && y > segRight_topBound && y < segRight_bottomBound)
@@ -201,7 +203,7 @@ module VGAController(
 	assign p2_xBound = 370;
 
 	reg ball_inSq = 0;
-	reg [2:0] p1_prevScore, p2_prevScore;
+	reg [13:0] p1_prevScore, p2_prevScore;
     
 	// ball collisions
 	always @(posedge screenEnd) begin
@@ -222,7 +224,7 @@ module VGAController(
 		end
 		else if(ball_xRef-10 <= ball_xmin) begin
 			if(ball_yRef-10 < segLeft_bottomBound && ball_yRef+10 > segLeft_topBound) begin
-				p2_score <= p2_prevScore+1;
+				p2_score <= p2_prevScore + 1;
 			end
 			ball_xdir <= 1;
 			ball_inSq <= 1;
@@ -445,7 +447,33 @@ module VGAController(
 	// assign write_en_stall = screenEnd && ;
 	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xdir, ball_ydir);
 	
-    assign anodes = clk_seg ? 8'b11101111 : 8'b11111110; 
-    wire[2:0] score = clk_seg ? p1_score : p2_score;
-    new_segment_decoder seg_number(.number(score), .cathodes(cathodes));
+	always @(clk_seg) begin
+        case(clk_seg)    // 0 - 3 = player 1
+            3'd0: anodes = 8'b01111111;
+            3'd1: anodes = 8'b10111111;
+            3'd2: anodes = 8'b11011111;
+            3'd3: anodes = 8'b11101111;
+            3'd4: anodes = 8'b11110111;
+            3'd5: anodes = 8'b11111011;
+            3'd6: anodes = 8'b11111101;
+            3'd7: anodes = 8'b11111110;
+        endcase
+    end
+
+	reg [3:0] digit;
+	always @(clk_seg) begin
+        case(clk_seg)    // ABCDEFG
+            4'd0: digit = p1_score % 10;
+            4'd1: digit = ((p1_score % 100) - (p1_score % 10)) / 10;
+            4'd2: digit = ((p1_score % 1000) - (p1_score % 100)) / 100;
+            4'd3: digit = (p1_score - (p1_score % 1000)) / 1000;
+            4'd4: digit = p2_score % 10;
+            4'd5: digit = ((p2_score % 100) - (p2_score % 10)) / 10;
+            4'd6: digit = ((p2_score % 1000) - (p2_score % 100)) / 100;
+            4'd7: digit = (p2_score - (p2_score % 1000)) / 1000;
+        endcase
+    end
+    // assign anodes = clk_seg ? 8'b11101111 : 8'b11111110; 
+    // wire[2:0] score = clk_seg ? p1_score : p2_score;
+    new_segment_decoder seg_number(.number(digit), .cathodes(cathodes));
 endmodule
