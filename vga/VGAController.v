@@ -23,11 +23,9 @@ module VGAController(
 	output active_on,
 	output screenEnd_on);
 
-	assign anodes = 8'b11101110;	
-
 	// Lab Memory Files Location
-	localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
-	// localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
+	// localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
+	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
 	
 
 	// Clock divider 100 MHz -> 25 MHz
@@ -111,7 +109,7 @@ module VGAController(
 	reg[31:0] ball_xdir, ball_ydir;
 	reg[31:0] ball_xdir_factor, ball_ydir_factor;
 // WINNER STATS
-	reg[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
+	reg[2:0] p1_score, p2_score; //winner of round (player 1 v. 2; can change to increment score later)
 
 
 	initial begin
@@ -121,7 +119,8 @@ module VGAController(
 		ball_ydir = 1;
 		ball_xdir_factor = 1;
 		ball_ydir_factor = 1;
-		winner = 0;
+		p1_score = 1;
+		p2_score = 2;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
@@ -193,25 +192,28 @@ module VGAController(
 
 
 	reg ball_inSq = 0;
-	
+	// reg [2:0] p1_prevScore, p2_prevScore;
     
 	// ball collisions
 	always @(posedge screenEnd) begin
 		ball_xRef <= ball_x;
 		ball_yRef <= ball_y;
 
+		// p1_prevScore <= p1_score;
+		// p2_prevScore <= p2_score;
+
 		// BALL DIRECTIONALITY WITH WALLS
 		//right wall
 		if(ball_xRef+10 >= ball_xlim) begin
 			if(ball_yRef-10 < segRight_bottomBound && ball_yRef+10 > segRight_topBound) begin
-				winner <= 1;
+				// p1_score <= p1_prevScore + 1;
 			end
 			ball_xdir <= -1;
 			ball_inSq <= 1;
 		end
 		else if(ball_xRef-10 <= ball_xmin) begin
 			if(ball_yRef-10 < segLeft_bottomBound && ball_yRef+10 > segLeft_topBound) begin
-				winner <= 2;
+				// p2_score <= p2_prevScore+1;
 			end
 			ball_xdir <= 1;
 			ball_inSq <= 1;
@@ -433,5 +435,15 @@ module VGAController(
 	// wire write_en_stall;
 	// assign write_en_stall = screenEnd && ;
 	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xdir, ball_ydir);
-    new_segment_decoder seg_number(.number(winner), .cathodes(cathodes));
+
+	reg clk_seg;
+	initial begin
+		clk_seg = 0;
+	end
+
+	always
+		#50 clk_seg = ~clk_seg;
+		assign anodes = clk_seg ? 8'b11101111 : 8'b11111110; 
+		assign score = clk_seg ? p1_score : p2_score;
+		new_segment_decoder seg_number(.number(score), .cathodes(cathodes));
 endmodule

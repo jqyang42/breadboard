@@ -3,7 +3,7 @@ module new_segment_decoder(number, cathodes);
     output reg [6:0] cathodes;
 
     always @(number) begin
-        case(number)
+        case(number)    // ABCDEFG
             3'd0: cathodes = 7'b0000001;
             3'd1: cathodes = 7'b1001111;
             3'd2: cathodes = 7'b0010010;
