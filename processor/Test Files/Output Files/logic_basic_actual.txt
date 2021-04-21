@@ -1,0 +1,85 @@
+Cycle   4: Wrote 1 into register 1
+Cycle   5: Wrote 4294967295 into register 2
+Cycle   6: Wrote 10 into register 4
+Cycle   7: Wrote 12 into register 24
+Cycle   8: Wrote 15 into register 25
+Cycle   9: Wrote 1 into register 26
+Cycle  10: Wrote 1 into register 27
+Cycle  11: Wrote 320 into register 22
+Cycle  12: Wrote 240 into register 23
+Cycle  13: Wrote 320 into register 15
+Cycle  14: Wrote 240 into register 16
+Cycle  15: Wrote Z into register 28
+Cycle  30: Wrote 10 into register 28
+Cycle  33: Wrote 330 into register 15
+Cycle  34: Wrote 330 into register 22
+Cycle  35: Wrote 0 into register 28
+Cycle  36: Wrote Z into register 28
+Cycle  51: Wrote 10 into register 28
+Cycle  54: Wrote 250 into register 16
+Cycle  55: Wrote 250 into register 23
+Cycle  56: Wrote 0 into register 28
+Cycle  67: Wrote Z into register 28
+Cycle  82: Wrote 10 into register 28
+Cycle  85: Wrote 340 into register 15
+Cycle  86: Wrote 340 into register 22
+Cycle  87: Wrote 0 into register 28
+Cycle  88: Wrote Z into register 28
+Cycle 103: Wrote 10 into register 28
+Cycle 106: Wrote 260 into register 16
+Cycle 107: Wrote 260 into register 23
+Cycle 108: Wrote 0 into register 28
+Cycle 116: Wrote Z into register 28
+Cycle 131: Wrote 10 into register 28
+Cycle 134: Wrote 350 into register 15
+Cycle 135: Wrote 350 into register 22
+Cycle 136: Wrote 0 into register 28
+Cycle 137: Wrote Z into register 28
+Cycle 152: Wrote 10 into register 28
+Cycle 155: Wrote 270 into register 16
+Cycle 156: Wrote 270 into register 23
+Cycle 157: Wrote 0 into register 28
+Cycle 165: Wrote Z into register 28
+Cycle 180: Wrote 10 into register 28
+Cycle 183: Wrote 360 into register 15
+Cycle 184: Wrote 360 into register 22
+Cycle 185: Wrote 0 into register 28
+Cycle 186: Wrote Z into register 28
+Cycle 201: Wrote 10 into register 28
+Cycle 204: Wrote 280 into register 16
+Cycle 205: Wrote 280 into register 23
+Cycle 206: Wrote 0 into register 28
+Cycle 217: Wrote Z into register 28
+============== Testing Mode ==============
+Reg  0:           1
+Reg  1:           1
+Reg  2:           1
+Reg  3:           1
+Reg  4:           1
+Reg  5:         360
+Reg  6:         360
+Reg  7:         360
+Reg  8:         360
+Reg  9:         360
+Reg 10:         360
+Reg 11:         360
+Reg 12:         360
+Reg 13:         360
+Reg 14:         360
+Reg 15:         360
+Reg 16:         360
+Reg 17:         360
+Reg 18:         360
+Reg 19:         360
+Reg 20:         360
+Reg 21:         360
+Reg 22:         360
+Reg 23:         360
+Reg 24:         360
+Reg 25:           0
+Reg 26:           0
+Reg 27:           0
+Reg 28:           0
+Reg 29:           0
+Reg 30:           0
+Reg 31:           0

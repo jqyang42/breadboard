@@ -205,7 +205,9 @@ module processor(
     assign wx_a_bypassing = (w_rd == x_rs) && !(w_rd == 5'b00000) && w_opcode != 5'b00111; // 2 stage lag for a; sw won't affect registers
     assign mx_b_bypassing = (m_rd == x_rt) && !(m_rd == 5'b00000); // 1 stage lag for b
     assign wx_b_bypassing = (w_rd == x_rt) && !(w_rd == 5'b00000) && w_opcode != 5'b00111; // 2 stage lag for b; sw won't affect registers
-    assign mx_rd_bypassing = (x_rd == m_rd) && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b11111) || (x_opcode == 5'b11110) || (x_opcode == 5'b11101));  // bne, blt, beq, bgt, stall_instr
+    assign mx_rd_bypassing =    (x_rd == m_rd) 
+                                && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b11111) || (x_opcode == 5'b11110) || (x_opcode == 5'b11101)) 
+                                && !((m_opcode == 5'b00010) || (m_opcode == 5'b00110) || (m_opcode == 5'b11111) || (m_opcode == 5'b11110) || (m_opcode == 5'b11101));  // bne, blt, beq, bgt, stall_instr
     assign wx_rd_bypassing = (x_rd == w_rd) && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b11111) || (x_opcode == 5'b11110) || (x_opcode == 5'b11101));  // bne, blt, beq, bgt, stall_instr
     assign bex_bypassing = (x_opcode == 5'b10110) && (m_opcode == 5'b10101);    // if bex immediately after setx
     assign x_a_bypassing =  (mx_a_bypassing) ? xm_o : (   // mx vs wx bypassing 

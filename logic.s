@@ -35,34 +35,34 @@ move_ball_x:                        # BALL BASIC MOVEMENT
     and     $r28,   $r0,    $r28    #reset the math reg
     j		move_ball_y				# jump to move_ball_y
 move_ball_y:
-    mul     $r28,   $r27,   $r4     #should we add noop LOL
+    mul     $r28,   $r27,   $r4     #should we add noop LOL                 #26
     add     $r30,   $r30,   $r28
     add     $r23,   $r30,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r28,   $r0,    $r28    #reset the math reg
     j		ball_handle				# jump to ball_handle
 ball_handle:                                    # HANDLING AUTOMATIC BALL MVMT
-    # checking wall collisions for ball
-    blt     $r16,   $r25,    ball_flip_y     #check if ball hit top
+    # checking wall collisions for ball                                     
+    blt     $r16,   $r25,    ball_flip_y     #check if ball hit top         #31
     nop
     nop
     nop
-    bgt     $r16,   $r12,   ball_flip_y     #check if ball hit bottom
+    bgt     $r16,   $r12,   ball_flip_y     #check if ball hit bottom       #35
     nop
     nop
     nop
-    blt     $r15,   $r24,    ball_left_edge
+    blt     $r15,   $r24,    ball_left_edge                                 #39
     nop
     nop
     nop
-    bgt     $r15,   $r11,    ball_right_edge
+    bgt     $r15,   $r11,    ball_right_edge                                #43    
     nop
     nop
     nop
-    mul     $r26,   $r26,   $r13
+    mul     $r26,   $r26,   $r13                                            #47
     mul     $r27,   $r27,   $r14 
     j		check_cont				# jump to check_cont
 ball_left_edge:                     # HITTING LEFT OR RIGHT EDGE AND CHECKING IF WIN OR NOT
-    and     $r28,   $r0,   $r28
+    and     $r28,   $r0,   $r28                                             #50
     addi    $r28,   $r30,   -15      # r28 = ball top
     blt     $r28,   $r7,    ball_flip_x     #check if ball top < segment top then bounce
     and     $r28,   $r0,   $r28
@@ -70,7 +70,7 @@ ball_left_edge:                     # HITTING LEFT OR RIGHT EDGE AND CHECKING IF
     blt     $r8,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
     j       left_lose   # ball hit in segment
 ball_right_edge:
-    and     $r28,   $r0,   $r28
+    and     $r28,   $r0,   $r28                                             #57
     addi    $r28,   $r30,   -15      # r28 = ball top
     blt     $r28,   $r9,    ball_flip_x     #check if ball top < segment top then bounce
     and     $r28,   $r0,   $r28
@@ -78,18 +78,18 @@ ball_right_edge:
     blt     $r10,   $r28,    ball_flip_x     #check if seg bot < ball bot then bounce
     j       right_lose   # ball hit in segment
 ball_flip_x:                        # BALL DIRECTION CHANGE
-    mul     $r26,   $r26,  $r2
+    mul     $r26,   $r26,  $r2                                              #64
     j		check_cont              # jump to beq check (loop)
     
 ball_flip_y:
-    mul     $r27,   $r27,   $r2
+    mul     $r27,   $r27,   $r2                                             #66
     j		check_cont				# jump to paddle_handle
 left_lose:      # HIT GOAL
-    addi     $r21,    $r0,     2
+    addi     $r21,    $r0,     2                                            #68
 right_lose:
-    addi     $r21,    $r0,    1
+    addi     $r21,    $r0,    1                                             #69
 end_game:
-    nop
+    nop                                                                     #70
 
 # top left is 0, 0
 # CONSTANTS

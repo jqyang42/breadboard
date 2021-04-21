@@ -29,6 +29,7 @@
 ./RAM.v
 ./regfile/decoder.v
 ./regfile/regfile.v
+./regfile/regfile_basic.v
 ./register/dffe_ref.v
 ./register/register_32.v
 ./register/register_64.v
