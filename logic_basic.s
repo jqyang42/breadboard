@@ -21,10 +21,14 @@ mul     $r28,   $r27,   $r4     #should we add noop LOL
 add     $r16,   $r16,   $r28
 add     $r23,   $r16,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
 and     $r28,   $r0,    $r28    #reset the math reg
-checking_stall_0:
-bne     $r3,    $r1,    checking_stall_0_1
-j		move_ball_x				# move again
-checking_stall_0_1:
-bne     $r3,    $r1,    checking_stall_0
-j		move_ball_i wx				# move again
+
+
+
+
+# checking_stall_0:
+# bne     $r3,    $r1,    checking_stall_0_1
+# j		move_ball_x				# move again
+# checking_stall_0_1:
+# bne     $r3,    $r1,    checking_stall_0
+# j		move_ball_x				# move again
 
