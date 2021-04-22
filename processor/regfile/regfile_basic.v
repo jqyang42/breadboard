@@ -4,14 +4,14 @@ module regfile_basic (
 	ctrl_readRegA, ctrl_readRegB, data_writeReg,
 	data_readRegA, data_readRegB, 
 	screenEnd, ball_x, ball_y, 
-	ball_xinit, ball_yinit
+	ball_xdir, ball_ydir
 );
 
 	input clock, ctrl_writeEnable, ctrl_reset, screenEnd;
 	input [4:0] ctrl_writeReg, ctrl_readRegA, ctrl_readRegB;
 	input [31:0] data_writeReg;
-	input [31:0] ball_xinit;//, p1_leftBound, p1_rightBound, p2_leftBound, p2_rightBound;
-	input [31:0] ball_yinit;// p1_topBound, p1_bottomBound, p2_topBound, p2_bottomBound,
+	input [31:0] ball_xdir;//, p1_leftBound, p1_rightBound, p2_leftBound, p2_rightBound;
+	input [31:0] ball_ydir;// p1_topBound, p1_bottomBound, p2_topBound, p2_bottomBound,
 				
 
 	output [31:0] data_readRegA, data_readRegB;
@@ -28,7 +28,7 @@ module regfile_basic (
 	# $r3 = stall logic for game loop (stall while $r6 !- 0)
 
 	# INPUT (write into register)
-	# $r5, $r6 = initial ball x, y
+	# $r5, $r6 = x and y location changes
 	# $r7, $r8 = left edge goal top ycoord, bottom ycoord
 	# $r9, $r10 = right edge goal top ycoord, bottom ycoord
 	# $r11, $r12 = ball xlim, ylim
@@ -44,8 +44,8 @@ module regfile_basic (
 	register_32 reg2(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[2]), .oeA(d_readA[2]), .oeB(d_readB[2]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg3(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[3]), .oeB(d_readB[3]), .clr(ctrl_reset), .in(screenEnd));
 	register_32 reg4(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[4]), .oeA(d_readA[4]), .oeB(d_readB[4]), .clr(ctrl_reset), .in(data_writeReg));
-	register_32 reg5(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[5]), .oeB(d_readB[5]), .clr(ctrl_reset), .in(ball_xinit));
-	register_32 reg6(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[6]), .oeB(d_readB[6]), .clr(ctrl_reset), .in(ball_yinit));
+	register_32 reg5(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[5]), .oeB(d_readB[5]), .clr(ctrl_reset), .in(ball_xdir));
+	register_32 reg6(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[6]), .oeB(d_readB[6]), .clr(ctrl_reset), .in(ball_ydir));
 	register_32 reg7(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[7]), .oeA(d_readA[7]), .oeB(d_readB[7]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg8(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[8]), .oeA(d_readA[8]), .oeB(d_readB[8]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg9(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[9]), .oeA(d_readA[9]), .oeB(d_readB[9]), .clr(ctrl_reset), .in(data_writeReg));

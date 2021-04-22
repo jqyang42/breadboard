@@ -94,10 +94,12 @@ module VGAController(
 	end
 
 	// ball creation
-	wire[31:0] ball_xlim, ball_xinit;
-	wire[31:0] ball_ylim, ball_yinit;
+	wire[31:0] ball_xlim, ball_xinit, ball_xmin;
+	wire[31:0] ball_ylim, ball_yinit, ball_ymin;
 	wire[9:0] ball_radius, ball_radius_sqr;
 
+	assign ball_xmin = 32'd12;
+	assign ball_ymin = 32'd17;
 	assign ball_xlim = 32'd628;
 	assign ball_ylim = 32'd463;
 	assign ball_xinit = 32'd320;
@@ -109,10 +111,17 @@ module VGAController(
 	
     reg[31:0] ball_xRef;
 	reg[31:0] ball_yRef;
+	reg[31:0] ball_xdir, ball_ydir;
+	reg[31:0] ball_xdir_factor, ball_ydir_factor;
+
 
 	initial begin
 		ball_xRef = 0;
 		ball_yRef = 0;
+		ball_xdir = 1;
+		ball_ydir = 1;
+		ball_xdir_factor = 1;
+		ball_ydir_factor = 1;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
@@ -125,6 +134,7 @@ module VGAController(
 	reg[31:0] ball_y_term;
 	reg[31:0] ball_total_pos_term;
 
+	// ball disply calculation
 	always @(x or y) begin
 		ball_x_term <= (x - ball_xRef) * (x - ball_xRef);
 		ball_y_term <= (y - ball_yRef) * (y - ball_yRef);
@@ -182,60 +192,79 @@ module VGAController(
 	// WINNER STATS
 	wire[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
 
-	reg[31:0] ball_xdir_factor, ball_ydir_factor;
 
 
 	reg ball_inSq = 0;
+	
     
-	// make a slower clock :')
+	// ball collisions
 	always @(posedge screenEnd) begin
 		ball_xRef <= ball_x;
 		ball_yRef <= ball_y;
 
+		// BALL DIRECTIONALITY WITH WALLS
+		//right wall
+		if(ball_xRef+10 >= ball_xlim) begin
+			ball_xdir <= -1;
+			ball_inSq <= 1;
+		end
+		else if(ball_xRef-10 <= ball_xmin) begin
+			ball_xdir <= 1;
+			ball_inSq <= 1;
+		end
+		if(ball_yRef - 15 <= ball_ymin) begin
+			ball_ydir <= 1;
+			ball_inSq <= 1;
+		end
+		else if(ball_yRef+15 >= ball_ylim) begin
+			ball_ydir <= -1;
+			ball_inSq <= 1;
+		end
+		
 		//BALL DIRECTIONALITY WITH PADDLE INFO
 		// PLAYER 1 COLLISIONS
 		if(ball_xRef+10 >= p1_xRef-25 && ball_xRef-10 < p1_xRef-25) begin
 			if(ball_yRef-15 < p1_yRef-33 && p1_yRef < ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= -1;
 				ball_inSq <= 1;
 			end else if(p1_yRef+33 < ball_yRef+15 && ball_yRef < p1_yRef+33) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= -1;
 				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p1_yRef-33 && p1_yRef+33 >= ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= -1;
 				ball_inSq <= 1;
 			end
 		end else if(p1_xRef+25 >= ball_xRef-10 && p1_xRef+25 < ball_xRef+10) begin
 			if(ball_yRef-15 < p1_yRef-33 && p1_yRef < ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= 1;
 				ball_inSq <= 1;
 			end else if(p1_yRef+33 < ball_yRef+15 && ball_yRef < p1_yRef+33) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= 1;
 				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p1_yRef-33 && p1_yRef+33 >= ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= 1;
 				ball_inSq <= 1;
 			end
 		end else if(ball_yRef+15 >= p1_yRef-33 && ball_yRef-15 < p1_yRef-33) begin
 			if(p1_xRef-25 < ball_xRef+10 && ball_xRef-10 < p1_xRef-25) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= -1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p1_xRef+33 && p1_xRef+33 < ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= -1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p1_xRef-33 && p1_xRef+33 >= ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= -1;
 				ball_inSq <= 1;
 			end
 		end else if(p1_yRef+33 >= ball_yRef-15 && p1_yRef+33 < ball_yRef+15) begin
 			if(p1_xRef-25 < ball_xRef+10 && ball_xRef-10 < p1_xRef-25) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= 1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p1_xRef+33 && p1_xRef+33 < ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= 1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p1_xRef-33 && p1_xRef+33 >= ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= 1;
 				ball_inSq <= 1;
 			end
 		end
@@ -243,53 +272,51 @@ module VGAController(
 		// PLAYER 2 COLLISIONS
 		else if(ball_xRef+10 >= p2_xRef-25 && ball_xRef-10 < p2_xRef-25) begin
 			if(ball_yRef-15 < p2_yRef-33 && p2_yRef < ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= -1;
 				ball_inSq <= 1;
 			end else if(p2_yRef+33 < ball_yRef+15 && ball_yRef < p2_yRef+33) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= -1;
 				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p2_yRef-33 && p2_yRef+33 >= ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= -1;
 				ball_inSq <= 1;
 			end
 		end else if(p2_xRef+25 >= ball_xRef-10 && p2_xRef+25 < ball_xRef+10) begin
 			if(ball_yRef-15 < p2_yRef-33 && p2_yRef < ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= 1;
 				ball_inSq <= 1;
 			end else if(p2_yRef+33 < ball_yRef+15 && ball_yRef < p2_yRef+33) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= 1;
 				ball_inSq <= 1;
 			end else if(ball_yRef-15 >= p2_yRef-33 && p2_yRef+33 >= ball_yRef+15) begin
-				ball_xdir_factor <= -1;
+				ball_xdir <= 1;
 				ball_inSq <= 1;
 			end
 		end else if(ball_yRef+15 >= p2_yRef-33 && ball_yRef-15 < p2_yRef-33) begin
 			if(p2_xRef-25 < ball_xRef+10 && ball_xRef-10 < p2_xRef-25) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= -1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p2_xRef+33 && p2_xRef+33 < ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= -1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p2_xRef-33 && p2_xRef+33 >= ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= -1;
 				ball_inSq <= 1;
 			end
 		end else if(p2_yRef+33 >= ball_yRef-15 && p2_yRef+33 < ball_yRef+15) begin
 			if(p2_xRef-25 < ball_xRef+10 && ball_xRef-10 < p2_xRef-25) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= 1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 < p2_xRef+33 && p2_xRef+33 < ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= 1;
 				ball_inSq <= 1;
 			end else if(ball_xRef-10 >= p2_xRef-33 && p2_xRef+33 >= ball_xRef+10) begin
-				ball_ydir_factor <= -1;
+				ball_ydir <= 1;
 				ball_inSq <= 1;
 			end
 		end
 		//NO CHANGE IN DIRECTION
 		else begin
-			ball_xdir_factor <= 1;
-			ball_ydir_factor <= 1;
 			ball_inSq <= 0;
 		end
 
@@ -401,7 +428,7 @@ module VGAController(
 	// 			segRight_topBound, segRight_bottomBound);
 	// wire write_en_stall;
 	// assign write_en_stall = screenEnd && ;
-	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xinit, ball_yinit);
+	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xdir, ball_ydir);
 	assign winner = 2'b01;
     segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 
