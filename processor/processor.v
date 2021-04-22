@@ -208,7 +208,9 @@ module processor(
     assign mx_rd_bypassing =    (x_rd == m_rd) 
                                 && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b11111) || (x_opcode == 5'b11110) || (x_opcode == 5'b11101)) 
                                 && !((m_opcode == 5'b00010) || (m_opcode == 5'b00110) || (m_opcode == 5'b11111) || (m_opcode == 5'b11110) || (m_opcode == 5'b11101));  // bne, blt, beq, bgt, stall_instr
-    assign wx_rd_bypassing = (x_rd == w_rd) && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b11111) || (x_opcode == 5'b11110) || (x_opcode == 5'b11101));  // bne, blt, beq, bgt, stall_instr
+    assign wx_rd_bypassing =    (x_rd == w_rd) 
+                                && ((x_opcode == 5'b00010) || (x_opcode == 5'b00110) || (x_opcode == 5'b11111) || (x_opcode == 5'b11110) || (x_opcode == 5'b11101))
+                                && !((w_opcode == 5'b00010) || (w_opcode == 5'b00110) || (w_opcode == 5'b11111) || (w_opcode == 5'b11110) || (w_opcode == 5'b11101));  // bne, blt, beq, bgt, stall_instr
     assign bex_bypassing = (x_opcode == 5'b10110) && (m_opcode == 5'b10101);    // if bex immediately after setx
     assign x_a_bypassing =  (mx_a_bypassing) ? xm_o : (   // mx vs wx bypassing 
                             wx_a_bypassing ? data_writeReg : (
