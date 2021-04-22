@@ -2,32 +2,33 @@ Cycle  10: Wrote 4 into register 1
 Cycle  11: Wrote 4 into register 2
 Cycle  14: Wrote 4294967292 into register 3
 Cycle  15: Wrote 4294967292 into register 4
-Cycle  22: Wrote X into register 10
+Cycle  22: Wrote 281 into register 10
+Cycle  27: Wrote 281 into register 10
 ============== Testing Mode ==============
 Reg  0:           0
-Reg  1:           4
-Reg  2:           4
-Reg  3:           Z
-Reg  4:  4294967292
-Reg  5:           Z
-Reg  6:           Z
-Reg  7:           Z
-Reg  8:           Z
-Reg  9:           Z
-Reg 10:           Z
-Reg 11:           Z
-Reg 12:           Z
-Reg 13:           Z
-Reg 14:           Z
-Reg 15:           Z
-Reg 16:           Z
-Reg 17:           Z
-Reg 18:           Z
-Reg 19:           Z
-Reg 20:           Z
-Reg 21:           z
-Reg 22:           z
-Reg 23:           z
+Reg  1:           0
+Reg  2:           0
+Reg  3:           0
+Reg  4:           0
+Reg  5:           0
+Reg  6:           0
+Reg  7:           0
+Reg  8:           0
+Reg  9:           0
+Reg 10:           0
+Reg 11:           0
+Reg 12:           0
+Reg 13:           0
+Reg 14:           0
+Reg 15:           0
+Reg 16:           0
+Reg 17:           0
+Reg 18:           0
+Reg 19:           0
+Reg 20:           0
+Reg 21:           0
+Reg 22:           0
+Reg 23:           0
 Reg 24:           0
 Reg 25:           0
 Reg 26:           0

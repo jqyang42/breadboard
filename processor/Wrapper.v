@@ -28,17 +28,29 @@
 // output: ball x, y, winner
 // input: paddles' bounds, ball limits, and winning segment y - val
 
-module Wrapper (clock, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
-				ball_xdir_factor, ball_ydir_factor,
-				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
-				segRight_topBound, segRight_bottomBound);
-	input clock, reset, posEdgeScreenEnd;
-	input [9:0] ball_xlim, ball_xinit;
-	input [8:0] ball_ylim, segLeft_topBound, segLeft_bottomBound, segRight_topBound, segRight_bottomBound,  ball_yinit;
-	input [31:0] ball_xdir_factor, ball_ydir_factor;
-	output[1:0] winner;
-	output[9:0] ball_x;
-	output [8:0] ball_y;
+
+
+// clock, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
+// 				ball_xdir_factor, ball_ydir_factor,
+// 				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
+// 				segRight_topBound, segRight_bottomBound
+
+module Wrapper (clock, reset, ball_x, ball_y, ball_xinit, ball_yinit);
+
+
+	// input clock, reset, posEdgeScreenEnd;
+	// input [9:0] ball_xlim, ball_xinit;
+	// input [8:0] ball_ylim, segLeft_topBound, segLeft_bottomBound, segRight_topBound, segRight_bottomBound,  ball_yinit;
+	// input [31:0] ball_xdir_factor, ball_ydir_factor;
+	// output[1:0] winner;
+	// output[9:0] ball_x;
+	// output [8:0] ball_y;
+
+	input clock, reset;
+	input [31:0] ball_xinit;
+	input [31:0] ball_yinit;
+	output[13:0] ball_x;
+	output [31:0] ball_y;
 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -48,7 +60,7 @@ module Wrapper (clock, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xin
 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "logic";
+	localparam INSTR_FILE = "logic_basic";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -72,16 +84,23 @@ module Wrapper (clock, reset, posEdgeScreenEnd, winner, ball_x, ball_y, ball_xin
 		.dataOut(instData));
 	
 	// Register File
-	regfile RegisterFile(.clock(clock), 
+	// regfile RegisterFile(.clock(clock), 
+	// 	.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
+	// 	.ctrl_writeReg(rd),
+	// 	.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
+	// 	.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), .posEdgeScreenEnd(posEdgeScreenEnd),
+	// 	.winner(winner), .ball_x(ball_x), .ball_y(ball_y), .ball_xinit(ball_xinit), .ball_yinit(ball_yinit),
+	// 	.ball_xdir_factor(ball_xdir_factor), .ball_ydir_factor(ball_ydir_factor),
+	// 	.ball_xlim(ball_xlim), .ball_ylim(ball_ylim), .segLeft_topBound(segLeft_topBound), .segLeft_bottomBound(segLeft_bottomBound), 
+	// 	.segRight_topBound(segRight_topBound), .segRight_bottomBound(segRight_bottomBound));
+
+	regfile_basic RegisterFile(.clock(clock), 
 		.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
-		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB), .posEdgeScreenEnd(posEdgeScreenEnd),
-		.winner(winner), .ball_x(ball_x), .ball_y(ball_y), .ball_xinit(ball_xinit), .ball_yinit(ball_yinit),
-		.ball_xdir_factor(ball_xdir_factor), .ball_ydir_factor(ball_ydir_factor),
-		.ball_xlim(ball_xlim), .ball_ylim(ball_ylim), .segLeft_topBound(segLeft_topBound), .segLeft_bottomBound(segLeft_bottomBound), 
-		.segRight_topBound(segRight_topBound), .segRight_bottomBound(segRight_bottomBound));
-
+		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
+		.ball_x(ball_x), .ball_y(ball_y), 
+		.ball_xinit(ball_xinit), .ball_yinit(ball_yinit));
 						
 	// Processor Memory (RAM)
 	RAM ProcMem(.clk(clock), 

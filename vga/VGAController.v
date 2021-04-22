@@ -29,8 +29,8 @@ module VGAController(
 	output screenEnd_on);
 	
 	// Lab Memory Files Location
-	//localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
-	localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
+	localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
+	// localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
 	
 
 	// Clock divider 100 MHz -> 25 MHz
@@ -47,9 +47,11 @@ module VGAController(
 		VIDEO_WIDTH = 640,  // Standard VGA Width
 		VIDEO_HEIGHT = 480; // Standard VGA Height
 
+	
 	wire active, screenEnd;
-	assign active_on = active;
-	assign screenEnd_on = screenEnd;
+	wire[31:0] ball_x, ball_y;
+	assign active_on = (ball_x == 32'd320);
+	assign screenEnd_on = (ball_y == 32'd240);
 	wire[9:0] x;
 	wire[8:0] y;
 
@@ -92,14 +94,14 @@ module VGAController(
 	end
 
 	// ball creation
-	wire[9:0] ball_xlim, ball_xinit;
-	wire[8:0] ball_ylim, ball_yinit;
+	wire[31:0] ball_xlim, ball_xinit;
+	wire[31:0] ball_ylim, ball_yinit;
 	wire[9:0] ball_radius, ball_radius_sqr;
 
-	assign ball_xlim = 628;
-	assign ball_ylim = 463;
-	assign ball_xinit = 320;
-	assign ball_yinit = 240;
+	assign ball_xlim = 32'd628;
+	assign ball_ylim = 32'd463;
+	assign ball_xinit = 32'd320;
+	assign ball_yinit = 32'd240;
 
 	wire[9:0] ball_leftBound, ball_rightBound;
 	wire[8:0] ball_topBound, ball_bottomBound;
@@ -109,8 +111,8 @@ module VGAController(
 	reg[31:0] ball_yRef;
 
 	initial begin
-		ball_xRef = 320;
-		ball_yRef = 240;
+		ball_xRef = 0;
+		ball_yRef = 0;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
@@ -401,10 +403,12 @@ module VGAController(
 	// output: ball x, y, winner
 	// input: paddles' bounds, ball limits, and winning segment y - val, initial ball x, y
 
-	Wrapper proc(clk25, reset, screenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
-				ball_xdir_factor, ball_ydir_factor,
-				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
-				segRight_topBound, segRight_bottomBound);
+	// Wrapper proc(clk25, reset, screenEnd, winner, ball_x, ball_y, ball_xinit, ball_yinit,
+	// 			ball_xdir_factor, ball_ydir_factor,
+	// 			ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
+	// 			segRight_topBound, segRight_bottomBound);
+
+	Wrapper proc(clk25, reset, ball_x, ball_y, ball_xinit, ball_yinit);
 	
     segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 
