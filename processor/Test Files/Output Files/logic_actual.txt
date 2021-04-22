@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 Cycle   4: Wrote 1 into register 1
 Cycle   5: Wrote 4294967295 into register 2
 Cycle   6: Wrote 2 into register 4
@@ -10,22 +9,32 @@ Cycle  11: Wrote 320 into register 15
 Cycle  12: Wrote 240 into register 16
 Cycle  13: Wrote 1 into register 26
 Cycle  14: Wrote 1 into register 27
-Cycle  23: Wrote Z into register 28
-Cycle  38: Wrote 2 into register 28
-Cycle  41: Wrote 2 into register 29
-Cycle  42: Wrote 2 into register 22
-Cycle  43: Wrote 0 into register 28
-Cycle  47: Wrote Z into register 28
-Cycle  62: Wrote 2 into register 28
-Cycle  65: Wrote 2 into register 30
-Cycle  66: Wrote 2 into register 23
-Cycle  67: Wrote 0 into register 28
-Cycle  87: Wrote Z into register 26
-Cycle 102: Wrote 1 into register 26
-Cycle 105: Wrote Z into register 27
-Cycle 120: Wrote 4294967295 into register 27
+Cycle  37: Wrote Z into register 28
+Cycle  52: Wrote 2 into register 28
+Cycle  55: Wrote 2 into register 29
+Cycle  56: Wrote 2 into register 22
+Cycle  57: Wrote 0 into register 28
+Cycle  61: Wrote Z into register 28
+Cycle  76: Wrote 2 into register 28
+Cycle  79: Wrote 2 into register 30
+Cycle  80: Wrote 2 into register 23
+Cycle  81: Wrote 0 into register 28
+Cycle 101: Wrote Z into register 26
+Cycle 116: Wrote 1 into register 26
+Cycle 119: Wrote Z into register 27
+Cycle 134: Wrote 4294967295 into register 27
+Cycle 159: Wrote Z into register 28
+Cycle 174: Wrote 2 into register 28
+Cycle 177: Wrote 4 into register 29
+Cycle 178: Wrote 4 into register 22
+Cycle 179: Wrote 0 into register 28
+Cycle 183: Wrote Z into register 28
+Cycle 198: Wrote 4294967294 into register 28
+Cycle 201: Wrote 0 into register 30
+Cycle 202: Wrote 0 into register 23
+Cycle 203: Wrote 0 into register 28
+Cycle 223: Wrote Z into register 26
 ============== Testing Mode ==============
-<<<<<<< HEAD
 Reg  0:           Z
 Reg  1:           Z
 Reg  2:           Z
@@ -58,118 +67,3 @@ Reg 28:           Z
 Reg 29:           Z
 Reg 30:           Z
 Reg 31:           Z
-=======
-Cycle   4: Wrote 1 into register 1
-Cycle   5: Wrote 4294967295 into register 2
-Cycle   6: Wrote 2 into register 4
-Cycle   7: Wrote 12 into register 24
-Cycle   8: Wrote 15 into register 25
-Cycle   9: Wrote 320 into register 22
-Cycle  10: Wrote 240 into register 23
-Cycle  11: Wrote 320 into register 29
-Cycle  12: Wrote 240 into register 30
-Cycle  13: Wrote 1 into register 26
-Cycle  14: Wrote 1 into register 27
-Cycle  23: Wrote Z into register 28
-Cycle  38: Wrote 2 into register 28
-Cycle  41: Wrote 322 into register 29
-Cycle  42: Wrote 322 into register 22
-Cycle  43: Wrote 0 into register 28
-Cycle  47: Wrote Z into register 28
-Cycle  62: Wrote 2 into register 28
-Cycle  65: Wrote 242 into register 30
-Cycle  66: Wrote 242 into register 23
-Cycle  67: Wrote 0 into register 28
-Cycle  87: Wrote 0 into register 28
-Cycle  88: Wrote 332 into register 28
-Cycle  91: Wrote 0 into register 28
-Cycle  92: Wrote 0 into register 28
-Cycle  93: Wrote 312 into register 28
-Cycle  98: Wrote 0 into register 28
-Cycle  99: Wrote 312 into register 28
-Cycle 104: Wrote 0 into register 28
-Cycle 105: Wrote 257 into register 28
-Cycle 108: Wrote 0 into register 28
-Cycle 109: Wrote 0 into register 28
-Cycle 110: Wrote 227 into register 28
-Cycle 115: Wrote 0 into register 28
-Cycle 116: Wrote 227 into register 28
-Cycle 119: Wrote 0 into register 28
-Cycle 120: Wrote 0 into register 28
-Cycle 121: Wrote 257 into register 28
-Cycle 126: Wrote 0 into register 28
-Cycle 127: Wrote 332 into register 28
-Cycle 130: Wrote 0 into register 28
-Cycle 131: Wrote 0 into register 28
-Cycle 132: Wrote 312 into register 28
-Cycle 137: Wrote 0 into register 28
-Cycle 138: Wrote 312 into register 28
-Cycle 143: Wrote 0 into register 28
-============== Testing Mode ==============
-Reg  0:           0
-Reg  1:           0
-Reg  2:           0
-Reg  3:           0
-Reg  4:           0
-Reg  5:           0
-Reg  6:           0
-Reg  7:           0
-Reg  8:           0
-Reg  9:           0
-Reg 10:           0
-Reg 11:           0
-Reg 12:           0
-Reg 13:           0
-Reg 14:           0
-Reg 15:           0
-Reg 16:           0
-Reg 17:           0
-Reg 18:           0
-Reg 19:           0
-Reg 20:           0
-Reg 21:           0
-Reg 22:           0
-Reg 23:           0
-Reg 24:           0
-Reg 25:         242
-Reg 26:         242
-Reg 27:         242
-Reg 28:         242
-Reg 29:         242
-Reg 30:         242
-Reg 31:         242
->>>>>>> Stashed changes
-=======
-Reg  0:           0
-Reg  1:           0
-Reg  2:           0
-Reg  3:           0
-Reg  4:           0
-Reg  5:           0
-Reg  6:           0
-Reg  7:           0
-Reg  8:           0
-Reg  9:           0
-Reg 10:           0
-Reg 11:           0
-Reg 12:           0
-Reg 13:           0
-Reg 14:           0
-Reg 15:           0
-Reg 16:           0
-Reg 17:           0
-Reg 18:           0
-Reg 19:           0
-Reg 20:           0
-Reg 21:           0
-Reg 22:           0
-Reg 23:           0
-Reg 24:           0
-Reg 25:           0
-Reg 26:           0
-Reg 27:           0
-Reg 28:           0
-Reg 29:           0
-Reg 30:           0
-Reg 31:           0
->>>>>>> 9efdecc60a03157fb511ab54c83807dbaa87da7a

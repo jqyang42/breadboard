@@ -1,35 +1,35 @@
 initial_regs:
-    addi	$r1, $r0, 1			# $r1 = $r0 + 1
+    addi	$r1, $r0, 1			# $r1 = $r0 + 1                             #0
     addi	$r2, $r0, -1			# $r2 = $r0 + -1
     addi    $r4, $r0, 2
     addi    $r24, $r0, 12
     addi	$r25, $r0, 15			# $r25 = $r0 + 15
 initial_game:                       # make ball movement reg
-    add     $r22,   $r5,   $r0      # initialize ball x
-    add     $r23,   $r6,   $r0     # initialize ball y
+    add     $r22,   $r5,   $r0      # initialize ball x                     #5
+    add     $r23,   $r6,   $r0     # initialize ball y  
     add     $r15,   $r5,    $r0
     add     $r16,   $r6,    $r0
     addi	$r26, $r0, 1			# $r26 = $r0 + 1
     addi	$r27, $r0, 1			# $r27 = $r0 + 1
 checking_stall:
-    bne     $r3,    $r0,    wait_for_neg
+    bne     $r3,    $r0,    wait_for_neg                                    #11
 checking_stall_0:
-    bne     $r3,    $r1,    wait_for_neg_1
+    bne     $r3,    $r1,    wait_for_neg_1                                  #12
     #stall   $r3,   $r0,   1   # stall while $r3 != 1
     j		game				# jump to game
 wait_for_neg:
-    nop
+    nop                                                                     #14 
     j   checking_stall
 wait_for_neg_1:
-    nop
+    nop                                                                     #16
     j		checking_stall_0				# jump to checking_stall_0
 game:                               # GAME LOOP
-    j		move_ball_x				# jump to move_ball_x
+    j		move_ball_x				# jump to move_ball_x                   #18
 check_cont:
-    bne     $r21,    $r0,    end_game
+    bne     $r21,    $r0,    end_game                                       #19
     j		checking_stall				# jump to checking_stall
 move_ball_x:                        # BALL BASIC MOVEMENT
-    mul     $r28,   $r26,    $r4    # amt move = xdir * ball mvmt change
+    mul     $r28,   $r26,    $r4    # amt move = xdir * ball mvmt change    #21
     add     $r29,   $r29,   $r28    # apply change to ball_x
     add     $r22,   $r29,   $r0     #writes the x to the reg that is directly connected to output of wrapper to use in VGAController
     and     $r28,   $r0,    $r28    #reset the math reg
