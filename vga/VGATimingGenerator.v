@@ -95,7 +95,7 @@ module VGATimingGenerator #(parameter HEIGHT=480, WIDTH=640) (
 	assign y = activeY ? vPos : 0; // Output y coordinate when x is active. Otherwise 0
 
 	// Screen ends when x and y reach their ends 
-	assign screenEnd = (vPos == (V_LINE - 1)) & (hPos == (H_LINE - 1)); 
+	assign screenEnd = (vPos >= (V_LINE - 1)) & (hPos >= (H_LINE - 1)); 
 
 	// Generate the sync signals based on the parameters
 	assign hSync = (hPos < H_SYNC_START) | (hPos >= H_SYNC_END);
