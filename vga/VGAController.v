@@ -181,15 +181,9 @@ module VGAController(
 
 	// WINNER STATS
 	wire[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
-	
-	reg stall;
-	reg posEdgeScreenEnd;
-	reg[31:0] ball_xdir_factor, ball_ydir_factor;
-	//assign posEdgeScreenEnd = 0;
 
-//	always @(negedge screenEnd) begin
-//		posEdgeScreenEnd <= 0;
-//	end
+	reg[31:0] ball_xdir_factor, ball_ydir_factor;
+
 
 	reg ball_inSq = 0;
     
@@ -197,7 +191,6 @@ module VGAController(
 	always @(posedge screenEnd) begin
 		ball_xRef <= ball_x;
 		ball_yRef <= ball_y;
-		stall <= 0;
 
 		//BALL DIRECTIONALITY WITH PADDLE INFO
 		// PLAYER 1 COLLISIONS
@@ -407,7 +400,7 @@ module VGAController(
 	// 			ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
 	// 			segRight_topBound, segRight_bottomBound);
 
-	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xinit, ball_yinit);
+	Wrapper proc(!clk25, reset, screenEnd, ball_x, ball_y, ball_xinit, ball_yinit);
 	assign winner = 2'b01;
     segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 

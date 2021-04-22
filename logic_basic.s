@@ -26,5 +26,5 @@ bne     $r3,    $r1,    checking_stall_0_1
 j		move_ball_x				# move again
 checking_stall_0_1:
 bne     $r3,    $r1,    checking_stall_0
-j		move_ball_x				# move again
+j		move_ball_i wx				# move again
 
