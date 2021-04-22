@@ -35,7 +35,7 @@
 // 				ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
 // 				segRight_topBound, segRight_bottomBound
 
-module Wrapper (clock, reset, ball_x, ball_y, ball_xinit, ball_yinit);
+module Wrapper (clock, reset, screenEnd, ball_x, ball_y, ball_xinit, ball_yinit);
 
 
 	// input clock, reset, posEdgeScreenEnd;
@@ -46,7 +46,7 @@ module Wrapper (clock, reset, ball_x, ball_y, ball_xinit, ball_yinit);
 	// output[9:0] ball_x;
 	// output [8:0] ball_y;
 
-	input clock, reset;
+	input clock, reset, screenEnd;
 	input [31:0] ball_xinit;
 	input [31:0] ball_yinit;
 	output[31:0] ball_x;
@@ -99,7 +99,7 @@ module Wrapper (clock, reset, ball_x, ball_y, ball_xinit, ball_yinit);
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
-		.ball_x(ball_x), .ball_y(ball_y), 
+		.screenEnd(screendEnd), .ball_x(ball_x), .ball_y(ball_y), 
 		.ball_xinit(ball_xinit), .ball_yinit(ball_yinit));
 						
 	// Processor Memory (RAM)

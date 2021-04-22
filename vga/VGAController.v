@@ -407,7 +407,7 @@ module VGAController(
 	// 			ball_xlim, ball_ylim, segLeft_topBound, segLeft_bottomBound, 
 	// 			segRight_topBound, segRight_bottomBound);
 
-	Wrapper proc(clk25, reset, ball_x, ball_y, ball_xinit, ball_yinit);
+	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xinit, ball_yinit);
 	assign winner = 2'b01;
     segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 

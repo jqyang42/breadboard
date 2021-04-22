@@ -2,11 +2,12 @@ module regfile_basic (
 	clock,
 	ctrl_writeEnable, ctrl_reset, ctrl_writeReg,
 	ctrl_readRegA, ctrl_readRegB, data_writeReg,
-	data_readRegA, data_readRegB, ball_x, ball_y, 
+	data_readRegA, data_readRegB, 
+	screenEnd, ball_x, ball_y, 
 	ball_xinit, ball_yinit
 );
 
-	input clock, ctrl_writeEnable, ctrl_reset;
+	input clock, ctrl_writeEnable, ctrl_reset, screenEnd;
 	input [4:0] ctrl_writeReg, ctrl_readRegA, ctrl_readRegB;
 	input [31:0] data_writeReg;
 	input [31:0] ball_xinit;//, p1_leftBound, p1_rightBound, p2_leftBound, p2_rightBound;
@@ -41,7 +42,7 @@ module regfile_basic (
 	register_32 reg0(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b0), .write_ctrl(d_write[0]), .oeA(d_readA[0]), .oeB(d_readB[0]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg1(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[1]), .oeA(d_readA[1]), .oeB(d_readB[1]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg2(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[2]), .oeA(d_readA[2]), .oeB(d_readB[2]), .clr(ctrl_reset), .in(data_writeReg));
-	register_32 reg3(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[3]), .oeA(d_readA[3]), .oeB(d_readB[3]), .clr(ctrl_reset), .in(data_writeReg));
+	register_32 reg3(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[3]), .oeB(d_readB[3]), .clr(ctrl_reset), .in(screenEnd));
 	register_32 reg4(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(ctrl_writeEnable), .write_ctrl(d_write[4]), .oeA(d_readA[4]), .oeB(d_readB[4]), .clr(ctrl_reset), .in(data_writeReg));
 	register_32 reg5(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[5]), .oeB(d_readB[5]), .clr(ctrl_reset), .in(ball_xinit));
 	register_32 reg6(.outA(data_readRegA), .outB(data_readRegB), .clk(clock), .ie(1'b1), .write_ctrl(1'b1), .oeA(d_readA[6]), .oeB(d_readB[6]), .clr(ctrl_reset), .in(ball_yinit));
