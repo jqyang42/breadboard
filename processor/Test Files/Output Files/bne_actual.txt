@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Cycle  10: Wrote 4 into register 1
 Cycle  11: Wrote 5 into register 2
 Cycle  14: Wrote 4294967292 into register 3
@@ -37,3 +38,44 @@ Reg 28:           0
 Reg 29:           0
 Reg 30:           0
 Reg 31:           0
+=======
+Cycle  10: Wrote 4 into register 1
+Cycle  11: Wrote 5 into register 2
+Cycle  14: Wrote 4294967292 into register 3
+Cycle  15: Wrote 4294967291 into register 4
+Cycle  22: Wrote 281 into register 10
+Cycle  27: Wrote 281 into register 10
+============== Testing Mode ==============
+Reg  0:           0
+Reg  1:           0
+Reg  2:           0
+Reg  3:           0
+Reg  4:           0
+Reg  5:           0
+Reg  6:           0
+Reg  7:           0
+Reg  8:           0
+Reg  9:           0
+Reg 10:           0
+Reg 11:           0
+Reg 12:           0
+Reg 13:           0
+Reg 14:           0
+Reg 15:           0
+Reg 16:           0
+Reg 17:           0
+Reg 18:           0
+Reg 19:           0
+Reg 20:           0
+Reg 21:           0
+Reg 22:           0
+Reg 23:           0
+Reg 24:           0
+Reg 25:           0
+Reg 26:           0
+Reg 27:           0
+Reg 28:           0
+Reg 29:           0
+Reg 30:           0
+Reg 31:           0
+>>>>>>> 8fb5e21f2913f959560861343286e3f4142271db

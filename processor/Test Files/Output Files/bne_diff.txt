@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Reg:  1 Expected:           4 Actual:           0
 Reg:  2 Expected:           5 Actual:           0
 Reg:  3 Expected:          -4 Actual:           0
 Reg:  4 Expected:          -5 Actual:           0
 Reg: 10 Expected:           2 Actual:           0
+=======
+Reg:  1 Expected:           4 Actual:           0
+Reg:  2 Expected:           5 Actual:           0
+Reg:  3 Expected:          -4 Actual:           0
+Reg:  4 Expected:          -5 Actual:           0
+Reg: 10 Expected:           2 Actual:           0
+>>>>>>> 8fb5e21f2913f959560861343286e3f4142271db
