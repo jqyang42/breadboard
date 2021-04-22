@@ -33,7 +33,7 @@
  *
  **/
 
-module Wrapper_tb #(parameter FILE = "bne");
+module Wrapper_tb #(parameter FILE = "logic");
 
 	// FileData
 	localparam DIR = "Test Files/";

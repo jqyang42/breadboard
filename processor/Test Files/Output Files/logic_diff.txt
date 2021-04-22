@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 Reg:  0 Expected:           0 Actual:           Z
 Reg:  1 Expected:           0 Actual:           Z
@@ -40,3 +41,5 @@ Reg: 29 Expected:           0 Actual:         242
 Reg: 30 Expected:           0 Actual:         242
 Reg: 31 Expected:           0 Actual:         242
 >>>>>>> Stashed changes
+=======
+>>>>>>> 9efdecc60a03157fb511ab54c83807dbaa87da7a

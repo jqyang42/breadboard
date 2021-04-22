@@ -33,7 +33,7 @@
  *
  **/
 
-module Wrapper_tb #(parameter FILE = "bgt");
+module Wrapper_tb #(parameter FILE = "control_bypassing");
 
 	// FileData
 	localparam DIR = "Test Files/";
