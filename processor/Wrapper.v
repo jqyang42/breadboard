@@ -49,7 +49,7 @@ module Wrapper (clock, reset, ball_x, ball_y, ball_xinit, ball_yinit);
 	input clock, reset;
 	input [31:0] ball_xinit;
 	input [31:0] ball_yinit;
-	output[13:0] ball_x;
+	output[31:0] ball_x;
 	output [31:0] ball_y;
 
 	wire rwe, mwe;

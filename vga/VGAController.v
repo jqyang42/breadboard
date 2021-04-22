@@ -50,8 +50,8 @@ module VGAController(
 	
 	wire active, screenEnd;
 	wire[31:0] ball_x, ball_y;
-	assign active_on = (ball_x == 32'd320);
-	assign screenEnd_on = (ball_y == 32'd240);
+	assign active_on = ball_x == 32'd320;
+	assign screenEnd_on = ball_y == 32'd240;
 	wire[9:0] x;
 	wire[8:0] y;
 
@@ -298,7 +298,6 @@ module VGAController(
 			ball_xdir_factor <= 1;
 			ball_ydir_factor <= 1;
 			ball_inSq <= 0;
-			ball_inSq <= 0;
 		end
 
 		//PADDLE MOVEMENT CALCULATION
@@ -409,15 +408,7 @@ module VGAController(
 	// 			segRight_topBound, segRight_bottomBound);
 
 	Wrapper proc(clk25, reset, ball_x, ball_y, ball_xinit, ball_yinit);
-	
+	assign winner = 2'b01;
     segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
 
-	
-	// defome waveform
-	initial begin
-		// output file name
-		$dumpfile("processorish.vcd");
-		// module to caputre and what level, 0 = all wires
-		$dumpvars(0, VGAController);
-	end
 endmodule
