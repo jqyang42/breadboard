@@ -50,8 +50,8 @@ module VGAController(
 	
 	wire active, screenEnd;
 	wire[31:0] ball_x, ball_y;
-	assign active_on = ball_x == 32'd320;
-	assign screenEnd_on = ball_y == 32'd240;
+	assign active_on = ball_x == 32'd330;
+	assign screenEnd_on = ball_y == 32'd250;
 	wire[9:0] x;
 	wire[8:0] y;
 
