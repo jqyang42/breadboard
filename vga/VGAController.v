@@ -17,17 +17,14 @@ module VGAController(
 	input p2_down,
 	input p2_left,
 	input p2_right,
-	output ca, 
-	output cb, 
-	output cc, 
-	output cd, 
-	output ce, 
-	output cf, 
-	output cg, 
+	output [6:0] cathodes,
+	output [7:0] anodes,
 	output ball_inSq, 
 	output active_on,
 	output screenEnd_on);
-	
+
+	assign anodes = 8'b11101110;	
+
 	// Lab Memory Files Location
 	localparam FILES_PATH = "//tsclient/ECE350/breadboard/vga/"; 
 	// localparam FILES_PATH = "C:/Users/Jessica Yang/Documents/ece350/breadboard/vga/";
@@ -113,6 +110,8 @@ module VGAController(
 	reg[31:0] ball_yRef;
 	reg[31:0] ball_xdir, ball_ydir;
 	reg[31:0] ball_xdir_factor, ball_ydir_factor;
+// WINNER STATS
+	reg[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
 
 
 	initial begin
@@ -122,6 +121,7 @@ module VGAController(
 		ball_ydir = 1;
 		ball_xdir_factor = 1;
 		ball_ydir_factor = 1;
+		winner = 0;
 	end
 	
 	assign ball_leftBound = ball_xRef - 10;
@@ -189,9 +189,7 @@ module VGAController(
 	assign p1_xBound = screenMiddle - 50;
 	assign p2_xBound = 370;
 
-	// WINNER STATS
-	wire[2:0] winner; //winner of round (player 1 v. 2; can change to increment score later)
-
+	
 
 
 	reg ball_inSq = 0;
@@ -205,10 +203,16 @@ module VGAController(
 		// BALL DIRECTIONALITY WITH WALLS
 		//right wall
 		if(ball_xRef+10 >= ball_xlim) begin
+			if(ball_yRef-10 < segRight_bottomBound && ball_yRef+10 > segRight_topBound) begin
+				winner <= 1;
+			end
 			ball_xdir <= -1;
 			ball_inSq <= 1;
 		end
 		else if(ball_xRef-10 <= ball_xmin) begin
+			if(ball_yRef-10 < segLeft_bottomBound && ball_yRef+10 > segLeft_topBound) begin
+				winner <= 2;
+			end
 			ball_xdir <= 1;
 			ball_inSq <= 1;
 		end
@@ -429,7 +433,5 @@ module VGAController(
 	// wire write_en_stall;
 	// assign write_en_stall = screenEnd && ;
 	Wrapper proc(clk25, reset, screenEnd, ball_x, ball_y, ball_xdir, ball_ydir);
-	assign winner = 2'b01;
-    segment_decoder seg_number(.number(winner), .ca(ca), .cb(cb), .cc(cc), .cd(cd), .ce(ce), .cf(cf), .cg(cg));
-
+    new_segment_decoder seg_number(.number(winner), .cathodes(cathodes));
 endmodule
